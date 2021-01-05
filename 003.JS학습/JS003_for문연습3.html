@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS for문 옵션</title>
+    <style>
+        .forCle img {
+            height: 100px;
+        }
+
+    </style>
+    <script>
+        /*/////////////////////////////////////////
+        함수명 : addNum
+        기능 : for문으로 숫자이미지를 추가한다
+    */ /////////////////////////////////////////
+        function addNum(num) { // num - 전달변수(호출구분)
+            // 1. 함수호출확인
+            console.log("함수호출!!!" + num);
+            // 2. 변경대상 : .forCls (전달된 num의 순번으로 클래스 선택!)
+            var tg = document.getElementsByClassName("forCls").item(num);
+
+            // 내용초기화(html 지우기)
+            tg.innerHTML = "";
+
+            // 3. 변경내용 : 변경대상 내부에 이미지 태그를 for문으로 넣어줌
+            for (var i = 1; i <= 10; i++) {
+
+                // 순번 빼고 돌리기
+                if (num === 1 && (i === 3 || i === 6 || i === 9)) continue;
+
+                // for문 안에 조건문과 함께 continue를 쓰면 조건에 맞는순번을 뺴고 계속해~!
+
+                // 8번부터 안나오게 하기
+                if (num === 2 && i === 8) break;
+                
+                // for문 안에 조건문과 함께 break를쓰면 조건에 맞는 순번에서 for문을 빠져나감!
+                
+                // -> continue와 break는 실행문 위에 있어야한다!!
+                // 이유-> 실행문을 실행하기 전에 조건을 걸러야 하므로!!!
+
+                // console.log("반복!"+i);
+                // 변경대상에 이미지 넣기(대입 연산자사용!!)
+                tg.innerHTML += '<img src="images/num/num_0' + i + '.png" alt="숫자">';
+
+
+            } ///////for문///////////////////////////
+
+
+        } /////////addNum 함수///////////////////////
+        ///////////////////////////////////////////
+
+    </script>
+</head>
+
+<body>
+
+    <h1>for문 옵션</h1>
+
+    <button onclick="addNum(0)">함수호출1</button>
+    <h2>기본 for 문</h2>
+    <div class="forCls"></div>
+
+    <button onclick="addNum(1)">함수호출2</button>
+
+    <h2>3번과 6번과 9번 뺴고 돌리기</h2>
+    <div class="forCls"></div>
+
+    <button onclick="addNum(2)">함수호출3</button>
+
+    <h2>어디까지만 돌리기</h2>
+    <div class="forCls"></div>
+</body>
+
+</html>
