@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open Door
+        - CSS3 : 3D Perspective Animation</title>
+    <style>
+        body {
+            background-color: #504c4c;
+        }
+
+        /*문전체부모*/
+        .cont {
+            position: relative;
+            top: 100px;
+            width: 200px;
+            height: 300px;
+            margin: 0 auto;
+            /*마영오*/
+            background-color: #900;
+        }
+
+        /*문열었을때 뚫린부분*/
+        .frame {
+            position: relative;
+            top: 20px;
+            width: 150px;
+            height: 280px;
+            margin: 0 auto;
+            background: url(images/hades3.jpg) no-repeat center/auto 100%;
+            /*
+            [ 3D 원근설정 ]
+            1. 셋팅위치: 3D원근설정을 할 대상의 부모박스에 셋팅
+            2. 설정방법:
+            perspective: 수치;
+            - 수치는 px단위로 숫자가 클수록
+            소실점이 먼것이므로 각도가 작아짐(기준점에서 소실점까지의 거리)
+            */
+            perspective: 480px;
+
+            /*
+                뷰포인트(관찰자위치) 위치변경옵션
+                perspecyive-origin : 가로, 세로;
+                - 가로값 : left, center, right (x축변경일경우)
+                - 세로값 : top, center, bottom (y축변경일경우)
+                - 두값 중 회전축에 따라 같이 세팅할수있다
+                - %사용가능  (예 : 50%는 중앙) 
+            */
+            /*애니메이션 : 이시이지반방마*/
+            animation: fire 5s ease-in-out infinite alternate;
+        }
+
+        /*배경 지옥 애니매이션*/
+        @keyframes fire {
+            to {
+                background-size: auto 120%;
+            }
+        }
+
+        /*키프레임*/
+
+        /*문짝*/
+        .door {
+            position: relative;
+            /*부모자격-손잡이*/
+            width: 150px;
+            height: 280px;
+            background-color: #000;
+
+            /*문짝회전하기*/
+            transform: rotateY(65deg);
+            /*회전기준변경하기*/
+            transform-origin: left;
+            /*
+            회전기준선 변경하기
+            transform-origin: 가로 세로;
+            - 가로값: right, center, left
+            - 세로값: top, center, bottom
+            - 정해지지 않은값 px, %도 사용가능
+            */
+            /*애니메이션:이시이지반방마*/
+            animation: openDoor 2s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        /*문짝열기 키프레임*/
+        @keyframes openDoor {
+            from {
+                transform: rotateY(65deg);
+            }
+
+            to {
+                transform: rotateY(-65deg);
+            }
+        }
+
+        /*키프레임*/
+
+
+        /*손잡이*/
+        .handle {
+            position: absolute;
+            top: 150px;
+            right: 10px;
+            /*부모? .door*/
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #900;
+        }
+
+        #devil {
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        #devil img {
+            margin-top: 50px;
+            margin-left: 150px;
+            transform: rotate(0deg);
+            transform-origin: bottom;
+
+            animation: devil 2s ease-in-out infinite alternate
+        }
+
+        /*키프레임*/
+        @keyframes devil {
+            to {
+                transform: rotate(-20deg);
+            }
+        }
+
+        /*키프레임*/
+        /*문전체부모*/
+        /*문전체부모*/
+        .scont {
+            position: relative;
+            top: -174px;
+            right: -310px;
+            
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            /*마영오*/
+            background-color: #900;
+        }
+
+        /*문열었을때 뚫린부분*/
+        .sframe {
+            position: relative;
+            top: 20px;
+            width: 110px;
+            height: 110px;
+            margin: 0 auto;
+            background: url(images/hades3.jpg) no-repeat center/auto 100%;
+            /*
+            [ 3D 원근설정 ]
+            1. 셋팅위치: 3D원근설정을 할 대상의 부모박스에 셋팅
+            2. 설정방법:
+            perspective: 수치;
+            - 수치는 px단위로 숫자가 클수록
+            소실점이 먼것이므로 각도가 작아짐(기준점에서 소실점까지의 거리)
+            */
+            perspective: 480px;
+
+            /*
+                뷰포인트(관찰자위치) 위치변경옵션
+                perspecyive-origin : 가로, 세로;
+                - 가로값 : left, center, right (x축변경일경우)
+                - 세로값 : top, center, bottom (y축변경일경우)
+                - 두값 중 회전축에 따라 같이 세팅할수있다
+                - %사용가능  (예 : 50%는 중앙) 
+            */
+            /*애니메이션 : 이시이지반방마*/
+            animation: fire 5s ease-in-out infinite alternate;
+        }
+
+        /*배경 지옥 애니매이션*/
+        @keyframes fire {
+            to {
+                background-size: auto 120%;
+            }
+        }
+
+        /*키프레임*/
+
+        /*문짝*/
+        .sdoor {
+            position: absolute;
+            /*부모자격-손잡이*/
+            width: 110px;
+            height: 110px;
+            background-color: rgba(0, 0, 0, 0.59);
+
+            padding: 0 30px;
+            border: 5px solid #191414;
+            box-sizing: border-box;
+
+
+            /*문짝회전하기*/
+            transform: rotateX(0deg);
+            /*회전기준변경하기*/
+            transform-origin: top;
+            /*
+            회전기준선 변경하기
+            transform-origin: 가로 세로;
+            - 가로값: right, center, left
+            - 세로값: top, center, bottom
+            - 정해지지 않은값 px, %도 사용가능
+            */
+            transition: .4s;
+        }
+
+        /*창문부모에 마우스 오버시 창문열기*/
+        .scont:hover .sdoor {
+            transform: rotateX(65deg);
+        }
+
+        /*
+        문짝열기 키프레임
+        @keyframes openDoor {
+            from {
+                transform: rotateY(65deg);
+            }
+
+            to {
+                transform: rotateY(-65deg);
+            }
+        }*/
+
+        /*키프레임*/
+
+
+        /*손잡이*/
+        .shandle {
+            position: absolute;
+            top: 96px;
+            right: 45px;
+            /*부모? .door*/
+            width: 20px;
+            height: 2px;
+
+            background-color: #900;
+        }
+
+        #sdevil {
+            position: absolute;
+            top: -20px;
+            left: -107px;
+            width: 150px;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        #sdevil img {
+            margin-top: 50px;
+            margin-left: 150px;
+            transform: rotate(0deg);
+            transform-origin: bottom;
+
+
+        }
+
+        .scont:hover .sdevil {
+            
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--문전체부모-->
+    <div class="cont">
+        <!--문열었을때 뚫린부분-->
+        <div class="frame">
+            <!--문짝-->
+            <div class="door">
+                <!--손잡이-->
+                <div class="handle"></div>
+            </div>
+
+            <!--악마박스-->
+            <div id="devil">
+                <img src="images/devil2.png" alt="">
+
+            </div>
+        </div>
+    </div>
+
+    <!--창문 전체부모-->
+    <div class=scont>
+        <!--창문 뚤린부분-->
+        <div class="sframe">
+            <!--문짝-->
+            <dvi class="sdoor">
+                <!--손잡이-->
+                <div>
+                    <div class="shandle"></div>
+                </div>
+            </dvi>
+            <!--악마박스-->
+            <div id="sdevil">
+                <img src="images/davil3.png" alt="">
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body></html>

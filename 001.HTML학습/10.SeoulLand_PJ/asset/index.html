@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Seoul Land!!!</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/common.js"></script>
+    <script src="js/main.js"></script>
+    
+</head>
+
+<body>
+
+    <!--1.상단영역-->
+    <div id="top">
+        <!--GNB 메뉴 100% 라인 박스-->
+        <div class="gnbline"></div>
+        <header class="ibx clb top">
+            <div class="col-2 t1">
+                <!--로고이미지-->
+                <h1 class="logo">
+                    <a href="">
+                        <img src="images/logoTop.png" alt="서울랜드 로고">
+                    </a>
+                </h1>
+            </div>
+            <div class="col-10 t1 navbx">
+                <!--공통메뉴-->
+                <nav class="tmenu">
+                    <ul>
+                        <li><a href="">로그인</a></li>
+                        <li><a href="">회원가입</a></li>
+                        <li><a href="">고객의소리함</a></li>
+                        <li><a href="">사이트맵</a></li>
+                        <li>
+                            <select id="lang">
+                                <option value="opt">
+                                    LANGUAGE
+                                </option>
+                                <option value="en">
+                                    English
+                                </option>
+                                <option value="ja">
+                                    Japanese
+                                </option>
+                                <option value="ch">
+                                    Chinese
+                                </option>
+                            </select>
+                            <!--
+                                select 요소 : 선택옵션을 제공하는 요소
+                                - option : 필수하위요소, 선택메뉴제공
+                                - value 속성은 선택시 코드설정(만약 value속성이 없으면 option요소의데이터를 읽어감)
+                                - 주로 사용되는 이벤트: change 이벤트
+                                : 선택이 변경될 경우 발생하는 이벤트사용
+                            -->
+                        </li>
+                    </ul>
+                </nav>
+                <!--GNB(Global Navigation Bar)메뉴-->
+                <nav class="gnb clb" onmouseover="showG(142)" onmouseout="showG(0)">
+                    <dl>
+                        <dt><a href="">계획세우기</a></dt>
+                        <dd><a href="">이용시간</a></dd>
+                        <dd><a href="">이용요금</a></dd>
+                        <dd><a href="">할인프로모션</a></dd>
+                        <dd><a href="">제휴카드</a></dd>
+                        <dd><a href="">온라인쿠폰</a></dd>
+                        <dd><a href="">교통정보</a></dd>
+                        <dd><a href="">주변볼거리</a></dd>
+                    </dl>
+                    <dl>
+                        <dt><a href="">즐거운상상</a></dt>
+                        <dd><a href="">놀이기구</a></dd>
+                        <dd><a href="">공연/전시</a></dd>
+                        <dd><a href="">연간축제안내</a></dd>
+                        <dd><a href="">음식점/상점</a></dd>
+                        <dd><a href="">편의시설</a></dd>
+                        <dd><a href="">함께하는 이벤트</a></dd>
+                    </dl>
+                    <dl>
+                        <dt><a href="">단체프로그램</a></dt>
+                        <dd><a href="">학생단체</a></dd>
+                        <dd><a href="">기업체행사</a></dd>
+                        <dd><a href="">외국인단체</a></dd>
+                        <dd><a href="">일반단체</a></dd>
+                    </dl>
+                    <dl>
+                        <dt><a href="">연간회원</a></dt>
+                        <dd><a href="">서울랜드 연간회원</a></dd>
+                        <dd><a href="">둘모아 연간회원</a></dd>
+                        <dd><a href="">다모아 연간회원</a></dd>
+                        <dd><a href="">연간회원 약관</a></dd>
+                    </dl>
+                    <dl>
+                        <dt><a href="">예매/예약</a></dt>
+                        <dd><a href="">예매</a></dd>
+                        <dd><a href="">나의 예매/예약내역</a></dd>
+                    </dl>
+                    <dl>
+                        <dt><a href="">캐릭터 쇼핑몰</a></dt>
+                        <dd></dd>
+                    </dl>
+                </nav>
+            </div>
+        </header>
+    </div>
+    <!--2.배너영역-->
+    <div id="ban">
+        <!--2-1.배너슬라이드박스-->
+        <ul class="slider">
+            <li class="on">
+                <span class="bld">꽃보다 서울랜드</span>
+            </li>
+            <li>
+                <span class="bld">루나파크</span>
+            </li>
+            <li>
+                <span class="bld">설랜은밤</span>
+            </li>
+            <li>
+                <span class="bld">뮤직콘서트</span>
+            </li>
+            <li>
+                <span class="bld">쥬라기랜드</span>
+            </li>
+            <li>
+                <span class="bld">치맥나이트</span>
+            </li>
+        </ul>
+        <!--2-2.배너속박스-->
+        <section class="ibx clb ban">
+            <div class="col-10 b1"></div>
+            <div class="col-2 b1"></div>
+            <!--중앙박스 이동버튼-->
+            <a href="" class="abtn lb" >
+                <span class="bld">배너왼쪽 이동버튼</span>
+            </a>
+            <a href="" class="abtn rb" >
+                <span class="bld">배너오른쪽 이동버튼</span>
+            </a>
+        </section>
+    </div>
+    <!--3.컨텐츠영역-->
+    <div id="cont">
+        <section class="ibx clb cont">
+            <div class="col-2 c1"></div>
+            <div class="col-3 c1"></div>
+            <div class="col-3 c1"></div>
+            <div class="col-4 c1"></div>
+        </section>
+    </div>
+    <!--4.하단영역-->
+    <div id="info">
+        <footer class="ibx clb info">
+            <div class="col-9 i1"></div>
+            <div class="col-3 i1"></div>
+            <div class="col-10 i2"></div>
+            <div class="col-2 i2"></div>
+        </footer>
+    </div>
+
+
+    <!--그리드뷰-->
+    <ul class="grid">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+
+
+
+
+
+
+</body></html>

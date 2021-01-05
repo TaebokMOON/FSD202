@@ -1,0 +1,101 @@
+@charset "utf-8";
+/* 세계의 도시 메인페이지 CSS - main.css */
+
+ @import url('https://fonts.googleapis.com/css?family=Black+And+White+Picture|East+Sea+Dokdo|Jua&display=swap');
+        /*
+            font-family: 'Black And White Picture', sans-serif;
+            font-family: 'East Sea Dokdo', cursive;
+            font-family: 'Jua', sans-serif;
+        
+        */
+
+html,body {
+    margin: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    background-image: linear-gradient(to bottom, #ce7070 30%, #7077ce 70%);
+}
+
+/* 1. 전체 제목*/
+.tit {
+    text-align: center;
+    padding-top: 50px;
+    font-family: 'Black And White Picture', sans-serif;
+    font-size: 50px;
+    color: #2f2f2f;
+    background: url(../images/korea5.png) no-repeat  center/auto 100%;
+}
+
+/* 2. 메뉴*/
+.city {
+    position: fixed;
+    top: 50px;
+    right: 50px;
+}
+
+.city ul {
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+    /*원근설정(원근대상의 부모에 준다!!*/
+    perspective: 480px;
+    
+}
+
+.city li {
+    height: 100px;
+    background-image: linear-gradient(to right, transparent, #1a317e);
+    /*transparent는 투명을 지칭하는 키워드(만약 이 키워드 대신 쓸수있는것은 rgba로 투명만들기를 할수있음*/
+    
+    /*트랜스폼 회전축 기준변경*/
+    transform-origin: left;    
+    /*트랜지션 : 속시이지*/
+    transition: transform .4s ease-out;
+}
+.city li:nth-child(4) {
+    background-image: linear-gradient(to right, transparent, #7e1a1a);
+}
+.city li:nth-child(5) {
+   background-image: linear-gradient(to right, transparent, #7e1a1a);
+}
+.city li:nth-child(6) {
+   background-image: linear-gradient(to right, transparent, #7e1a1a);
+}
+
+/*마우스 오버시*/
+.city li:hover {
+    background-image: linear-gradient(to right, transparent, #ffffff);
+    transform: rotateY(-15deg);
+}
+
+
+
+.city a {
+    display: block;
+    /*디자인 적용을 위해*/
+    
+    width: 100%;
+    height: 100%;
+    font: bold 52px/100px 'East Sea Dokdo', cursive;
+    text-decoration: none;
+    text-align: center;
+    color: #3c3c3c;
+}
+
+/* 3. 큐브박스*/
+.cube {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    transform: translate(-50%,-50%);
+    outline: 2px solid black;
+}

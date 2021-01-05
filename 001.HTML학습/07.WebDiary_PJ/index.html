@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Diary PJ</title>
+    <link rel="stylesheet" href="css/main.css">
+    
+</head>
+<body>
+   <!--제목-->
+   <h1 class="bld">나의 웹 다이어리 스페인 여행</h1>
+    <!--전체컨텐츠 부모박스-->
+    <section class="cont">
+        <!--1.타이틀박스-->
+        <heder id="tit">
+            <h2 class="bld">제목:걸어서 세계속으로</h2>
+            <!--걷는남자-->
+            <img id="man" src="images/man.png" alt="걷는남자">
+            <img id="nabi" src="images/butterfly.gif" alt="나비">
+        </heder>
+        <!--2.사이드 배경박스-->
+        <aside id="check">
+            <h2 class="bld">체크무늬배경</h2>
+            <!--나비애니-->
+            <img id="cat" src="images/actor2.png" alt="고양이">
+        </aside>
+        <!--3.하단바다박스-->
+        <footer id="sea">
+            <h2 class="bld">바다물결이미지</h2>
+            <!--상어애니-->
+            <img id="shark" src="images/shark.gif" alt="아기상어뚜루뚜뚜루">
+        </footer>
+        <!--4.다이어리박스-->
+        <main id="diary">
+            <h2 class="bld">다이어리</h2>
+            
+            <!--4-1.폴라1-->
+            <div class="pola1 pola">
+                <img src="images/pola1_tit.png" alt="알함브라궁전의정원">
+            </div>
+            <!--4-2.폴라-->
+            <div class="pola2 pola">
+                <img src="images/pola2_tit.png" alt="구엘공원">
+            </div>
+            
+            <!--4-3. 스케줄박스-->
+            <div class="schedule">
+               <img src="images/schedule.png" alt="일정">
+               <img src="images/schedule_over.png" alt="일정표시">
+            </div>
+            
+              <!--4-4. 포스트잍1-->
+              <div class="post1">
+                  <img src="images/post1.png" alt="둘째날 일정">
+              </div>
+               <!--4-5. 포스트잍2-->
+              <div class="post2">
+                  <img src="images/post2.png" alt="셋째날 일정">
+              </div>
+              
+              <!--4-6. 스페인 음식-->
+              <div class="food">
+                 <img src="images/food.png" alt="스페인음식" usemap="#fmap">
+                 <!--이미지맵설정(위치는 상관없음)-->
+                  <map name="fmap">
+                      <area shape="rect" coords="10,34,110,123" href="https://youtu.be/QdM-ucXB6FQ" target="_blank" alt="꼬치니요 아사도">
+                      <area shape="circle" coords="164,80,48" href="https://youtu.be/Rlq_gE1J828" target="_blank" alt="빠에야"> 
+                      <area shape="poly" coords="267,34,317,123,217,123" href="https://youtu.be/afB1_4hyI8Y" target="_blank" alt="하몬">
+                  </map>
+                  
+                  
+                  
+              </div> 
+               <!--
+                   [ 이미지맵 사용법 ]
+                    1. img 태그에 usemap 속성에 "#맵이름"을 쓴다.
+                    2. map 태그에 name값을 #이 없는 같은 이름으로 지정한다.
+                    3. area 요소의 하위 속성들을 셋팅한다.
+                        1) shape 속성 : 링크가 걸릴영역을 도형으로 지정
+                        - rect(사각형), clrcle(원), poly(다각형)
+                        2) coords 속성 : 도형의 위치값
+                        3) href 속성 : 이동할 페이지 url
+                        4) target 속성 : 새창열기 등 옵션 지정 (_blank새창)
+                        5) alt 속성 : 영역이 잡힌 이미지에 대한 설명(웹 접근성 필수)
+                    
+                    [ 맵모양에 따른 coords 설정법 ]
+                    1.rect : 사각형
+                     -기준 : 왼쪽위 x,y 오른쪽 아래 x,y좌표값dmf 단위 없는 px값으로 지정함
+                           예) coords = "x1,y1,x2,y2)
+                    2. circle : 원
+                     -기준 : 원의 중심점 x,y 좌표값과 반지름 단위 없는 px값지정
+                           예) coords = "x,y,r"
+                    3. poly : 다각형
+                     - 기준: 다각형의 각점을 x,y좌표로 순으로 나열하여 단위값없는 px갑으로 지정함
+                           예) coords = "x1,y,1x,2y,x,3y,3............"
+               -->              
+                
+            
+         </main>
+    </section>
+    
+    <!--자유로운 애니케릭터-->
+    <img id="act1" src="images/actor1.png" alt="날날리">
+    
+    
+    
+</body>
+</html>

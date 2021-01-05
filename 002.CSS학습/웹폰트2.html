@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>WebFont CDN방식으로 적용하기</title>
+    <link href="https://fonts.googleapis.com/css2?family=Stalinist+One&display=swap" rel="stylesheet">
+    <style>
+        /*
+        [ CDN 방식으로 웹폰트 불러오기 ]
+            - Content Delivery Network 즉, 컨텐트(웹폰트파일)를 가져와 네트워크로!!
+        
+            - 호출방식
+            1. external 방식으로 불러오기
+            - link요소를 사용하여 html 상단에 넣는다
+            예)<link rel="stylesheet" href="cdn주소"
+        
+            2. import 방식으로 불러오기
+            - @import 를 사용하여 css코딩구역 상단에 넣는다
+            예) @import url(cdn주소)
+        
+            ->@font-face가 필요 없음
+    */
+
+        /*웹폰트 import 방식 불러오기*/
+        @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&family=Indie+Flower&display=swap');
+
+        /*
+            font-family: 'Abril Fatface', cursive;
+            font-family: 'Dancing Script', cursive;
+            font-family: 'Indie Flower', cursive;
+        */
+
+        /*적용하기*/
+        .wf1 {
+            font-family: 'Stalinist One', cursive;
+            color: #691a63;
+            font-weight: none;
+        }
+
+        .wf2 {
+            font-family: 'Abril Fatface', cursive;
+            color: #691d1a;
+            font-weight: none;
+        }
+
+        .wf3 {
+            font-family: 'Dancing Script', cursive;
+            color: #2c691a;
+            font-weight: none;
+        }
+
+        .wf4 {
+            font-family: 'Indie Flower', cursive;
+            color: #66691a;
+            font-weight: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="wf1">
+        A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred music, or a noble picture, or a passage from the grander poets. It always does one good.
+    </h1>
+    <h1 class="wf2">
+        A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred music, or a noble picture, or a passage from the grander poets. It always does one good.
+    </h1>
+    <h1 class="wf3">
+        A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred music, or a noble picture, or a passage from the grander poets. It always does one good.
+    </h1>
+    <h1 class="wf4">
+        A peep at some distant orb has power to raise and purify our thoughts like a strain of sacred music, or a noble picture, or a passage from the grander poets. It always does one good.
+    </h1>
+</body></html>
