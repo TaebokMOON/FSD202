@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> 그룹 선택자  </title>
+<!-- jQuery library -->
+<script src="jquery-1.7.2.min.js"></script>
+<script>
+$(document).ready(function(e) {
+    // 미션: p태그 또는 #nav li 태그를 클릭하면
+	// 클릭된 것만 글자를 나야나~! 라고 바꾸고
+	// 글자크기를 72px 빨간색 글자로 트랜지션 주시오.
+	// transition: all .4s
+	
+	$("p,#nav li").click(function(){
+        $(this).text("자바스크립트 너무 어렵다😭").css({
+            fontSize:"60px",
+            color:"#edacac",
+            transition: "all .4s"
+        })///// css //////////
+        
+        
+        
+    });///// click /////
+	
+	
+	
+});//jQuery실행구역
+</script>
+</head>
+  
+<body>
+
+<div id="container">
+ <h2> Welcome mySite </h2>
+ <div>
+    <p> Hello </p>
+ </div>
+
+ <nav>
+  <ul id="nav">
+   <li>One</li>
+   <li>Two</li>
+   <li>Three</li>
+  </ul>
+ </nav>
+
+</div>
+
+<!---------- jQuery code Start ---------->
+<script>
+
+</script>
+
+
+</body>
+</html>
+
