@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Robot PJ</title>
+    <style>
+        body{
+/*            background: 색이반고윙/크;*/
+            background: url(images/bg.jpg) no-repeat fixed top/cover;
+        }
+        
+        div{
+            outline: 2px solid lime;
+        }
+        
+        /*로봇머리*/
+        #head{
+            position: relative;
+            /*부모자격-자식요소가 absolute인것의 부모!*/
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;/*마영오-가로중앙*/
+        }
+        /*왼눈*/
+        #eye1{
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            /*나의부모? #head*/
+            width: 50px;
+            height: 50px;
+            background: url(images/e1.jpg) no-repeat 0/100% 100%;
+        }
+        /*오른눈*/
+        #eye2{
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            /*나의부모? #head*/
+            width: 50px;
+            height: 50px;
+            background: url(images/e2.jpg) no-repeat 0/100% 100%;
+        }
+    
+    </style>
+</head>
+<body>
+   
+   <!--로봇머리-->
+    <!--#head>#eye1+#eye2+#nose+#mouth+#ear1+#ear2-->
+    <div id="head">
+        <div id="eye1"></div>
+        <div id="eye2"></div>
+        <div id="nose"></div>
+        <div id="mouth"></div>
+        <div id="ear1"></div>
+        <div id="ear2"></div>
+    </div>
+    
+    <!--로봇몸통-->
+    <!--#body>#neck+#arm1+#arm2+#leg1+#leg2+#tv-->
+    <div id="body">
+        <div id="neck"></div>
+        <div id="arm1"></div>
+        <div id="arm2"></div>
+        <div id="leg1"></div>
+        <div id="leg2"></div>
+        <div id="tv"></div>
+    </div>
+   
+   
+   
+   
+   
+   
+    
+</body>
+</html>

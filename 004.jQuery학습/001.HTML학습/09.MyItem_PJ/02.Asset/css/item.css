@@ -1,0 +1,109 @@
+@charset "utf-8";
+/*My Item PJ 아이템 CSS - item.css*/
+
+/*외부 CSS파일 합치기*/
+@import url(core.css);
+@import url(reset.css);
+@import url(common.css);
+
+/*아이템 페이지 메인영역*/
+#cont {
+    padding-top: 80px;
+    /*상단 패딩여백*/
+
+}
+
+/*아이템 타이틀*/
+.tit {
+    width: 700px;
+   /* outline: 2px solid red;*/
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 45px;
+    color: #777;
+    /*outline: 2px solid blue;*/
+}
+
+/*아이템 타이틀 가상요소로 아이콘넣기*/
+.tit::before {
+    content: url(../images/myitems_icon_01.png);
+    /*
+        가상 요소로 이미지 넣기
+        content: url(이미지 경로)
+    */
+
+    /*인라인요소간 오른쪽 세로정렬*/
+    vertical-align: -17px;
+    margin-right: 10px;
+}
+
+/*아이템 컨텐츠 박스*/
+.ibox {
+    position: relative;
+    /*부모자격*/
+
+    width: 700px;
+    height: 300px;
+    margin: 0 auto;
+    /*가로중앙 (block박스, width가 있어야)*/
+
+   /* outline: 2px dotted purple;*/
+}
+
+/*아이템 박스 가상요소로 중앙 구분선 넣기*/
+.ibox::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    /*부모는?? .ibox*/
+    
+    width: 1px;
+    height: 80%;
+    background-color: #ccc;
+}
+
+/*아이템 이미지, 컨텐츠박스 공통*/
+.itbx {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+
+    box-sizing: border-box;
+    /*보더 , 패딩포함 크기유지*/
+
+    padding: 20px;
+}
+
+/*아이템 이미지박스*/
+.timg {
+    left: 0;
+    /*outline: 4px dashed orange;*/
+    text-align: center;
+}
+
+/*아이템 이미지*/
+.timg img {
+    height: 100%;
+    /*
+        부모박스  패딩안쪽을 100%채운다.
+        이미지는 기본적으로 가로, 세로값 중 하나만 주면 나머지는 자동으로 비율유지 된다!
+    */
+
+}
+
+/*아이템 글자박스*/
+.tcont {
+    left: 50%;
+    
+    /*글자관련*/
+    font-size: 13px;
+    color: #777;
+    line-height: 30px;
+    
+    /*outline: 4px dashed green;*/
+
+
+}

@@ -1,0 +1,517 @@
+@charset "utf-8";
+/* 웹 다이어리 메인 CSS - main.css*/
+
+/*다른 외부 CSS 합치기*/
+@import url(reset.css);
+@import url(common.css);
+/*
+    @import url(경로)
+    1. css파일 최상단 (@charset 아래)에 넣어준다.
+    2. 여러번 사용가능함
+    3. html의 link태그를 사용하지 않고 하나의 외부파일에서 다른 외부파일을 합치기때문에 http          requestr가 줄어들어 랜더링 속도가 빨라진다.
+*/
+
+/*전체 배경색*/
+body {
+    background-color: #acc1f7;
+}
+
+/*전체 컨텐츠 박스*/
+.cont {
+    position: relative;
+    width: 1000px;
+    height: 800px;
+    background-color: #fff;
+    margin: 0 auto;
+    overflow: hidden;
+    /*outline: 2px solid red;*/
+    margin-top: 80px;
+}
+
+/*1. 타이틀 박스*/
+#tit {
+    position: absolute;
+    top: 0;
+    right: -700px;
+    /*부모는? .cont*/
+    width: 620px;
+    height: 198px;
+    background: url(../images/title.png) no-repeat;
+    /*애니메이션:이시이지반방마*/
+    animation: titAni 1s ease-in-out 1.5s forwards;
+
+}
+
+/*타이틀박스 걷는남자*/
+#man {
+    position: absolute;
+    top: 10px;
+    right: -90px;
+    /*부모는 #tit*/
+
+    /*애니메이션 : 이시이지반방마*/
+    animation: showman 10s linear 5s forwards,
+        walk .3s linear 5s infinite alternate;
+    /*2개 애니메이션 적용함*/
+}
+
+/*걷는 남자 키프레임 - 등장*/
+@keyframes showman {
+    to {
+        right: 535px;
+    }
+}
+
+/*키프레임*/
+/*걷는남자 키프레임 - 걷기*/
+@keyframes walk {
+    from {
+        transform: rotate(5deg);
+    }
+
+    to {
+        transform: rotate(-5deg);
+    }
+}
+
+/*키프레임*/
+
+#nabi {
+    position: absolute;
+    top: 20px;
+    right: -145px;
+    height: 150px;
+    animation: nabiAni 2s ease-in-out 7s infinite alternate;
+}
+
+@keyframes nabiAni {
+    from {
+        right: -145;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+
+/*타이틀박스 키프레임*/
+@keyframes titAni {
+    to {
+        right: 0;
+    }
+}
+
+/*키프레임*/
+
+/*2. 체크무늬박스*/
+#check {
+    position: absolute;
+    top: 0;
+    left: -383px;
+    /*부모는?? .cont*/
+    width: 383px;
+    height: 345px;
+    background: url(../images/check.png) no-repeat;
+
+    /*애니메이션 호출(이시이지반방마)*/
+    animation: checkAni 1s ease-in-out 1s forwards;
+
+
+    /*animation: checkAni 1s ease-in-out 1s infinite alternate;*/
+}
+
+
+
+/*체크무늬박스 키프레임*/
+/*레프트 값 변경으로 왼쪽으로 나가있다가 들어옴*/
+@keyframes checkAni {
+    from {
+        left: -383px;
+    }
+
+    to {
+        left: 0;
+    }
+}
+
+/*키프레임*/
+#cat {
+    position: absolute;
+    bottom: 103px;
+    left: -92px;
+    transform: rotate(0deg);
+    transform-origin: bottom;
+
+    animation: catAni 2s ease-in-out infinite alternate;
+}
+
+/*고양이 키프레임*/
+@keyframes catAni {
+    to {
+        left: -68px;
+        transform: rotate(42deg)
+    }
+}
+
+/*프레임*/
+
+
+
+/*3. 하단 바다박스*/
+#sea {
+    position: absolute;
+    bottom: -219px;
+    left: 0;
+    width: 1000px;
+    height: 219px;
+    background: url(../images/sea.png) no-repeat;
+    animation: seaAni 1s ease-in-out 2s forwards,
+        updown 1s ease-in-out 3s infinite alternate;
+    /*두번쨰 애니 updown은 앞의 애니 총 시간동안 기다렸다가 실행 즉, 대기시간+애니시간=2s+1s=3s*/
+
+    /*
+        infinite 영원히
+        alternate 대체경로(from-to-to-from-from-to-to-from........)
+    */
+
+    /*중첩애니메이션은 콤마(,)후 엔터가능하며 이시이시반방마 순으로 셋팅한다!*/
+
+
+}
+
+
+
+/*하단바다박스 키프레임*/
+@keyframes seaAni {
+    to {
+        bottom: 0;
+    }
+}
+
+/*키프레임*/
+
+/*하단 바다박스 오르락 내라락 키프레임추가!*/
+/*동작 : 바다박스 등장애니 직후 작동시작함(영원히)*/
+@keyframes updown {
+    from {
+        bottom: 0;
+        /*시작위치*/
+    }
+
+    to {
+        bottom: -10px;
+        /*움직일 위치*/
+    }
+}
+
+/*키푸레임*/
+
+/*바다박스샤크*/
+#shark {
+    position: absolute;
+    bottom: -5px;
+    left: 110%;
+    height: 150px;
+    /*애니메이션 : 이시이지반방마*/
+    animation: shark 10s ease-in-out 5s infinite;
+}
+
+/*샤크 키프레임*/
+@keyframes shark {
+
+    /*8장면 키프레임*/
+    0% {
+        /* 1. 상어 오른쪽 바깥쪽 출발*/
+        left: 110%
+    }
+
+    10% {
+        /*2. 오른쪽 끝에 등장하기*/
+        left: 60%;
+    }
+
+    40% {
+        /*3. 천천히 왼쪾으로 이동하기 */
+        left: 20%;
+    }
+
+    50% {
+        /*4. 왼쪽 바깥으로 빠르게 나가기*/
+        left: -50%;
+        transform: rotateY(0deg)
+    }
+
+    /*반대로 들어오는 구간*/
+    51% {
+        /*5. 왼쪽 바깥에서 반대방향으로 뒤집기*/
+        left: -50%;
+        transform: rotateY(180deg)
+    }
+
+    60% {
+        /*6. 왼쪽끝에 반대방향으로 등장하기*/
+        left: 10%;
+        transform: rotateY(180deg)
+    }
+
+    90% {
+        /*7. 왼쪽에서 오른쪽까지 천천히 이동하기*/
+        left: 50%;
+        transform: rotateY(180deg)
+    }
+
+    100% {
+        8.
+        /*오른쪽 끝에서 바깥으로 빠르게 나가기*/
+        left: 110%;
+        transform: rotateY(180deg)
+    }
+}
+
+/*키프레임*/
+/*4. 다이어리박스*/
+#diary {
+    position: absolute;
+    /*부모자격도 있음!*/
+    top: 70%;
+    left: 50%;
+    /*부모?? .cont*/
+
+    transform: translate(-50%, -50%);
+    width: 834px;
+    height: 500px;
+    background: url(../images/diary.png) no-repeat;
+    margin-left: 18px;
+    opacity: 0;
+    /*
+        opacity 속성 - 투명도 속성
+        0 은 완전투명, 1은 완전 불투명
+        0.1~0.9 투명도가 조정됨
+        
+        마냑 투명도 애니메니션을 할경우 display:nome을 하지 않아야함!!
+        opacity로 애니메이션 연출함!
+    */
+    animation: diaryAni 2s ease-in-out 3s forwards;
+}
+
+/*아이어리 키프레임*/
+/*동작 중앙위치로 올라오며 투명도1로 보이기*/
+@keyframes diaryAni {
+    to {
+        top: 50%;
+        opacity: 1;
+    }
+}
+
+/*키프레임*/
+
+/*4-1. 폴라1*/
+.pola1 {
+    position: absolute;
+    top: 48px;
+    left: 5px;
+    width: 223px;
+    height: 235px;
+    background: url(../images/pola1.png) no-repeat;
+    z-index: 1;
+
+}
+
+/*폴라1 글자이미지*/
+.pola1 img {
+    position: absolute;
+    /*부모? pola1*/
+    top: 153px;
+    left: 131px;
+    display: none;
+}
+
+
+/*4-2 폴라2*/
+.pola2 {
+    position: absolute;
+    top: 33px;
+    left: 108px;
+    width: 210px;
+    height: 200px;
+    background: url(../images/pola2.png) no-repeat;
+}
+
+/*폴라2 글자이미지*/
+.pola2 img {
+    position: absolute;
+    /*부모? pola1*/
+    top: 24px;
+    right: -94px;
+    display: none;
+}
+
+/*폴라박스에 마우스 오버시 이미지 글자 보이기*/
+.pola:hover img {
+    display: block;
+
+}
+
+/*마우스 오버된 폴라박스 위로오기*/
+.pola:hover {
+    z-index: 2;
+}
+
+/*<!--4-3. 스케줄박스-->*/
+.schedule {
+    position: absolute;
+    bottom: 43px;
+    left: 68px;
+
+}
+
+.schedule img:last-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*처음 이미지 위에 겹쳐짐*/
+    display: none
+        /*처음 안보임*/
+}
+
+.schedule:hover img:last-child {
+    display: block;
+    /*보임*/
+
+}
+
+/*4-4. 포스트잍1*/
+.post1 {
+    position: absolute;
+    top: 72px;
+    right: 132px;
+    z-index: 1;
+
+    /*트랜지션*/
+    transition: transform .4s;
+}
+
+/*포스트1에 마우스 오버시 확대/회전하기*/
+.post1:hover {
+    transform: scale(1.2) rotate(-11deg)
+}
+
+
+
+/*4-5. 포스트잍2*/
+.post2 {
+    position: absolute;
+    top: 50px;
+    right: 240px;
+
+    /*트랜지션*/
+    transition: transform .4s;
+
+}
+
+.post2:hover {
+    transform: scale(1.2);
+    z-index: 1;
+}
+
+.food {
+    position: absolute;
+    bottom: 42px;
+    right: 89px;
+
+}
+
+/*이미지 맵 클릭시 포커스 아웃라인 없애기 - 크롬브라우저*/
+area:focus {
+    /*:focus가상 클래스는 마우스로 요소를 클릭해서 포커스가 갈때 발생함*/
+    outline: none;
+    /*
+        outline 디자인은 브라우저 마다 다름기본 디자인 기능을 없애는 설정임
+        outline: 0; 또는 outline: none;
+        a요소도 마찬가지임 (링크 걸리면 생긴다)
+    */
+}
+
+
+#act1 {
+    position: fixed;
+    top: 43%;
+    left: 110%;
+    
+    /*애니메이션 이시이지반방마*/
+    animation: freeAni 15s ease-in-out 5s infinite;
+}
+
+/* 자유로운 캐릭터 키프레임*/
+@keyframes freeAni {
+    0% { /*오른쪾위*/
+        top: 43%;
+        left: 110%;
+        transform: rotate(0deg);
+    }
+
+    25% { /*왼쪽위*/
+        top: -20%;
+        left: 26%;
+        transform: rotate(1100deg);
+    }
+
+    50% { /*왼쪽 아래*/
+        top: 44%;
+        left: -20%;
+        transform: rotate(800deg);
+    }
+
+    75% { /*왼쪽 아래*/
+        top: 79%;
+        left: 30%;
+        transform: rotate(1080deg);
+    }
+     100% { /*왼쪽 아래*/
+        top: 43%;
+        left: 110%;
+        transform: rotate(900deg);
+    }
+}/*키프레임*/
+
+/*
+[ CSS에서 애니메니션 구현하기: animation ]
+
+- html요소의 변화를 키프레임(장면)에 주고 이를 호출하여 브라우저에서 애니메이션 연출할 수 있게 하는 CSS구현기술
+
+[ 키프레임이란? ]
+- 애니메이션 변화를 지정하는 코딩영역
+
+[ 2장면 코딩법 ]
+@keyframes 키프레임명 {
+    from {시작 CSS}
+    to { 마지막 CSS}
+}
+
+[ 여러장면 코딩법 ]
+@keyframes 키프레임명{
+    0%{CSS설정}
+    10%{CSS설정}
+    20%{CSS설정}
+    ....
+    90%{CSS설정}
+    100%{CSS설정}
+}
+
+[ 설정된 키프레임 호출하는 방법 ]
+
+animation : 이시이지반방마
+(이름 시간 이징 지연 반복 방향 마지막생태)
+
+1) 이름 (animation-name) : kyeframe 이름
+2) 시간 (animation-duration) : 애니메이션 동작시간
+3) 이징 (animation-timung-function) : easing 가속도
+4) 지연 (animation-delay : 애니메이션 시작지연시간)
+5) 반복여부 (animation-iteration-count) : 애니메이션 반복횟수, 기본값1 숫자는 반복횟수
+                                        영원히  무한반복은 infinite(인피니트!)
+6) 방향 (animation-direction) : 시작 - 끝 (기본)
+                                시작 - 끝, 끝 - 시작 alternate(대체경로)
+                                제한 상황!! 반복횟수 또는 infinite일때!!!!!!
+7) 마지막상태 (animation-fill-mode) : 애니메이션이 끝났을때 처음상태로 돌아가는것이 기본
+마지막상태로 끝나고 싶으면? -> forwards(앞쪽에 ...마지막 상태 유지)*/
