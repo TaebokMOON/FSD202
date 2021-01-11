@@ -9,6 +9,26 @@
 $(document).ready(function(e) {
     //미션: li중 하나를 클릭하면  그 뒤의 형제요소의 li들이 모두 width: 500px, height: 300px로 변경되고 배경이미지를 넣으시오.(배경이미지는 웹경로로 넣고 트랜지션 설정도 하시오.)
 	
+    // 초기설정 (트랜지션때문!!!)
+    $('li').css({
+        width: '100px',
+        height: '50px',
+    })
+    
+    .click(function(){
+        console.log('나 li');
+        
+        $('~li',this).css({
+            width: '640px',
+            height: '328px',
+            background: 'url(https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/2Mq/image/P8Q_MtYrLTBSED_KqUHtYxihtww.jpeg) no-repeat 0/cover',
+            transition: 'all 2s'
+            
+            
+        
+        })///// css /////
+        
+    })///// click /////
 	
 	
 });//jQuery실행구역

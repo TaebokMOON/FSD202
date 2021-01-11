@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-
-    <title>네비게이이션 유형6- 가로네비 서브별 드롭다운 전체창</title>
+    <title>네비게이션 유형6 -
+        가로네비 서브별 드롭다운 전체창</title>
     <style>
         html,
         body {
@@ -35,7 +34,7 @@
 
         /*GNB 디자인*/
         .gnb {
-            background-color: #e53939;
+            background-color: #3974e5;
         }
 
         .gnb>ul {
@@ -80,18 +79,15 @@
 
         /*상위메뉴 li에 마우스 오버시 a요소의 배경색, 글자색변경*/
         .gnb>ul>li:hover>a {
-            color: #950000;
-            background-color: #ffbdbd;
+            color: #001795;
+            background-color: #bdd1ff;
         }
 
         /*서브메뉴 디자인*/
         .smenu {
             position: absolute;
             left: 200px;
-            /*나의 부모는? .sbox*/
-
-
-
+            /*나의부모? .sbox*/
 
             width: 200px;
             /*
@@ -106,7 +102,8 @@
             참고)
             float 없애는 셋팅 -> float: none;
             */
-           /* background-color: #e62121;*/
+            /*background-color: #219be6;*/
+
 
 
         }
@@ -114,15 +111,8 @@
         /*상위메뉴에 마우스 오버시 하위메뉴 보이기*/
         .gnb>ul>li:hover .sbox {
             height: 200px;
-            
-            /*
-                display: none;과 한짝
-            */
-            
-            
         }
 
-       
 
         /*
             원래 css의 transition은 두가지 크기에 변화 과정이다.
@@ -138,41 +128,43 @@
             -옆으로 흐르지 못한다!*/
         }
 
-        /*하위 메뉴의 li에 마우스 오버시 a요소의 글자색, 배경색 변경*/
-        /*우선순위 올리려고 .gnb씀*/
+        /*하위메뉴 a요소*/
+        /*우선순위 올리려고 .gnb씀!*/
         .gnb .smenu li a {
-            color: #5a0f0f;
+            color: navy;
         }
-        
-        /*하위 메뉴의 li 마우스 오버시 a요소 밑줄셋팅*/
+
+        /*하위 메뉴의 li에 마우스 오버시 
+        a요소의 밑줄셋팅 변경*/
         .smenu li:hover a {
-           text-decoration: underline;
+            text-decoration: underline;
         }
 
 
-        /*서브메뉴 박스(.sbox)*/
+        /*서브메뉴박스(.sbox)*/
         .sbox {
             position: absolute;
             left: 0;
-            /*나의 부모는? .gnb>ul*/
+            /*나의부모? .gnb>ul*/
             width: 800px;
-            height: 0;
-            background: #ffbdbd;
+            height: 0;/*처음에 안보임!*/
+            background: #bdd1ff;
             overflow: hidden;
             /*자식요소 숨기기*/
-
             transition: height .4s ease-out;
         }
         
         /*서브박스 이미지*/
-        .sbi {
+        .sbi{
             position: absolute;
             top: 10px;
             right: 10px;
-            /*나의 부모는 .sbox*/
-            
-            height: 180px;
+            /*나의부모? .sbox*/
+            height: 180px;            
         }
+        
+        
+        
     </style>
 </head>
 
@@ -212,8 +204,8 @@
                             </a>
                         </li>
                     </ol>
-                    <!--서브박스 이미지-->
-                    <img src="images/bgi001.jpg" alt="서브박스" class="sbi">
+                    <!--서브박스이미지-->
+                    <img src="images/bgi001.jpg" alt="서브박스이미지" class="sbi">
                 </div>
             </li>
             <li>
@@ -231,8 +223,8 @@
                             </a>
                         </li>
                     </ol>
-                    <!--서브박스 이미지-->
-                    <img src="images/bgi002.jpg" alt="서브박스" class="sbi">
+                    <!--서브박스이미지-->
+                    <img src="images/bgi002.jpg" alt="서브박스이미지" class="sbi">
                 </div>
             </li>
             <li>
