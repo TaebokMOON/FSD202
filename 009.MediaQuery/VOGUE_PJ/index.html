@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +18,7 @@
                 <!--1-1.로고-->
                 <h1 id="logo">
                     <img src="images/small_logo.png" alt="보그로고" class="slogo">
-                    <img src="images/vogue_logo_red.png" alt="보그로고" class="blogo">
+                    <img src="images/vogue_logo_red.png" alt="큰빨간보그로고" class="blogo">
                 </h1>
             </div>
             <div class="col-10 t1 prt" id="gnb">
@@ -39,13 +40,79 @@
                     </ul>
                 </nav>
             </div>
-            <!--1-3.햄버거 매뉴-->
+
+            <!--1-3.햄버거메뉴-->
             <button id="ham">≡</button>
             <!--1-4.검색버튼-->
             <button id="magni">
-                <span class="bld">돋보기 검색</span>
+                <span class="bld">돋보기검색</span>
             </button>
         </header>
+    </div>
+    <!--모바일용 검색박스-->
+    <div class="mos">
+        <div class="mwrap">
+            <div id="search">
+                <input type="text">
+            </div>
+            <button id="sbtn">
+                <span class="bld">
+                    돋보기검색실행
+                </span>
+            </button>
+        </div>
+    </div>
+    <!--모바일용 메뉴박스-->
+    <div class="moshow">
+        <div class="mognb">
+            <nav id="mognb">
+                <ul>
+                    <li>
+                        <a href="">FASHION</a>
+                    </li>
+                    <li>
+                        <a href="">BEAUTY</a>
+                    </li>
+                    <li>
+                        <a href="">VOGUE TV</a>
+                    </li>
+                    <li>
+                        <a href="">CELEBRITY</a>
+                    </li>
+                </ul>
+            </nav>
+            <!--sns릴크 아이콘 박스-->
+            <!--ol.snsico>li*5>a>span.bld-->
+            <ol class="snsico">
+                <li><a href=""><span class="bld">인스타그램</span></a></li>
+                <li><a href=""><span class="bld">페이스북</span></a></li>
+                <li><a href=""><span class="bld">트위터</span></a></li>
+                <li><a href=""><span class="bld">유뷰브</span></a></li>
+                <li><a href=""><span class="bld">카카오스토리</span></a></li>
+            </ol>
+            <!--매거진 박스-->
+            <figure class="magbox">
+                <a href="">
+                    <img class="mag" src="images/mobmag.jpg" alt="보그잡지표지">
+                </a>
+                <figcaption>
+                    정기구독을 신청하면 최대 30%할인혜택을 드립니다
+                </figcaption>
+                <button class="magbtn">정기구독신청</button>
+            </figure>
+            <!--하단 링크박스-->
+            <ul class="moblink">
+                <li>
+                    <a href="">회사소개 /</a>
+                    <a href="">광고 및 제휴</a>
+                </li>
+                <li>
+                    <a href="">
+                        <strong>개인정보 처리방침</strong>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
     <!--2.배너영역-->
     <div class="ban">
@@ -130,4 +197,6 @@
     </ul>-->
 
 
-</body></html>
+</body>
+
+</html>

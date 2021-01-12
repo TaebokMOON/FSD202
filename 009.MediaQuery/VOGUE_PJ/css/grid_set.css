@@ -1,14 +1,6 @@
 @charset "utf-8";
 /*grid_set.css*/
 
-.bld {
-    /*IR(Image Replacement) class*/
-    display: block;
-    width: 0;
-    height: 0;
-    overflow: hidden;
-}
-
 
 /* width % 크기 셋팅 */
 .col-1 {
@@ -71,7 +63,7 @@
     padding: 10px;
     box-sizing: border-box;
     /*크기유지-보더,패딩 내부에 생김*/
-    outline: 2px dotted blue;
+    /*outline: 2px dotted blue;*/
 }
 
 /*float해제를 위한 class*/
