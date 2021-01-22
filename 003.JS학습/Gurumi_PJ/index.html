@@ -87,10 +87,19 @@
 
         /*개별 이미지 설정*/
         
-       
-        
-        /*왼쪽 끝*/
+          /*가운데 뒤*/
         .gbox img:nth-child(1) {
+            top: 0%;
+            left: 0%;
+            transform: scale(.3);
+            opacity: 0;
+            filter: grayscale(99%) blur(3px);
+            
+        }
+
+        
+        /*왼쪽 뒤*/
+        .gbox img:nth-child(2) {
             top: 0%;
             left: -102%;
             transform: scale(.5);
@@ -102,7 +111,7 @@
         }
 
         /*중앙 왼쪽*/
-        .gbox img:nth-child(2) {
+        .gbox img:nth-child(3) {
             top: 0%;
             left: -190%;
             transform: scale(.8);
@@ -114,7 +123,7 @@
         }
 
         /*중앙*/
-        .gbox img:nth-child(3) {
+        .gbox img:nth-child(4) {
             top: 0;
             left: 0;
             transform: scale(1.1);
@@ -126,7 +135,7 @@
         }
 
         /*중앙 오른쪽*/
-        .gbox img:nth-child(4) {
+        .gbox img:nth-child(5) {
             top: 0%;
             left: 190%;
             transform: scale(.8);
@@ -137,8 +146,8 @@
 
         }
 
-        /*오른쪽끝*/
-        .gbox img:nth-child(5) {
+        /*오른쪽 뒤*/
+        .gbox img:nth-child(6) {
             top: 0%;
             left: 102%;
             transform: scale(.5);
@@ -148,8 +157,8 @@
             box-shadow: 6px 6px 6px #1f1f1f;
         }
         
-         /*오른쪽끝*/
-        .gbox img:nth-child(6) {
+         /*중앙뒤*/
+        .gbox img:nth-child(7) {
             top: 0%;
             left: 0%;
             transform: scale(.3);
@@ -386,12 +395,14 @@
     <main>
         <!--갤러리박스-->
         <div class="gbox rbx">
+            <img src="images/cast08.jpg" alt="구르미">
             <img src="images/cast01.jpg" alt="구르미">
             <img src="images/cast02.jpg" alt="구르미">
             <img src="images/cast03.jpg" alt="구르미">
             <img src="images/cast05.jpg" alt="구르미">
             <img src="images/cast04.jpg" alt="구르미">
             <img src="images/cast06.jpg" alt="구르미">
+            <img src="images/cast07.jpg" alt="구르미">
         </div>
         <!--왼쪽이동버튼-->
         <a href="" class="abtn lb">
