@@ -7,9 +7,38 @@
 <script src="jquery-1.7.2.min.js"></script>
 	<script>
 		$(function(){/// jQB ////////////
+            
+            /*
+            slideUp(시간,이징,함수) 메서드
+            - 선택요소의 height값을 0으로 변경하는 애니메이션을 함!!
+                
+            slideDown(시간,이징,함수) 메서드
+            - 선택요쇼의 높이값을 원래 높이값으로 복원하는 애니메이션 기능
+            
+            slideToggle(시간,이징,함수) 메서드
+            - 선택요소의 display상태를 판단하여 slideUp/slideDown을 전환하는 애니메이션
+            
+            [ slideUp / slideDown 메서드의 특징 ]
+            1. height값 설정 불필요!!!
+            2. overflow:hidden 설정 불필요
+            (slideUp 했을때 display:none으로 변경됨!!)
+            
+            🚩 slideUp(), slideDown() 에 시간을 안쓰면 show(), hide() 와 같음
+            */
+            
 			// 미션: div를 slideUp하여 숨기고, slideDown하여 보이게 하시오.(버튼 up,down에 매칭)
 			
+			$('#up').click(function(){
+                $('div').slideUp(700)
+            })///// click /////
 			
+            $('#down').click(function(){
+                $('div').slideDown(700)
+            })///// click /////
+			
+            $('#slideToggle').click(function(){
+                $('div').slideToggle(700)
+            })///// click /////
 			
 			
 		});/// jQB /////////////////////////////////

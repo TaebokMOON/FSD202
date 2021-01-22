@@ -7,12 +7,26 @@
 <script src="jquery-1.7.2.min.js"></script>
 	<script>
 		$(function(){/// jQB ///////////
+            
+            /*
+            fadeTo(시간,오파서티,이징,함수,)
+            - opacity값을 특정값으로 변경하여 애니메이션함
+            - 특징 : 
+            */
+            
+            
+            
+            
 			// 미션: 각 버튼을 클릭시 버튼에 쓰여진 수치에 맞게 투명도를 조절하여 변경하시오.
 			
-			
-			
-			
-			
+			$('button').click(function(){
+                var opa = $(this).text()
+                console.log('투명도:'+opa);
+                
+                // 대상이미지 투명도 조절애니메이션
+                $('img').fadeTo(1000,opa)
+                
+            })/////click/////
 			
 		});///////// jQB ////////////////////////
 	

@@ -1,46 +1,102 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title> append()활용  </title>
-<!-- jQuery library -->
-<script src="jquery-1.7.2.min.js"></script>
-	<script>
-	$(function(){// jQB //////////////////////////
-		// 미션: 추가버튼을 클릭하면 이미지가 랜덤하게 #container에 추가되게하시오.
-	
-	
-		
-		
-	});/// jQB ////////////////////////////////////
-	//////////////////////////////////////////////
-	
-	
-	</script>
-	
-	
-	
-	
-<style>
-  div {border:#00F solid 1px;}
-</style>
+    <meta charset="utf-8">
+    <title> append()활용 </title>
+    <!-- jQuery library -->
+    <script src="jquery-1.7.2.min.js"></script>
+    <script>
+        $(function() { // jQB //////////////////////////
+            // 미션: 추가버튼을 클릭하면 이미지가 랜덤하게 #container에 추가되게하시오.
+
+            var temp = 0; //대상외의 수를 처음에 셋팅
+
+
+            $('#append').click(function() {
+
+                // 랜덤수 만들기
+                // 1~5사이의 수
+                var rdn = Math.ceil(Math.random() * 5)
+                console.log('랜덤수:' + rdn);
+
+                // 랜덤수 체크(같은수 연속 안나오게)
+                while (rdn === temp) {
+                    rdn = Math.ceil(Math.random() * 5)
+                    console.log('다시 랜덤수:' + rdn);
+                } ///// while /////
+
+                // 임시변수에 확정된 랜덤수저장( 다음번에 비교함)
+                temp = rdn
+
+
+                $('#container').append('<img src="th_pic' + rdn + '.jpg" alt="이미지">')
+            }) ///// click /////
+
+
+            // 자동버튼 클릭시 인터발 함수 작동하기!!!
+            var autoI; // 인터발용변수
+
+            $('#auto').click(function() {
+                // 변수에 담고 (지우려고) 인터발 설정
+
+                if (!autoI) { // 할당 안되었을때(false일ㄸ때)
+
+                    autoI = setInterval(function() {
+                        // 이미 구현된 #append클릭함수가 실행되도록 이벤트 트리거 실행하기
+                        // $().trigger(이벤트명)
+                        // -> 선택요소에 이벤트가 발생함!!!
+                        $('#append').trigger('click');
+
+
+                    }, 200)
+
+                } ///// if /////
+
+
+            }) ///// click /////
+
+            // stop버튼 클릭시 인터발 멈추기
+            $('#stop').click(function(){
+                // 인터발지우기
+                clearInterval(autoI)
+                // 인터발변수 초기화
+                autoI = false //undefined/null
+            })///// click /////
+
+
+        }); /// jQB ////////////////////////////////////
+        //////////////////////////////////////////////
+
+    </script>
+
+
+
+
+    <style>
+        div {
+            border: #00F solid 1px;
+        }
+
+    </style>
 </head>
- 
+
 <body>
 
-<button id ="append"  title="append">추가</button>
-<button id="auto">자동</button>
-<button id="stop">멈춤</button>
+    <button id="append" title="append">추가</button>
+    <button id="auto">자동</button>
+    <button id="stop">멈춤</button>
 
-<div id="container"></div>
-
-	
-<!---------- jQuery code Start ---------->
-<script>
-          
+    <div id="container"></div>
 
 
-</script>
+    <!---------- jQuery code Start ---------->
+    <script>
+
+
+
+    </script>
 
 </body>
+
 </html>
