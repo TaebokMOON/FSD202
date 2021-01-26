@@ -99,8 +99,10 @@
 
 /*아이템 이미지박스*/
 .timg {
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
+    opacity: 0;
     /*outline: 4px dashed orange;*/
 }
 
@@ -116,11 +118,59 @@
 /*아이템 글자박스*/
 .tcont {
     left: 50%;
+    transform: translateX(-50%);
     
     /*글자관련*/
     font-size: 13px;
     color: #777;
     line-height: 30px;
+    opacity: 0;
     
     /*outline: 4px dashed green;*/
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
