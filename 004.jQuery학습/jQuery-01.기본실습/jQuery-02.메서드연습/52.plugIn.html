@@ -4,17 +4,27 @@
 <meta charset="utf-8">
 <title> plugIn </title>
 <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="jQuery.myplugun-1.2.js"></script>
+<script type="text/javascript" src="jquery-ui-1.8.23.custom.min.js"></script>
+
 	<script>
 	$(function(){//// jQB ////////////////////////
 		$("h1").click(function(){
-			
+            
+			// myAction(배경,왼쪽마진,시간)
+            $(this).myAction('#ffacac',400,3000)
+            
 		});////// click //////////////////
 		
 		$("div").click(function(){
-			
+            
+			$(this).myAction('#b6ffac',800,500)
+            
 		});////// click //////////////////
 		
 		$("p").click(function(){
+            
+            $(this).myAction('#acb6ff',600,1500)
 			
 		});////// click //////////////////
 		
