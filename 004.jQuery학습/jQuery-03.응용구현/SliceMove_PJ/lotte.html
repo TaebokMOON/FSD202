@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Flex Display</title>
+    <style>
+        html,body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%; /*보이는 화면 기준*/
+        }
+        
+        ul, ol {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        /*전체부모*/
+        #wrap {
+            width: 100%;
+            height: 100%;
+        }
+        
+        /*ul 파티션 부모박스*/
+        #wrap>ul {
+            display:flex;
+            
+            /*
+            [ flex란?? ]
+            - 가변적인 자식요소를 컨트롤 하기위해 css에서 새롭게 선보인 display 기술
+            - 자식요소를 같은 비율 혹은 다른 비율로 분할이 쉽다
+            - 자식요소의 순서를 일괄 변경할 수 있다.
+            - 무엇보다도 옆으로 블록요소를 흐르게 하는데 탁월하다!!!
+            
+            [ 세팅법 ]
+            - 옆으로 흐르게 할 부로요소에 display를 flex로 설정함!!
+            - 자식요소의 flex:1 설정하면 등분할 된다!!
+            */
+            
+            flex-direction: row;
+            
+            /*
+            flex-direction 속성은 진행방향과 순서를 설정함!!!
+            1. row - 좌 -> 우
+            2. row-reverse - 우 -> 좌
+            3. column - 위 -> 아래
+            4. column-reverse - 아래 -> 위
+            */
+            
+            width: 100%;
+            height: 100%;
+        }
+        
+        /*파티션 li공통*/
+        #wrap>ul>li {
+            flex: 1;
+            /*outline: 1px solid red;*/
+        }
+        
+        /*각 파티션 li*/
+        #wrap>ul>li:nth-child(1) {
+            background: url(images/Lotte/m01_bg.jpg) no-repeat center/cover
+        }
+        #wrap>ul>li:nth-child(2) {
+            background: url(images/Lotte/m02_bg.jpg) no-repeat center/cover
+        }
+        #wrap>ul>li:nth-child(3) {
+            background: url(images/Lotte/m03_bg.jpg) no-repeat center/cover
+        }
+        #wrap>ul>li:nth-child(4) {
+            background: url(images/Lotte/m04_bg.jpg) no-repeat center/cover
+        }
+        #wrap>ul>li:nth-child(5) {
+            background: url(images/Lotte/m05_bg.jpg) no-repeat center/cover
+        }
+        
+        /*중앙타이틀 공통*/
+        .tit {
+            /*flex box설정*/
+            display: flex;
+            
+            /*일반설정*/
+            position: absolute;
+            top: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 100px;
+            border: 5px double #fff;
+        }
+        
+        /*타이틀 하위 li*/
+        .tit>li {
+            width: 50px;
+            height: 50px;
+            /*flex-basis: 50px;*/
+            /*flex-basis 는 width설정과 똑같은 설정이 된다!!!*/
+            
+            border: 3px solid #fff;
+            border-radius: 50%;
+            background-color: #ffacac;
+            font: bold 14px/50px Verdana;
+            color: #fff;
+            text-align: center;
+            
+            
+            /*
+                flex하위 요소는 크기설정이 없을 경우 width는 내용만큼 height는 부모높이 채우기함!!!(100%)
+            */
+            
+            
+        }
+        
+        /*타이틀1*/
+        .t1 {
+            /*flex옵션*/
+            justify-content:space-around;
+            
+            /*
+            justify-content 속성
+            - 수평정렬속성
+            1) flex-start : 왼쪽끝(기본값)
+            2) flex-end : 오른쪽 끝
+            3) center : 중앙
+            4) space-around : 아이템요소 양쪽에 같은간격을 줌!!(마진과 유사)
+            5) space-between : 아이템요소 사이간격을 일정하게
+            6) space-evenly : 아이템요소 양쪽과 사이가 모두 일정한간격으로 사이를줌
+            */    
+                
+            align-items: center;    
+        }
+        
+        /*타이틀2*/
+        .t2 {
+            top: 20%;
+        }
+        
+    </style>
+</head>
+<body>
+   <!--전체 부모박스-->
+    <div id="wrap">
+        <!--파티션 박스-->
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        
+        <!--타이틀박스-->
+        <ol class="tit t1">
+            <li>L</li>
+            <li>O</li>
+            <li>T</li>
+            <li>T</li>
+            <li>E</li>
+        </ol>
+        
+        <!--타이틀박스2-->
+        <ol class="tit t2">
+            <li>W</li>
+            <li>O</li>
+            <li>R</li>
+            <li>L</li>
+            <li>D</li>
+        </ol>
+        
+        
+        
+        
+        
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</body>
+</html>
