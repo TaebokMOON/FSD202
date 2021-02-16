@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery-1.7.2.js"></script>
     <script src="js/jquery.lightbox-0.5.js"></script>
+    <script src="js/jquery.backstretch.min.js"></script>
     <script>
         $(function() { /// jQB /////////////////////
 
@@ -16,8 +17,34 @@
             $(".view").lightBox({
                 overlayBgColor: '#ffbebe',
                 overlayOpacity: '0.5',
-                containerResizeSpeed: '2000'// 1/1000초로 함!!
-            });
+                containerResizeSpeed: '2000' // 1/1000초로 함!!
+            }); ///// lightBox /////
+
+
+            // 추가 플러그인!!!
+            // 백스트레치!!!
+            // - 배경을 비율을 유지하여 선택요소 전체에 깔아주는 플러그인 
+            //[ 사용법 ]
+            //$.backstretch(이미지 경로) -> 페이지 전체에 배경적용
+            //$(선택자).backstretch(이미지 경로) ->특정요소 배경적용!!!
+            //[ 여러이미지 전환 ]
+            //$(선택자).backstetch([이미지1,이미지2,이미지3,......]),
+            //                    {duration:시간,fade:시간};
+            //- 옵션 : duration - 이미지 전환시간 간격 (1/1000초)
+            //        fade - 이미지 fade전환시간 (1/1000초)
+
+            // 전체적용시 $만 사용
+            $.backstretch([
+                "images/mainbg.png",
+                "images/about.png",
+                "images/worksbg.jpg"
+            ], {
+                duration: 4000,
+                fade: 2000
+            }); ///// backstretch /////
+
+
+
 
         }); ///////// jQB //////////////////////////
     </script>
