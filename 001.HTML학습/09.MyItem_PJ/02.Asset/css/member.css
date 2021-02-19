@@ -143,7 +143,10 @@ input:focus, select:focus {
     margin-top: -12px;
 }
 
-
+/*메시지 그린색*/
+.msg b {
+    color: green;
+}
 
 
 
