@@ -59,7 +59,7 @@ h1,h2,h3,h4,h5,h6{
 }
 /*2.파이어폭스*/
 .wrap>ul>li:nth-child(2){
-    background-color: #f23535;   
+    background-color: #f2d535;    
 }
 /*3.익스플로*/
 .wrap>ul>li:nth-child(3){
@@ -67,11 +67,12 @@ h1,h2,h3,h4,h5,h6{
 }
 /*4.사파리*/
 .wrap>ul>li:nth-child(4){
-    background-color: #f2d535;   
+    background-color: #3559f2;   
 }
 /*5.오페라*/
 .wrap>ul>li:nth-child(5){
-    background-color: #5235f2;   
+    background-color: #f23535; 
+       
 }
 
 /*마우스 오버시 파티션 박스 확장하기*/
