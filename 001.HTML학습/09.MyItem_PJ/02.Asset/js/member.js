@@ -8,8 +8,19 @@ $(function () {
     - 이벤트 대상선정 : 입력요소중 text, password, input[type=text],input[type=password]
     - 제이쿼리 사용 메서드 : blur()
     */
+    
+    
+    /* 
+        주의사항 : 숨겨진 이메일 직접입력 input요소를 제외해야한다!!!
+    
+        input[type=text][id=email2]
+        input요소인데 type속성값이 text이고 id 값이 email2가 아닌것
+        (-> !=은 제이쿼리에서)
+    
+    */
 
-    $('input[type=text],input[type=password]').blur(function () {
+
+    $('input[type=text][id!=email2],input[type=password]').blur(function () {
 
         // 블러가 발생한 요소의 아이디값
         // current id 현재 아이디
@@ -47,6 +58,9 @@ $(function () {
             msg.text('필수 입력')
             // siblings(요소이름) - 형제요소중 특정요소
 
+            // 불통과 상태값 변경!!
+            pass = false
+
         } ///// if문  빈값일때 /////
         else if (cid === 'mid') {
 
@@ -59,6 +73,10 @@ $(function () {
             // 아이디 유효송 검사 불통과시
             else {
                 msg.text('아이디는 6~10자 영문자 또는 숫자')
+
+                // 불통과 상태값 변경!!
+                pass = false
+
             } ///// else 아이디검사 false
 
         } ///// else if 아이디 검사/////
@@ -69,6 +87,10 @@ $(function () {
             // 비밀번호검사 결과가 false일때 (inot 결과가 반대) 
             if (!validReg(cv, cid)) {
                 msg.text('특수문자,문자,숫자 포함 형태의 5~15자리')
+
+                // 불통과 상태값 변경!!
+                pass = false
+
             } ///// if 비번검사 false 일떄 ///// 
             else {
                 msg.empty()
@@ -82,6 +104,10 @@ $(function () {
             // 비밀번호 입력값과 불일치하면
             if (cv !== $('#mpw').val()) {
                 msg.text('비밀번호가 일치하지 않습니다!')
+
+                // 불통과 상태값 변경!!
+                pass = false
+
             } ///// if 비밀번호 확인 검사가 불일치
             else {
                 msg.empty()
@@ -91,10 +117,10 @@ $(function () {
 
         // 빈값이 아닐때 메시지 지우기
         else {
-            
+
             // 이메일 검사는 별도의 메시지를 띄우므로 지우기를 하지 않는다
-            if(cid !== "email1") msg.empty()
-            
+            if (cid !== "email1") msg.empty()
+
             // empty() - 내용지우기
 
         } ///// else /////
@@ -137,6 +163,9 @@ $(function () {
         else {
 
             eml1.siblings('.msg').text('맞지않는 이메일 형식입니다')
+            
+            // 불통과 상태값 변경!!
+            pass = false
 
         } ///// else - 이메일 불통과시 /////
 
@@ -181,12 +210,12 @@ $(function () {
 
         // 선택박스의 선택밧이 value가 "free(직접입력)일때 
         // 선택박스가 아닌 직젖ㅂ입력박스의 값을 뒷주소로 해야한다!!!
-        if(seleml.val() === "free") ev = eml2.val()
-        
+        if (seleml.val() === "free") ev = eml2.val()
+
         // 이메일 전체 주소 조합하기!!!
         let comp = eml1_val + "@" + ev;
         //console.log("이멜주소:"+comp);
-        
+
         // 이메일 검사함수호출!!!(메시지출력)
         chkEml(comp);
 
@@ -217,6 +246,9 @@ $(function () {
 
             // 메시지 띄우기
             eml1.siblings('.msg').text('이메일 옵션선택 필수')
+            
+            // 불통과 상태값 변경!!
+            pass = false
 
             // 입력창 숨기기
             eml2.fadeOut(300)
@@ -227,10 +259,10 @@ $(function () {
         else if (seleml_val === 'free') {
 
             // 입력창 보이기
-            eml2.val('').fadeIn(300);
-            
+            eml2.fadeIn(300);
+
             // 기존 출력 메세지 지우기
-            eml1.siblings('.msg').empty()
+             eml1.siblings('.msg').empty()
 
         } ///// else if - free 선택시
 
@@ -254,9 +286,73 @@ $(function () {
     }) ///// change 이벤트 함수/////
     ///////////////////////////////////////////////////////////////
 
+    //////////////////////////////////////////////////////////////
+    //가입하기(submit) 버튼 클릭시
+    // 전체검사의 원리 
+    // 전역변수 pass를 설정하여 ture를 주고 검사 중간에 문제가 생기면 false로 변경하  // 여 유효성검사 통과여부를 판단한다!!! 
+    //////////////////////////////////////////////////////////////
+    // 전체 검사의 방법 : 기본blur 이벤트나 change,kyeup이벤트등을 강제로 발생하여 // 전체검사를 진행한다!!!! (별도검사코드 만들지 않음!!!!)
+    //////////////////////////////////////////////////////////////
 
+    // 검사용변수
+    let pass;
 
+    // 이벤트 대상 : #btnj
+    $('#btnj').click(function (e) { // e-이벤트 전달변수
 
+        // 1. 서브및 페이지 전송막기
+        e.preventDefault()
+
+        // 2. pass 통과여부변수에 true 설정하기
+        pass = true
+
+        // 3. 입력창 blur 이벤트 발생시키기(전체검사)
+        // 대상 : input[type=text][id!=email2],input[type=password]
+        // 방법 : trigger메서드로 대상요소에 blur 이벤트를 강제발생시킴!!!
+        // 주의사항 : 검사대상에서 숨겨놓은 email2를 반드시 뺌
+        // 항목제외 -> [id!=email2]
+        $('input[type=text][id!=email2],input[type=password]')
+        .trigger('blur')
+        
+        // 4. 이메일 검사를 위해 선택박스에 change 이벤트 발생시키기
+        $('#seleml').trigger('change')
+        
+        // 5. 이메일 직접입력일떄와 아닐떄를 구분하여 kyeup 이벤트 발생시키기
+        if(seleml.val()==='free')
+            eml2.trigger('keyup')
+        
+        // 직접 입력이 아닐때는 앞주소에 발생
+        else
+            eml1.trigger('keyup')
+
+        console.log('통과여부:'+pass);
+        
+        ///////////////////////////////////////////////////////////
+        // 이메일 검사결과 메시지 찍기
+        if(pass){ // 통과시
+            
+            // 원래는 PHP DB입력 처리 페이지로 가야함!!
+            // 지금 바로 로그인 페이지로 이동!!!
+            
+            // 로그인 페이지 이동
+            alert('회원가입을 축하드립니다~~')
+            
+            //  로그인 페이지 이동
+            // location.href = 'login.html'
+            location.replace('login.html')
+            
+            /*
+                location.href는 이젠페이지로 돌아갈수 있다 그런데 민감한 데이터를 입력후 이전페이지로 하게되면 비밀번호는 리셋되어 있지만 나머지 정도를 다시 볼수 있다!!!! 이런경우 location.replace를 쓰면 뒤로 가기가 되지 않는다
+            */
+            
+        }///// if /////
+        
+        else {// 불통과시
+            
+            alert('입력을 수정하세요~~')
+        }
+        
+    })///// click /////
 
 
 }) //// jQB //////////////////////////////////
