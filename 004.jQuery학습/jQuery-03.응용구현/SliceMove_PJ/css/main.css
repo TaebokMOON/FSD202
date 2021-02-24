@@ -81,55 +81,232 @@ h1,h2,h3,h4,h5,h6{
     
     /*그라데이션 배경색넣기(원행 반두명횐색->투명투명횐색)*/
     background-image: radial-gradient(closest-side at 50% 50%,rgba(255, 255, 255, 0.5),rgba(255, 255, 255, 0));
+}
+
+/*********************컨텐츠 박스***********************/
+.cbox {
+    position: relative;
+    top: 15%;
+    width: 270px;
+    height: 81%;
+    margin: 0 auto;
+    outline: 1px solid red;
+}
+
+/*공통 li*/
+.cbox > li {
+    text-align: center;
+    color: #fff;
+    /*트랜지션*/
+    transition: opacity .4s;
+}
+
+/*점유율, 버튼박스는 처음에 안보임*/
+.cbox > li:nth-child(1),
+.cbox > li:nth-child(3) {
+    opacity: 0;
+}
+
+/*상위 파티션에 마우스 오버시 점유율 버튼박스 보이기*/
+.wrap > ul > li:hover .cbox > li:nth-child(1),
+.wrap > ul > li:hover .cbox > li:nth-child(3) {
+    opacity: 1;
+}
+
+/*구상요소 디자인*/
+
+/*1. 점유율*/
+.cbox > li:nth-child(1) h2 {
+    font-size: 58px;
+}
+
+/*2. 점유율 안내*/
+.cbox > li:nth-child(1) h4 {
+    font-size: 12px;
+}
+
+/*3. 로고박스*/
+.cbox > li:nth-child(2) {
+    position: absolute;
+    top: 35%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    background-image: url(../images/OB/browsers-bg.png);
+    background-repeat: no-repeat;
+    background-size: auto 200px;
+}
+
+/*크롬로고*/
+.google {
+    background-position: 0 0;
+}
+/*크롬로고 마우스 오버시*/
+.wrap > ul > li:hover .google {
+    background-position: 0 -100px;
+}
+
+/*파이어폭스로고*/
+.firefox {
+    background-position: -100px 0;
+}
+/*파이어폭스 마우스 오버시*/
+.wrap > ul > li:hover .firefox {
+    background-position: -100px -100px;
+}
+
+/*엣지로고*/
+.edge {
+    background-position: -200px 0;
+}
+/*엣지로고 마우스 오버시*/
+.wrap > ul > li:hover .edge {
+    background-position: -200px -100px;
+}
+
+/*사파리로고*/
+.safari {
+    background-position: -300px 0;
+}
+/*사파리로고 마우스 오버시*/
+.wrap > ul > li:hover .safari {
+    background-position: -300px -100px;
+}
+
+/*오페라로고*/
+.opera {
+    background-position: -400px 0;
+}
+/*오페라로고 마우스 오버시*/
+.wrap > ul > li:hover .opera {
+    background-position: -400px -100px;
+}
+
+/*5. 로고 타이틀*/
+.cbox > li:nth-child(2) > h4 {
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+/*6. 다운로드 버튼 박스*/
+.cbox > li:nth-child(3) {
+    position: absolute;
+    top: 61%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+/*7. 다운로드 버튼*/
+.btndown {
+    height: 57px;
+    padding: 0 48px;
+    white-space: nowrap;/* 줄바꿈 방지*/
+    /* 가로크기 유동적임!! */
+    border: 3px solid #fff;
+    border-radius: 30px;
+    background-color: transparent;
+    color: #fff;
+    font: bold 15px/15px Verdana;
+    cursor: pointer;/*손가락모영*/
+    margin-top: 60px;
+}
+
+/*마우스 호버시 다운로드박스 색변화*/
+.btndown:hover {
+    background-color: #fff;
+    
+}
+/*다운로드 마우스 호버시 글씨색 변화*/
+/*크롬*/
+.btnC:hover {
+    color: #35f2c6;
+}
+
+/*파이어폭스*/
+.btnF:hover {
+    color: #f2d535;
+}
+
+/*엣지*/
+.btnE:hover {
+    color: #35a2f2;
+}
+
+/*사파리*/
+.btnS:hover {
+    color: #3559f2;
+}
+
+/*오페라*/
+.btnO:hover {
+    color: #f23535;
+}
+
+/*8. 다운로드 버전글자박스*/
+.cbox > li:nth-child(3) > h5 {
+    font-size: 10px;
+    line-height: 30px;
+}
+
+/*9. 추가문구*/
+.cbox > li:nth-child(3) > h6 {
+    font-size: 9px;
+    line-height: 10px;
+    color: #a3ecff;
+}
+
+/*10. 가상시스템박스*/
+.cbox > li:nth-child(4) {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/*11. 가용시스템 타이틀*/
+.cbox > li:nth-child(4) > h5 {
+    font-size: 10px;
     
 }
 
+/*12. 가용시스템 표시박스*/
+.cbox > li:nth-child(4) > ul{
+    display: flex;
+    justify-content: center;
+    width: 135px;
+    margin: 10px auto;
+}
 
+/*13. 가용시스템 li*/
+.cbox > li:nth-child(4) > ul > li {
+    width: 25px;
+    height: 25px;
+    margin: 0 10px;
+    background-image: url(../images/OB/operatingsystems-bg.png);
+    background-repeat: no-repeat;
+    background-size: auto 25px;
+}
 
+/*시스템별 배경이미지 위치변경*/
 
+/*아래에서 말단 클래스명으로 배경위치를 잡는것이 적용되려면 공통설정시 배경위치가 잡지 않으면 안된다!!!*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*윈도우*/
+.win {
+    background-position: 0 0;
+}
+/*맥*/
+.mac {
+    background-position: -25px 0;
+}
+/*리눅스*/
+.lin {
+    background-position: -50px 0;
+}
 
 
 
