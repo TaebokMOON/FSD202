@@ -461,8 +461,15 @@ SELECT column_name(s) FROM table2;
 ORDER BY `gender` ASC , `name` ASC
 
 
+>>>>>>>>>>>>>테입블 데이터 모두 지우기 (초기화) <<<<<<<<<<<<<<<<<<<
 
+TRUNCATE TABLE 테이블명;
 
+- 특징: 기존 DELETE문으로 지울경우 모두지워도 처음입력되는 데이터가 자동증가 칼럼이 마지막 입력다음번호부터 입력된다!
+TRUNCATE TABLE로 지울경우 자동증가 컬럼도 초기화되어 다시 새로입력하면 1번부터 입력된다!!
+
+예시)
+TRUNCATE TABLE `drama_info`;
 
 
 
