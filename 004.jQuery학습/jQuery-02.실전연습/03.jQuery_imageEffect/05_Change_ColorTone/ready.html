@@ -1,44 +1,72 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="utf-8">
-<title> 직접 만들어 보는 이미지 hover 효과 </title>
-<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="jquery-ui.min.js"></script>
+    <meta charset="utf-8">
+    <title> 직접 만들어 보는 이미지 hover 효과 </title>
+    <script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.min.js"></script>
+    <script>
+        $(function() {
 
-<style>
-body {
-	margin:20px auto;
-	padding:0;	
-	width:600px;
-	background:#192839;
-}
+            // 기능 : div에 마우스 오버시 숨겻던 컴러 이미지가 커진상태에서 원래크기로 작아지면서 나타나기
+            // div에 마우스 아웃시 - 사라지기
+            //  대상 : div
+            $('div').hover(
+                function(){//over
+                    $('img',this).css({
+                        width: '700px',
+                        top: '-50px',
+                        left: '-50px'
+                    })///// css /////
+                    .stop().animate({
+                        width: '600px',
+                        top: '0',
+                        left: '0',
+                        opacity: 1
+                    },400)///// animate /////
+                },
+                function(){//out
+                    $('img',this).stop().fadeTo(400,0)
+                    // fadeTo(시간,오파,이징,함수)
+                    // opacity갑만 애니메이션함!!!
+            })///// hover /////
 
-div {
-	background-image:url(img/pic_bg.jpg);
-	width:600px;
-	height:379px;
-	border:5px #EF4018 solid; 
-	overflow:hidden;
-}
-	 
-div img{
-	display:none;
-	position:relative;
-}
 
 
-</style>
+        }) //// jQB //////////////////////////////////
+        //////////////////////////////////////////////
+    </script>
+    <style>
+        body {
+            margin: 20px auto;
+            padding: 0;
+            width: 600px;
+            background: #192839;
+        }
+
+        div {
+            background-image: url(img/pic_bg.jpg);
+            width: 600px;
+            height: 379px;
+            border: 5px #EF4018 solid;
+            overflow: hidden;
+        }
+
+        div img {
+            /*display: none;*/
+            position: relative;
+            opacity: 0;
+        }
+    </style>
 </head>
 
 <body>
-<div><img src="img/pic.jpg" /></div>
+    <div><img src="img/pic.jpg" /></div>
 
-      
-<!------------------------ jQuery 코드 ----------------------->
-<script>
 
-</script>
-</body>
-</html>
+    <!------------------------ jQuery 코드 ----------------------->
+    <script>
+
+    </script>
+</body></html>
 

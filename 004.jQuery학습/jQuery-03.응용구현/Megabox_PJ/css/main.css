@@ -1,17 +1,18 @@
 @charset "utf-8";
 /* 메가박스 메인 페이지 CSS - main.css */
 
-
 html,
 body {
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
+    /*화면기준*/
     overflow: hidden;
+    /*스크롤바 없애기(스크롤안됨!)*/
 }
 
-/*공통 셋팅*/
+/*공통셋팅*/
 a {
     text-decoration: none;
     color: #fff;
@@ -32,15 +33,13 @@ ol::after {
     clear: both;
 }
 
-
-
 li {
     float: left;
 }
 
 img {
     border: none;
-    /*이미지 링크시 테두리 없앰!!!*/
+    /*이미지 링크시 테두리없앰*/
 }
 
 h1,
@@ -53,21 +52,25 @@ h3 {
 
 /*공통 class*/
 
-/*페이지 공통*/
+/*페이지 공통 class*/
 .page {
+    position: relative;
+    /*부모자격!*/
     width: 100%;
     height: 100%;
     /*
-                width: 100vw;
-                height: 100vh;
-                보이는 화면 기준의 뷰포트단위를 쓰면 body의 height 100%가 필요없다!!!
-                단, vw단위는 스크롤바 트랙까지 포함한 화면 전체를 기준하므로 데이스크 탑에서는 100%를 쓰는게 좋다!!!!(가로스크롤바가 생기기 때문이다!!!)
-            */
-
-
+        width: 100vw;
+        height: 100vh;
+        보이는 화면 기준의 뷰포트단위를 쓰면
+        body의 height 100% 가 필요없다!
+        단, vw단위는 스크롤바 트랙까지 포함한
+        화면 전체를 기준하므로
+        데이스크 탑에서는 100%를 쓰는게 좋다!
+        (가로스크롤바가 생기기때문!)
+    */
 }
 
-/*IR (배경이미지 설명 숨기기)*/
+/*IR(배경이미지 설명 숨기기)*/
 .bld {
     display: block;
     width: 0;
@@ -77,9 +80,8 @@ h3 {
 
 /*중앙박스*/
 .ibx {
-    /*부모자격*/
     position: relative;
-
+    /*부모자격*/
     width: 1920px;
     max-width: 100%;
     margin: 0 auto;
@@ -88,6 +90,7 @@ h3 {
 /*상단영역*/
 .top {
     position: fixed;
+    /*상단고정*/
     width: 100%;
     z-index: 9999;
     background-color: rgba(0, 0, 0, 0.7);
@@ -95,7 +98,7 @@ h3 {
 
 #top {
     height: 80px;
-    /* outline: 1px solid red;*/
+    /*outline: 1px solid lime;*/
 }
 
 /*로고*/
@@ -108,13 +111,13 @@ h3 {
 
 #logo img {
     width: 100%;
-    margin: -24px;
+    margin-top: -24px;
 }
 
 /*GNB메뉴*/
 .gnb {
     position: absolute;
-    /* 부모는 #top*/
+    /*부모는? #top*/
     top: 40px;
     right: 2%;
 }
@@ -123,29 +126,17 @@ h3 {
     margin: 0 7px;
 }
 
-/* 마진 주는 다른방법!!!!!
-        .gnb li+li{
-            margin-left: 10px;
-        }
-        */
-
-/*마우스 오버시 a요소 변경*/
+/*마우스오버시 a요소변경*/
 /*동시에 선택된 메뉴 클래스 on*/
-.gnb a:hover {
-    color: #cfc4ff;
-    text-decoration: overline;
-}
-
-/*마우스오버시 li 변경*/
-.gnb li:hover {
-    transform: scale(1.1);
-}
-
+.gnb a:hover,
 .gnb li.on a {
-    color: #ffc4c4;
+    color: lime;
     text-decoration: overline;
 }
 
+/*마우스오버시 li변경*/
+/*동시에 선택된 메뉴 클래스 on*/
+.gnb li:hover,
 .gnb li.on {
     transform: scale(1.1);
 }
@@ -162,14 +153,14 @@ h3 {
 /*블릿모양*/
 .bnav li {
     position: relative;
-    /*span 부모자격*/
+    /*span의 부모자격*/
     width: 15px;
     height: 15px;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 50%;
     margin: 6px 0;
-    box-shadow: 0 0 2px #999
+    box-shadow: 0 0 2px #999;
 }
 
 /*블릿글자*/
@@ -179,12 +170,12 @@ h3 {
     right: 200%;
     font: bold .9rem "맑은 고딕", Verdana;
     white-space: nowrap;
-    /*줄바꿈방지!!*/
-
-    /*그림자로 글자 테두리 만들어주기*/
-    text-shadow: 1px 0 #000, -1px 0 #000, 0 1px #000, 0 -1px #000;
-
+    /*줄바꿈방지*/
+    text-shadow: 1px 0 #000, -1px 0 #000,
+        0 1px #000, 0 -1px #000;
+    /*그림자로 글자 테두리주기*/
     display: none;
+    /*글자숨기기*/
 }
 
 /*블릿 a링크*/
@@ -194,36 +185,28 @@ h3 {
     height: 100%;
 }
 
-/*마우스 오버시 글자 보이기*/
-
-.bnav li:hover span {
-    display: block;
-    color: #cfc4ff;
-}
-
-.bnav li:hover {
-    background-color: #cfc4ff;
-    transform: scale(1.15);
-}
-
+/*마우스 오버시 글자보이기*/
+/*동시에 class="on"이면 글자보이기*/
+.bnav li:hover span,
 .bnav li.on span {
     display: block;
-    color: #ffc4c4;
 }
 
-/*선택메뉴(class="on") 배경색 넣고 조금크게하기!!*/
+/*선택메뉴(class="on") 배경색넣고 조금크게하기*/
 .bnav li.on {
-    background-color: #ffc4c4;
+    background-color: #EC686A;
     transform: scale(1.15);
 }
 
 
-/*개별 페이지 셋팅*/
+
+
+
+/*개별페이지 셋팅*/
 #pg1 {
-    background: #000 url(../images/cover.jpg) no-repeat center/134%;
-    /* 배경 가로크기를 130%로 해서 스크린크기를 비율적으로 셋팅함~!!!
-    - 스크린박스와 일치하기 위함!!!!
-    */
+    background: #000 url(../images/cover.jpg) no-repeat center/130%;
+    /*배경가로크기를 130%로 해서 스크린크기를 비율적으로 셋팅함!
+    -스크린박스와 일치하기 위함!*/
 }
 
 #pg2 {
@@ -238,42 +221,31 @@ h3 {
     background: url(../images/cover4.jpg) no-repeat top/cover;
 }
 
-/******************************1. 영화메뉴 페이지*********************************/
+/****************** 1. 영화메뉴 페이지 ****************************/
 
-/*스크린 박스*/
+/*스크린박스*/
 #screen {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 34%;
-    background-color: #000;
-
+    width: 32%;
+    /*background-color: #f00;*/
 }
 
-/*스크린 비율박스 유지*/
+/*스크린비율유지박스*/
 #screen::before {
     content: "";
     display: block;
-    padding-top: 56%;
+    padding-top: 55%;
 }
 
 /*동영상*/
-
 #mv {
     position: absolute;
     top: 0;
     width: 100%;
-    display: none;
-}
-
-/*공통class*/
-/*IR(Image Replacement)-웹접근성*/
-.bld {
-    display: block;
-    width: 0;
-    height: 0;
-    overflow: hidden;
+    display: none;/*처음에 안보임*/
 }
 
 /*비율유지class-정사각형비율(1:1)*/
@@ -288,10 +260,10 @@ h3 {
 /*2.갤러리박스*/
 .gbox {
     position: absolute;
-    /*부모자격*/
     top: 45%;
     left: 50%;
     transform: translate(-50%,-50%);
+    /*부모자격*/
     width: 20%;
     /*비율유지하려고 height안씀!*/
     cursor: pointer;
@@ -303,8 +275,9 @@ h3 {
     position: absolute;
     top: 0;
     width: 100%;
+/*    height: 100%;*/
     border-radius: 15px;
-    /*box-shadow: 6px 6px 5px #333;*/
+    box-shadow: 6px 6px 5px #333;
     /*트랜지션:속시이지*/
     transition: all .4s ease-in-out;
 }
@@ -326,13 +299,8 @@ h3 {
     transform: scale(.9);
     opacity: 1;
     /*CSS필터*/
-   /* filter: grayscale(50%) blur(1px);*/
+/*    filter: grayscale(50%) blur(1px);*/
 }
-
-/*
-            [CSS필터 속성 알아보기]
-            -> https://www.w3schools.com/cssref/playit.asp?filename=playcss_filter&preval=none
-        */
 
 /*(3)중앙*/
 .gbox img:nth-child(3) {
@@ -340,7 +308,7 @@ h3 {
     left: 0;
     transform: scale(1);
     opacity: 1;
-    /*filter: saturate(1.5);*/
+/*    filter: saturate(1.5);*/
     /*채도(satureate)를 기본(1)보다 높임!*/
 }
 
@@ -351,7 +319,7 @@ h3 {
     transform: scale(.9);
     opacity: 1;
     /*CSS필터*/
-    /*filter: grayscale(50%) blur(1px);*/
+/*    filter: grayscale(50%) blur(1px);*/
 }
 
 /*(5)오른쪽끝*/
@@ -389,3 +357,110 @@ h3 {
 .rb {
     right: 10%;
 }
+
+/******* 동영상 컨크롤 버튼 ********/
+
+/*컨트롤 버튼 공통 - 컨트롤들은 처음에 안보임*/
+.ctrl{
+    display: none;
+}
+
+/*play, stop버튼*/
+.btngrp{
+    position: absolute;
+    /*부모? #screen*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /*정중앙이동*/
+    width: 20%;
+}
+.btngrp img{
+    width: 100%;
+}
+
+/*sound 버튼*/
+.sound {
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 5%;
+}
+
+.sound img {
+    width: 100%;
+}
+
+/*비디오 진행바*/
+/*진행바 트랙*/
+.pBar {
+    position: absolute;
+    bottom: 3px;
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer; /*손가락모양*/
+    transform: scaleY(.5); /*스케일을  y축으로 반으로 줄임*/
+    
+}
+
+/*시간 진행바*/
+.tBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #f00;
+}
+
+/*진행바 꼮지*/
+.tBar::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #f00;
+    transform: scale(0);
+    transition: transform .2s;
+}
+
+/*.pBar에 마우스 오버시 원래크기로 Y축 scale복원하기*/
+.pBar:hover {
+    transform: scaleY(1);
+}
+
+/*.pBar에 마우스 오버시 원래크기로 .tBar 꼭지 scale복원하기*/
+.pBar:hover .tBar::after{
+    transform: scale(1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
