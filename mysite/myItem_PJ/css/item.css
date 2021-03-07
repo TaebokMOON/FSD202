@@ -34,7 +34,6 @@
     vertical-align: -17px;
     margin-right: 10px;
 }
-
 /*가상요소 이미지를 변경하는 class*/
 .ico1::before{
     content: url(../images/myitems_icon_01.png);
@@ -54,7 +53,6 @@
 .ico6::before{
     content: url(../images/myitems_icon_06.png);
 }
-
 
 /*아이템 컨텐츠 박스*/
 .ibox {
@@ -102,8 +100,8 @@
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    opacity: 0;
     /*outline: 4px dashed orange;*/
+    opacity: 0;/*처음에 투명*/
 }
 
 /*아이템 이미지*/
@@ -124,53 +122,7 @@
     font-size: 13px;
     color: #777;
     line-height: 30px;
-    opacity: 0;
     
     /*outline: 4px dashed green;*/
+    opacity: 0;/*처음에 투명*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

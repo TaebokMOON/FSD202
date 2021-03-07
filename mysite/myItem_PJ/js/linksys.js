@@ -25,34 +25,34 @@ $(function () { /// jQB /////////////////////////
 
         switch (txt) {
             case "Home":
-                url = "index.html";
+                url = "index.php";
                 break;
             case "프로필":
-                url = "profile.html";
+                url = "profile.php";
                 break;
             case "회원가입":
-                url = "member.html";
+                url = "member.php";
                 break;
             case "로그인":
-                url = "login.html";
+                url = "login.php";
                 break;
             case "게시판":
-                url = "board.html";
+                url = "board.php";
                 break;
             case "오시는길":
-                url = "location.html";
+                url = "location.php";
                 break;
             case "트위터":
-                url = "https://twitter.com/HeungMinSonOfficial";
+                url = "https://twitter.com/tomhanks";
                 break;
             case "인스타그램":
-                url = "https://www.instagram.com/hm_son7";
+                url = "https://www.instagram.com/accounts/login/?next=/tomhanks/";
                 break;
             case "페이스북":
-                url = "https://www.facebook.com/HeungMinSonOfficial";
+                url = "https://www.facebook.com/TomHanks";
                 break;
             default://아이템 페이지는 모두 default에서 처리!
-                url = "item.html?inm=" + escape(txt);
+                url = "item.php?inm=" + escape(txt);
         } ///// switch case //////////
         
         console.log("url:"+url);
