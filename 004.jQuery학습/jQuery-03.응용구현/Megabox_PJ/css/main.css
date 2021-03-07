@@ -52,6 +52,30 @@ h3 {
 
 /*공통 class*/
 
+/*드래그 선택 안되게하는 css*/
+.disableselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Chrome/Safari/Opera */
+  -khtml-user-select: none;
+  /* Konqueror */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge*/
+  user-select: none;
+  /* Non-prefixed version, currently not supported by any browser */
+}
+
+.disabledrag {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
 /*페이지 공통 class*/
 .page {
     position: relative;
@@ -231,6 +255,9 @@ h3 {
     transform: translate(-50%, -50%);
     width: 32%;
     /*background-color: #f00;*/
+    
+    /*트랜지션 -속시이지*/
+    transition: all 1s ease-in-out;
 }
 
 /*스크린비율유지박스*/
@@ -239,6 +266,13 @@ h3 {
     display: block;
     padding-top: 55%;
 }
+
+/*스크린 확대 class*/
+#screen.on {
+    width: 70%;
+    z-index: 1;
+}
+
 
 /*동영상*/
 #mv {
@@ -439,20 +473,61 @@ h3 {
     transform: scale(1);
 }
 
+/*비디오 시간표시*/
+.cTime {
+    position: absolute;
+    bottom: 15px;
+    right: 5px;
+    font: 10px Verdana;
+    color: #fff;
+    text-shadow: 0 0 5px #777;
+}
 
+.volume {
+    position: absolute;
+    bottom: 17px;
+    left: 25px;
+    width: 60px;
+    height: 1px;
+    background-color: #fff;
+}
 
+/*볼륨바*/
+#bar {
+    position: relative;
+    left: 20%; /*첫 볼륨 위치*/
+    display: block;
+    width: 6px;
+    height: 11px;
+    background-color: #fff;
+    margin-top: -5px;
+    box-shadow: 0 0 3px #777 inset; /*안쪽그림자*/
+}
 
+/*축소/확대버튼*/
+.expand {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+    font: 16px Verdana;
+    color: #ccc;
+    text-shadow: 0 0 2px #777;
+}
 
+.expand a:last-child {
+    display: none;
+}
 
+/*#screen에 클래스 "on"이 적용된 경우*/
+/*확대하기 버튼 보이기*/
+#screen.on .expand a:first-child {
+    display: none;
+}
 
-
-
-
-
-
-
-
-
+/*축소하기 버튼 보이기*/
+#screen.on .expand a:last-child {
+    display: inline;
+}
 
 
 
