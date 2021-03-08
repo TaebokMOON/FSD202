@@ -21,3 +21,6 @@ CREATE TABLE `member`(
 `regdate` timestamp not null,
 `auth` char(1) default "M"
 );
+
+
+http://localhost/mysite/
