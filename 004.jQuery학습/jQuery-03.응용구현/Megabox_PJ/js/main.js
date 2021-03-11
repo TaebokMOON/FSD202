@@ -1,33 +1,33 @@
-// 메가박스 메인페이지 JS - main.js
+/// 메가박스 메인 페이지 JS - main.js ///
 
 // 인터발용 전역변수
 let autoI;
-
-// 인터벌 타임아웃 전여변수
+// 타임아웃용 전역변수
 let autoT;
+// 포스터상태 전역변수
+let ptsts = 1; //1-허용,0-불허용
+// 스와이퍼 전역변수
+let swiper;
+// 동영상요소 전역변수
+let mv;
 
-// 포스터 상태 전역변수
-let ptsts = 1; // 1 - 허용,  0 - 불허용
-
-
-
-//////// 로드구역 //////////////////////////////////////////
+//////// 로드구역 ////////////////////////////////
 // addEventListener(이벤트명,함수) - JS내장함수
 // "DOMContentLoaded" 는 
 // html만 모두 로딩되면 발생하는 이벤트명
-///////////////////////////////////////////////////////////
-window.addEventListener('DOMContentLoaded',
+////////////////////////////////////////////////
+window.addEventListener("DOMContentLoaded",
     function () {
 
         // 로드구역확인!
-        console.log('로딩완료!');
+        console.log("로딩완료!");
 
-        /////////////////////////////////////////////////
+        //////////////////////////////////////////
         // 구현내용: 이동버튼 클릭시 이미지 이동하여 변경하기
         // 이벤트 종류: click
         // 이벤트 대상: .abtn
         // 변경 대상: .gbox, .gbox img
-        /////////////////////////////////////////////////
+        /////////////////////////////////////////
 
         // 이벤트 대상
         var abtn = document.querySelectorAll('.abtn');
@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded',
             // 함수호출확인!
             //console.log("나,왼쪽!");
 
-            // 자동호출지우기  (포스터 허용상태일때만 호출)
+            // 자동호출지우기(포스터 허용상태일때만 호출!)
             if (ptsts) clearAuto();
 
             // 이미지변경함수 호출!
@@ -114,7 +114,7 @@ window.addEventListener('DOMContentLoaded',
             //console.log("나야나!" + dir);
 
             // 2. 변경된 img리스트 읽어오기
-            var ilist = gbox.querySelectorAll('img');
+            var ilist = gbox.querySelectorAll("img");
             // 첫번째 이미지
             var fele = ilist.item(0);
             // 마지막 이미지(끝번호는 전체길이-1)
@@ -149,7 +149,7 @@ window.addEventListener('DOMContentLoaded',
             함수명: autoCall
             기능: 슬라이드 넘기기함수 자동호출(인터발함수)
         */ ///////////////////////////////////////////////
-        //var autoI; //인터발용변수 -> 전역변수로 상단에 선언!!!
+        //var autoI; //인터발용변수-> 전역변수로 상단에 선언!
         /////////////////////////////////////////////////
         var autoCall = function () {
 
@@ -161,8 +161,8 @@ window.addEventListener('DOMContentLoaded',
             //setInterval(함수,시간)
             //일정시간 간격으로 함수를 호출하는 JS내장함수
 
-        }; /////// autoCall 함수 /////////////////////////
-        ////////////////////////////////////////////////
+        }; /////// autoCall 함수 ///////////////////
+        ///////////////////////////////////////////
 
         /// 자동넘김 최초호출(반드시 할당형익명함수 아래에서 호출!)
         autoCall();
@@ -172,7 +172,7 @@ window.addEventListener('DOMContentLoaded',
             기능: 인터발함수를 지우고, 잠시 후 다시 자동호출셋팅하기
                 이동버튼 클릭시 이 함수를 호출하여야 함!
         */ ////////////////////////////////////////////////////
-        //var autoT; //타임아웃용변수 -> 전역변수로 상단에 선언
+        //var autoT; //타임아웃용변수-> 전역변수로 상단에 선언!
         //////////////////////////////////////////////////////
         var clearAuto = function () {
 
@@ -187,189 +187,214 @@ window.addEventListener('DOMContentLoaded',
             // 일정시간 후 자동호출함수 재호출하기!
             autoT = setTimeout(autoCall, 3000);
 
-        }; /////////// clearAuto 함수 //////////////////////////
-        //////////////////////////////////////////////////////
+        }; /////////// clearAuto 함수 ////////////
+        /////////////////////////////////////////
 
 
 
 
 
-    }); //////////// 로드구역 ///////////////////////////////////
-///////////////////////////////////////////////////////////
+    }); //////////// 로드구역 ///////////////////
+////////////////////////////////////////////////
 
 
 
 
-$(function () {
+$(function () { /// jQB ///////////////////////
 
-    // 동영상 요소
-    let mv = $('#mv')
+    // 동영상요소(mv전역변수)
+    mv = $("#mv");
+
+    ///////////////////////////////////////////
+    // 1. 영화포스터 클릭시 영화예고편 보여주기 ////
+    // 대상선정: .gbox img
+    $(".gbox img").click(function () {
+
+        // 0. 포스터 자동넘김 지우기!
+        clearInterval(autoI);
+        // 0. 포스터 자동타임아웃 지우기!
+        clearTimeout(autoT);
+        
+        // 스크린 마우스 오버 컨트롤 보이기/숨기기 함수한번만 호출
+        if(ptsts){//포스터 내려가기 전에 한번만 호출!
+            ctrlGo();
+        } /////// if문 ////////////
 
 
-    // 1. 영화포스터 클릭시 영화 예고편 보여주기
-    // 대상선정 : .gbox img
-    $('.gbox img').click(function () {
+        // 1-0. 중앙의 포스터가 아닌 경우 중앙으로 오게하기!
+        // 중앙인지 왼쪽인지 오른쪽인지 알아내기
 
-        // 0. 포스터 자동넘김 지우기!!
-        clearInterval(autoI)
+        // 포스터 순번 : index() 메서드 사용!
+        let pseq = $(this).index();
+        //console.log("포순:" + pseq);
 
-        // 0. 포스터자동타임아웃 지우기!!
-        clearTimeout(autoT)
-
-
-        // 1-0. 중앙의 포스터가 아닌경우 중앙으로 오게하기!!!
-        // 중앙인지 왼쪾인지 오른쪾인지 알아내기
-
-        // 포스터 순번 : index() 메서드로 사용!!!!
-        let pseq = $(this).index()
-        console.log('포스터 순번:' + pseq);
-
-        // pseq===1 왼쪽포스터일떄 왼쪽이동버튼 클릭
-        if (pseq === 1) $('.lb').trigger('click')
-
+        // pseq===1 왼쪽포스터일때 왼쪽이동버튼 클릭
+        if (pseq === 1) $(".lb").trigger("click");
         // pseq===3 오른쪽포스터일때 오른쪽이동버튼 클릭
-        else if (pseq === 3) $('.rb').trigger('click')
-
-        // pseq===0, pseq===4  양쪽 포스터 클릭방지
+        else if (pseq === 3) $(".rb").trigger("click");
+        // pseq===0, pseq===4 양쪽포스터 클릭되지 않게함!
+        // pseq===2 중앙포스터는 하단으로 작아진 상태면
+        // 클릭되지 않게함!(ptsts가 0되기 전엔 실행됨!)
         else if (pseq === 0 || pseq === 4 ||
-            (pseq === 2 && ptsts === 0)) return false; // 아래쪾코드 실행말고 돌아가!!!!
-        // trigger(이벤트명) - 선택요소의 이벤트발생
+            (pseq === 2 && ptsts === 0))
+            return false; //아래쪽코드 실행말고 그냥돌아가!
+        // trigger(이벤트명) -  선택요소에 이벤트발생
 
-        // 0. 포스터 상태값 변경하기!!!(위의 분기문 아래에 써야함!!!)
+
+        // 0. 포스터 상태값 변경하기!
+        //(위의 분기문 아래에 써야함!)
         ptsts = 0;
-        // 이동버튼 클릭시 clearAuto함수 호출제한
+        // 이동버튼 클릭시 clearAuto함수 호출제한!
 
-
-        // 1-1 영화 포스터 네비 작아지게 하단이동 애니
-        // 방법 : transform : scale() 사용
+        //1-1. 영화포스터 네비 작아지게 하단이동 애니
+        // 방법: transform: scale() 사용
         // css변경으로 애니메이션을 위해 transition사용
-        // 대상 : .gbox
-        $('.gbox').css({
-            top: '82%',
-            transform: 'translate(-50%,-50%) scale(.4)',
-            transition: 'all .6s ease-in-out'
-        }) ///// css /////
+        // 대상: .gbox
+        $(".gbox").css({
+            top: "80%",
+            transform: "translate(-50%,-50%) scale(.4)",
+            transition: "all .6s ease-in-out"
+        }); ///////// css ///////////////////
 
-        // 버튼 축소 이동 애니메이션
-        $('.abtn').css({
-            top: '82%',
-            transform: 'translateY(-50%) scale(.4)',
-            transition: 'all .6s ease-in-out'
-        }) ///// css /////
-
+        // 버튼도 축소이동 애니메이션하기
+        $(".abtn").css({
+            top: "80%",
+            transform: "translateY(-50%) scale(.5)",
+            transition: "all .6s ease-in-out"
+        }); ///// css ///////////////////////
         // 버튼위치 세부조정
-        $('.lb').css({
-            left: '30%'
-        }) ///// css /////
-        $('.rb').css({
-            right: '30%'
-        }) ///// css /////
+        $(".lb").css({
+            left: "20%"
+        }); /// css //////
+        $(".rb").css({
+            right: "20%"
+        }); /// css //////
 
-        // 1-2 동영상 보이게 하고 data-mv 속성값으로 동영상 정보를 불러온다
 
-        // 동영상 정보(data-mv:동영상파일명)
-        let mi = $(this).attr('data-mv')
-        console.log('동영상정보:' + mi);
+        // 1-2. 동영상 보이게 하고 data-mv 속성값으로 
+        //     동영상 정보를 불러온다!
 
-        // 변경대상 : #mv -> 변수 mv에 할당!!!
-        mv.attr('src', 'mv/' + mi + '.mp4').fadeIn(300)
-        // 동영상 src를 변경후 서서히 나타나게함!!!!
+        // 동영상정보(data-mv:동영상파일명)
+        let mi = $(this).attr("data-mv");
+        //console.log("동영상정보:" + mi);
 
-        // 동영상 재생하기
-        // 동영상이 로딩되어 준비되기전 play()명령을 내리면 에러가 발생한다!!!!
-        // 내용 : DOMException: The Play() request was interrupted by a net load request.
-        // play() 요청은 로드 요청에 의해 방해되었음!!!!
-        // 이런 요청방해에러를 없애려면 이벤트체크를 하나해야함!!!
-        // canplaythriygh 이벤트!!!
-        // -> user agent가 media를 재생할수 있을때 발생함!!!
+        // 변경대상: #mv -> 변수 mv에 할당!
+        mv.attr("src", "mv/" + mi + ".mp4").fadeIn(300);
+        // 동영상 src를 변경한 후 서서히 나타나게함!
+
+        // 동영상 재생하기 ////////////
+        // 동영상이 로딩되어 준비되기전 play() 명령을 내리면
+        // 에러가 발생한다!
+        // 내용: DOMException: The play() request was interrupted by a new load request.
+        // play() 요청은 로드 요청에 의해 방해되었음!
+        // 이런 요청방해 에러를 없애려면 이벤트체크를 하나해야함!
+        // canplaythrough 이벤트!!!
+        // -> user agent 가 media를 재생할 수 있을때 발행함!
         // 따라서 이 이벤트가 발생할때 play()하면 된다!!!
 
-        mv.on('canplaythrough', function () {
+        mv.on("canplaythrough", function () {
 
             // 동영상 볼륨 셋팅하기(처음볼륨조절): volume 속성
             // volume값은 0~1까지 중간 소수점표현
-            $(this).get(0).volume = 0.2; //20%볼륨
+            $(this).get(0).volume = 0.2; //40%볼륨
 
             // 동영상 재생하기 //
             $(this).get(0).play();
-
-        }) ///// canplaythrough /////
-
-
-        // 제이쿼리에서 video태그 요소를 선택하면 미디어 요소를 위한 컬렉션으르 생성하기 때문     에  get(0)이라고 별도의 선택메서드를 써야한다!!! 
-        //play()메서드는 동영상을 재상하는 기능임!!!
-
-    }) ///// click /////
-
-    // 2. 이동버튼 클릭시 중앙 위치한 포스터 예고편 재생하기
-    // 대상 : .abtn
-    // 이미지 버튼이벤트 구현이 상단에 JS로 되어있지만 별도의 기능을 위해 아래쪽에 다시 새롭게 만들어서 구현해도 전혀 문제가 없다
-    $('.abtn').click(function () {
-
-        //만약 아래로 작아진 상태가 아니면 즉, ptsts===1 이면 아래쪾코드 실행안함!!!
-        if (ptsts) return false; // 돌아가!!
-
-        console.log('중앙포스터 영화상영');
-
-        // 중앙 포스터라면 몇번째 순번인가? 2번!!!
-        // 중앙 포스터의 data-mv값을 읽어온다. 왜?? 이것이 영화파일명이니까!!!!!
-        let mi = $('.gbox img').eq(2).attr('data-mv')
-        // console.log('영화파일명'+mi);
-
-        mv.attr('src', 'mv/' + mi + '.mp4')
-
-        mv.on('canplaythrough', function () {
-
-            $(this).get(0).play()
-
-        }) ///// canplaythrough /////
-
-    }) ///// click /////
+        }); ////// canplaythrough //////////
 
 
-    // 1. 동영상 제어버튼 숨기기/보이기
+        // 제이쿼리에서 video태그 요소를 선택하면
+        // 미디어 요소를 위한 컬렉션을 생성하기 때문에
+        // get(0)이라고 별도의 선택 메서드를 써야한다!
+        // play() 메서드는 동영상을 재생하는 기능임!
+
+    }); //////////// click ////////////////
+    /////////////////////////////////////////
+
+    ////////////////////////////////////////////
+    //// 2. 이동버튼 클릭시 중앙에 위치한 //////////
+    ////////포스터의 예고편 재생하기 /////////////// 
+    // 대상: .abtn
+    // 이미지 버튼이벤트 구현이 상단에 JS로 되어있지만
+    // 별도의 기능을 위해 아래쪽에 다시 새롭게 만들어서
+    // 구현해도 전혀 문제가 없다!
+    $(".abtn").click(function () {
+
+        // 만약 아래로 작아진 상태가 아니면
+        //즉, ptsts===1 이면 아래쪽 코드 실행안함!
+        if (ptsts) return false; // 돌아가!
+
+        //console.log("중앙포스터 영화상영!");
+
+        // 중앙포스터라면 몇번째 순번인가? 2번!!!
+        // 중앙포스터의 data-mv값을 읽어온다!
+        // 왜? 이것이 영화파일명이니까~!
+        let mi = $(".gbox img").eq(2).attr("data-mv");
+        //console.log("영화파일명:"+mi);
+
+        mv.attr("src", "mv/" + mi + ".mp4");
+
+        mv.on("canplaythrough", function () {
+            $(this).get(0).play();
+        }); ////// canplaythrough //////////
+
+
+    }); /////////// click ////////////////
+
+    /////////////////////////////////////////
+    ///////// 동영상 제어버튼 기능 구현 /////////
+    /////////////////////////////////////////
+
+    // 1. 동영상 제어버튼 숨기기/보이기 ///
     // 컨트롤 공통 class : .ctrl
+    let ctrl = $(".ctrl");
+    // 포스터를 클릭하여 동영상 실행할때 적용하자!
+    // 포스터 클릭시 ctrlGo() 함수호출!
+    let ctrlGo = function(){        
+        $("#screen").hover(
+            function () { // over시 서서히 보임
+                ctrl.fadeIn(200);
+            },
+            function () { // out시 서서히 사라짐
+                ctrl.fadeOut(200);
+            }); 
+        ///// hover ///////////
+    };///////// ctrlGo함수 ////////////////////////
 
-    let ctrl = $('.ctrl')
+    // 2. 동영상 제어버튼 오버/아웃시 이미지 변경하기 ///
+    // 이벤트 대상: .btngrp img
+    // 변경원리: 기존버튼의 src를 읽어와서
+    //          파일명의".png"를 "-1.png"로 변경함
+    // "-1.png"가 진한 이미지임!
 
-    $('#screen').hover(
-        function () { //over
-            ctrl.fadeIn(200)
+    // 기존파일경로
+    let csrc;
+
+    //////// hover 함수 ////////////
+    // replace(바꿀값,바뀔값)
+    $(".btngrp img").hover(
+        function () { // over
+            csrc = $(this).attr("src")
+                .replace(".png", "-1.png");
+            //console.log("변경파일:"+csrc);
+            $(this).attr("src", csrc);
         },
-        function () { //out
-            ctrl.fadeOut(200)
-        }) ///// hover /////
+        function () { // out
+            csrc = $(this).attr("src")
+                .replace("-1.png", ".png");
+            //console.log("변경파일:"+csrc);
+            $(this).attr("src", csrc);
+        }); ///// hover ///////////
+    /////////////////////////////////////////
 
-    // 2. 동영상 제어버튼 오버/아웃시 이미지 변경하기
-    // 이벤트 대상 : .btngrp img
-    // 변경원리 : 기존버튼의 src를 읽어와서 파일명의 '.png'를 '-1.png'로 변경함
-    // '-1.png'가 진한 이미지임!!!
-
-    // 기존파일 경로
-    let csrc
-
-    // hover 함수
-    $('.btngrp img').hover(
-        function () { //over
-            csrc = $(this).attr('src').replace('.png', '-1.png')
-            //console.log('변경파일:'+csrc);
-            $(this).attr('src', csrc)
-        },
-        function () { //out
-            csrc = $(this).attr('src').replace('-1.png', '.png')
-            //console.log('변경파일:'+csrc); 
-            $(this).attr('src', csrc)
-        }) ///// hover /////
-
-    // play/stop 버튼 클릭시 비디오 컨트롤하기
-    // 이벤트 대상 : .btngrp img
-    // 구현원리 : 재생상태이면 멈추고 멈춤상태이면 재생한다!!
-    $('.btngrp img').click(function () {
-
-        // 구현포인트 : 비디오가 재생상태인지 멈춤상태인지 알아내기!!!
-        let paused_sts = mv.get(0).paused
-        // paused 속성은 현재 비디오가 멈춤상태이면 true값을 리턴!!
-        console.log('현재비디오:' + paused_sts);
+    //// play/stop 버튼 클릭시 비디오 컨트롤하기 /////
+    /// 이벤트 대상: .btngrp img
+    /// 구현원리: 재생상태이면 멈추고 멈춤상태이면 재생한다!
+    $(".btngrp img").click(function () {
+        // 구현포인트: 비디오가 재생상태인지 멈춤상태인지 알아내기!
+        let paused_sts = mv.get(0).paused;
+        // paused 속성은 현재 비디오가 멈춤상태이면 true값을 리턴!
+        //console.log("현재비디오가 멈춤상태인가? "+paused_sts);
 
         // 1.비디오가 멈춤상태이면 재생하기
         if (paused_sts) {
@@ -378,7 +403,7 @@ $(function () {
             mv.get(0).play();
 
             // 버튼은 반대로 진한 멈춤버튼변경!
-            $(this).attr('src', 'images/vbt1-1.png');
+            $(this).attr("src", "images/vbt1-1.png");
 
 
         } //////// if ///////////////////
@@ -390,351 +415,401 @@ $(function () {
             mv.get(0).pause();
 
             // 버튼은 반대로 진한 재생버튼변경!
-            $(this).attr('src', 'images/vbt2-1.png');
+            $(this).attr("src", "images/vbt2-1.png");
 
 
         } //////// else //////////////////
 
-    }) ///// click /////
 
-    ///////////////// 음소거 /////////////////////////
-    // 이벤트 대상 : .sound img
-    // 구현원리 : 소리가 나는지 안나는지 상태에 따라 반대로 설정함
-    //////////////////////////////////////////////////
+    }); //////////// click ////////////////
+    //////////////////////////////////////
 
-    $('.sound img').click(function () {
+    //////////// 음소거 기능 //////////////////////////////
+    // 이벤트 대상: .sound img
+    // 구현원리: 소리가 나는지 안나는지 상태에 따라 반대로 설정함
+    //////////////////////////////////////////////////////
+    $(".sound img").click(function () {
+        // 구현포인트: 소리안남 상태 알아내기
 
-        // 1. 현제 소리상태
-        // 구현 포인트 : 소리안남 상태 알아내기
+        // 1. 현재 소리상태
         let sound = mv.get(0).muted;
-        // muted 속성 : 선택된 비디오 소리가 안나면 true, 나면 false
-        // muted 속성에 값을 할당하면 소리안남 상태 변경
-        console.log('소리는?:' + sound);
+        // muted 속성: 
+        //  선택된 비디오의 소리가 안나면 true, 나면 false
+        // muted 속성에 값을 할당하면 소리안남 상태변경 가능!
+        console.log("소리가 안나니?" + sound);
 
-        // 2. muted로 소리설정하기
-        // -> 형제 true/false값을 반대로 넣으면 된다!!!
+        // 2. muted 로 소리설정하기
+        // - 현재 true/false값을 반대로 넣으면 된다!
         // !(not)연산자로 true면 false, false면 true로 반대변경
-        mv.get(0).muted = !sound
+        mv.get(0).muted = !sound;
 
-        // 3. 소리상태 이미지 변경하기
-        // 현제 변경된 소리 상태는 sound가 아니라 !sound
-        if (!sound) {
-            $(this).attr('src', "images/speaker-mute_blue.png")
-        } ///// if /////
-        else {
-            $(this).attr('src', "images/speaker_blue.png")
-        } ///// else //////
+        // 3. 소리상태 이미지 변경하기 ////
+        // 현재 변경된 소리 상태는 sound 가 아니라 !sound임
+        if (!sound) { // 소리가 안나는 상태
+            $(this).attr("src", "images/speaker-mute_blue.png");
+        } ////// if문 ///////////////////
+        else { // 소리가 나는 상태
+            $(this).attr("src", "images/speaker_blue.png");
+        } ////// else문 ////////////////
 
-    }) ///// click /////
 
-    // 비디오 현재 진행바 기능(시간경과 표시)
-    // 사용할 이벤트 : timeupdate -> 비디오 객체의 시간이 변경될떄 발생
-    // on(이벤트,시간) 메서드 사용!
-    mv.on('timeupdate', function () {
+    }); /////////// click ///////////////////////
+    ////////////////////////////////////////////
 
-        // 구현목표 : 비디오가 재생중일때 진행바가 움직이게 한다!!
-        // 구현원리 : 진행바의 진행비율을 %로 나타내야함!!!!
-        // 계산법 : 현제시간 / 전체시간 * 100 -> 백분율(%)
+
+    //// 비디오 현재 진행바 기능(시간경과표시) /////////
+    // 사용할 이벤트: timeupdate 
+    //          - 비디오객체의 시간이 변경될때 발생
+    // on(이벤트, 함수) 메서드 사용!
+    mv.on("timeupdate", function () {
+
+        // 구현목표: 비디오가 재생중일때 진행바가 움직이게 한다!
+        // 구현원리: 진행바의 진행비율을 %로 나타내야함!
+        // 계산법: 현재시간 / 전체시간 * 100 -> 백분율(%)
 
         // 1. 비디오 현재진행 시간 가져오기
-        let ctime = mv[0].currentTime
-        //mv[0] === mv.get(0)
-        // currentTime 속성 : 비디오의 현재시간
-        // console.log('현재시간:'+ctime);
+        let ctime = mv[0].currentTime;
+        // mv[0] === mv.get(0)
+        // currentTime 속성: 비디오의 현재시간
+        //console.log("현재시간:"+ctime);
 
         // 2. 비디오 전체재생시간 가져오기
-        let maxtime = mv[0].duration
-        // duration 속성 : 비디오 전체시간
-        // console.log('전체시간:'+maxtime);
+        let maxtime = mv[0].duration;
+        // duration 속성: 비디오 전체시간(초)
+        //console.log("전체시간:"+maxtime);
 
         // 3. 진행바 변경하기
         // 현재진행시간이 0일 경우 전체시간이 안나오므로
-        // if문으로 이를 막아준다!!!(부모가 0되면 안된다!!)
-        // !isNaN(전체시간) -> 숫자이면 들어가!!!
+        // if문으로 이를 막아준다!(부모가 0되면 안된다!)
+        // !isNaN(전체시간) -> 숫자이면 들어가!
         if (!isNaN(maxtime)) {
 
-            // 우리가 구하고자  하는 것은 백분율(%)이다
-            // 계산식 : 현재시간/ 전체시간 *100
-            //        = ctime / maxtime * 100
+            // 우리가 구하고자 하는 것은 백분율(%)이다
+            // 계산식: 현재시간 / 전체시간 *100
+            //      = ctime / maxtime *100
 
             // 퍼센트 진행율
             let percent = ctime / maxtime * 100;
-            // console.log('진행율:' + percent);
+            //console.log("진행율:" + percent);
 
             // 진행바의 width를 %값으로 변경!
-            $('.tBar').css({
+            $(".tBar").css({
                 width: percent + "%"
             }); //// css /////////////
 
-        } ///// if /////
+        } /////// if문 /////////////////////////
 
-    }) ///// timeupdate /////
+    }); //////////// timeupdate 이벤트 함수 ///////////////
+    ////////////////////////////////////////////////////
 
+    /*////////////////////////////////////////////////////
+        함수명: updateBar
+        기능: 타임바를 클릭또는 드래그시 비디오를 업데이트 변경함
+    */ ////////////////////////////////////////////////////
+    let updateBar = function (x) { // x - 마우스포인터 x좌표
 
-    /*////////////////////////////////////////////////////////
-        함수명 : updateBar
-        기능 : 타임바를 클릭 또는 드래그시 업데이트 변경함
-    */ ////////////////////////////////////////////////////////
-    let updateBar = function (x) { // x - 마우스포인터 x 좌표
+        //console.log("x:" + x + " / drag:" + timeDrag);
 
-        // console.log('x:' + x + '/ drag:' + timeDrag);
-
-        // 1. 넘겨준 x좌표를 백분율(%)로 변환!!(타임바 변경위해)
-        // 백분율 = x좌표 / .pBar 가로 width * 100
+        // 1. 넘겨준 x좌표를 백분율(%)로 변환!(타임바 변경위해)
+        // 백분율 = x좌표 / .pBar의 가로 width *100
         let percent = x / pbar.width() * 100;
 
         // 2. 타임바 변경하기
-        $('.tBar').css({
+        $(".tBar").css({
+            width: percent + "%"
+        }); ////// css /////////////
 
-            width: percent + '%'
-
-        }) ///// css /////
-
-        // 비디오 전체시간
+        // 비디오전체시간(duration은 전체시간속성)
         let maxtime = mv[0].duration;
 
         // 3. 비디오 시간 변경하기
-        // 위에서 구한 백분율(%)을 활용한다!!
-        // 비디오 현재시간 (%) = 비디오 현재시간 / 비디오전체시간 * 100
-        // 비디오 현재시간 = 비디오현재시간(%) * 비디오전체시간 / 100
+        // 위에서 구한 백분율(%)을 활용한다!
+        // 비디오현재시간(%) = 비디오현재시간 / 비디오전체시간 * 100
+        // 비디오현재시간 = 비디오현재시간(%) * 비디오전체시간 / 100
         mv[0].currentTime = percent * maxtime / 100;
 
-        // 비디오 현재시간속성은 currentTime이다!!!
-        // 이퀄왼쪽에 currentTime속성을 쓰고 할당하면 비디오 실제 시간이 변경된다!!
+        // 비디오 현재시간 속성은 currentTime이다!
+        // 이퀄 왼쪽에 currentTime속성을 쓰고 할당하면 
+        // 비디오 실제 시간이 변경된다!!!
 
-        // 시간이동시 동영상이 멈춤일때라도 다시 재생되므로 멈춤버튼으로 버튼을 변경해준다!!!!!
-        $('.btngrp img').attr('src', 'images/vbt1.png')
+        // 시간이동시 동영상이 멈춤일때라도
+        // 다시 재생되므로 멈춤버튼으로 버튼을 변경해 준다!
+        $(".btngrp img").attr("src", "images/vbt1.png");
 
-    } ///// updateBar 함수 /////
-    /////////////////////////////////////////////////////////////
+    }; /////// updateBar 함수 /////////////////////////////
+    //////////////////////////////////////////////////////    
 
-    ///////////////////////////////////////////////////////////
-    //진행바를 클릭하거나 드래그하면 타임라인 이동함수를 호출
-    ///////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////
+    //진행바를 클릭하거나 드래그하면 타임라인 이동함수를 호출//
+    ///////////////////////////////////////////////////
 
-    // 드래그 상태변수 (true이면 드래그중)
-    let timeDrag = false
+    /// 드래그 상태변수(true이면 드래그중)
+    let timeDrag = false;
+    /*
+    [ 드래그란 무엇인가? ]
+    - 마우스 왼쪽버튼을 누르고 마우스를 움직이면 드래그다!
+    mousedown + mousemove
+    - 드래그의 끝은? 마우스 왼쪽버튼을 떼는것!
+    mouseup
+    
+    - 보통 클릭은 "딸각" 이지만 구분할 수 있다!
+    mousedown -> "딸"
+    mouseup -> "각"
+    */
 
-    // 드래그란 무엇인가??
-    // 마우스 왼쪽버튼을 누르고 마우스를 움직이면 드래그다
-    // mousedown + mausemove
-    // 그래그의 끝은? 마우스 왼쪽버튼을 떼는것!! mouseup
+    // 대상선정: .pBar(진행바 부모)
+    let pbar = $(".pBar");
 
-    // 보통 클릭은 "딸각" 이지만 구분 할수 있다!
-    // mousedown ->'딸'
-    // mouseup -> '각'
+    //// 마우스 왼쪽버튼을 누를때 (드래그시작) ////////////////
+    pbar.mousedown(function (e) { // e-이벤트 전달변수
 
-    // 대상선정 : .pBar(진행바 부모)
-    let pbar = $('.pBar')
+        // 마우스 다운 즉, "딸" 하는 순간 드래그 시작!
+        timeDrag = true; // 드래그 상태값 변경(true-드래그중!)
 
-    // 마우스 왼쪽버튼을 누를때
-    pbar.mousedown(function (e) { // e - 이벤트 전달변수
+        // 타임바업데이트 함수 호출!
+        updateBar(e.offsetX);
+        // e.offsetX - 현재 클릭된 마우스포인터 위치의 x좌표값!
 
-        // 마우스 다운 즉, "딸" 하는순간 드래그 시작
-        timeDrag = true; // 드래그 상태값 변경(true - 드래그중)
+    }); ////// mousedown 함수 /////////////////////////////
 
-        // 타임바업데이트 함수호출!
-        updateBar(e.offsetX)
-        // e.offsetX - 현제 클릭된 마우스포인터 위치의 x좌표값!!! 
+    //// 마우스 왼쪽버튼을 뗄때 (드래그해제) ///////////////////
+    pbar.mouseup(function (e) { // e-이벤트 전달변수
 
-    }) ///// mousedown /////
+        // 마우스 업 즉, "각" 하는 순간 드래그 끝!
+        timeDrag = false; //드래그 상태값 변경(false-드래그끝)
 
-    // 마우스 왼쪽버튼을 뗼때 (드래그 해제)
-    pbar.mouseup(function (e) {
+        // 타임바 업데이트 함수 호출!
+        updateBar(e.offsetX);
 
-        // 마우스 업 즉, "각" 하는 순간 드래그 끝
-        timeDrag = false // 드래그 상태값 변경(false - 드래그 끝)
-        updateBar(e.offsetX)
+    }); /////// mouseup 함수 ////////////////////////////////
 
-    }) ///// mouseup /////
+    //// 마우스가 .pBar 위에서 마우스 다운상태로 움직일때 ////////
+    pbar.mousemove(function (e) { //e-이벤트전달변수
 
-    // 마우스가 .pBar위에서 마우스 다운상태로 움직일때
-    pbar.mousemove(function (e) {
-
-        // 마우스 다운상태 일때만 타임바업데이트 함수 호출
-        // 즉, timeDrag 변수가 true일때만 호출하면 된다!!
+        // 마우스 다운상태 일때만 타임바업데이트 함수호출
+        // 즉, timeDrag 변수가 true일때만 호출하면 된다!
         if (timeDrag) {
 
-            // 타임업데이트 함수 호출!!
-            updateBar(e.offsetX)
+            // 타임업데이트 함수 호출!
+            updateBar(e.offsetX);
 
-        } ///// if문 /////
+        } //////// if문 /////////////
 
-    }) ///// mousemove /////
+    }); //////// mousemove 함수 //////////////////
 
-    // 드래그 상태 오작동 막기!!!
-    // .pBar 위에서 마우스 다운상태로 영역을 벗어나면 timeDrag상태값이 true이므로 다음에 마우스 다운이 아닌 상태로 .pBar 들어오면 그대로 업데이트가 계속 호출된다!!따라서 마우스가 .pBar를 벗어날 때 timeDrag변수값을 false로 변경해야 드래그 상태 오작동을 막을 수 있다!!!
-
-    // 마우스 포인터가 영역을 벗어날때 이벤트 : mouseleave
+    ///// 드래그 상태 오작동 막기!!! ////////////////////////
+    /// .pBar 위에서 마우스 다운 상태로 영역을 벗어나면
+    /// timeDrag 상태값이 true이므로 다음에 마우스 다운이 아닌
+    /// 상태로 .pBar 들어오면 그대로 업데이트가 계속 호출된다!
+    /// 따라서 마우스가 .pBar를 벗어날때 timeDrag 변수값을
+    /// false로 변경해야 드래그 상태 오작동을 막을 수 있다!!!
+    //////////////////////////////////////////////////////
+    /// 마우스 포인터가 영역을 벗어날때 이벤트: mouseleave
     pbar.mouseleave(function () {
 
-        // 드래그 상태값 변경!!
-        timeDrag = false
+        // 드래그상태값 변경!
+        timeDrag = false;
 
-    }) ///// mouseleave /////
+    }); ///// mouseleave 함수 //////////////////////////
 
-    ////////////////////////////////////////////////////////////////////
-    // 비디오 시간 표시하기
-    // [ 비디오관련 이벤트 ]
-    // 1. timeupdate 이벤트 : 비디오 태그가 재생 중 시간변경시 발생
-    // 2. loadedmetadata 이벤트 : 비디오 기본정보 로딩완료시 발생
-    ////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////
+    ///// 비디오 시간 표시하기 ////////////////////////////
+    //// [ 비디오관련 이벤트 ] /////
+    // 1. timeupdate 이벤트: 비디오 태그가 재생 중 시간변경시 발생
+    // 2. loadedmetadata 이벤트: 비디오 기본정보 로딩완료시 발생
+    ////////////////////////////////////////////////////////
 
-    // 전체시간 찎기
-    // 비디오 기본정보 로드 완료시에ㅐ 실행
-    mv.on('loadedmetadata', function () {
+    ////////// 전체시간 찍기 /////////////////////////////
+    /// 비디오 기본정보 로드 완료시에 실행 //////////////////
+    mv.on("loadedmetadata", function () {
 
-        // 전체시간 -> changeTime 시분초변환함수 호출!!
+        // 전체시간 -> changeTime 시분초 변환함수호출!
         let maxtime = mv[0].duration;
-        maxtime = Math.floor(maxtime) // 소수점 아래 버리기
-        maxtime = changeTime(maxtime)
+        maxtime = Math.floor(maxtime); //소숫점 아래 버리기
+        maxtime = changeTime(maxtime);
 
         // 화면에 출력
-        $('.duration').text(maxtime)
+        $(".duration").text(maxtime);
 
-    }) ///// loadedmetadata 함수 /////
-    //////////////////////////////////////////////////////////////////////
+    }); /////// loadedmetadata 함수 ///////////////////////
+    /////////////////////////////////////////////////////
 
-    // 현제 진행시간 찎기
-    // 비디오 시간이 업데이트 될때 계속 찍어야함!!!
-    mv.on('timeupdate', function () {
+    ///// 현재 진행시간 찍기 ///////////////////////////////
+    // 비디오 시간이 업데이트 될때 계속 찍어야함! /////////////
+    mv.on("timeupdate", function () {
 
-        // 비디오 현재시간 -> 시분초변환함수 호출!!
+        // 비디오 현재시간 -> changeTime 시분초 변환함수호출!
         let cTime = mv[0].currentTime;
-        cTime = Math.floor(cTime) // 소수점 아래 버리기
-        cTime = changeTime(cTime)
+        cTime = Math.floor(cTime); //소숫점 아래 버리기
+        cTime = changeTime(cTime);
 
         // 화면에 출력!
-        $('.current').text(cTime)
+        $(".current").text(cTime);
 
-    }) ///// timeupdate 함수 /////
-    //////////////////////////////////////////////////////////////////
+    }); /////// timeupdate 함수 ///////////////////////////
+    /////////////////////////////////////////////////////
 
-    /////////////////////////////////////////////////////////////////////
-    // 볼륨컨트롤 구현하기
-    // 스크롤 드래그 가능하게 설정!!
-    $('#bar').draggable({
+    ///////// 볼륨컨트롤 구현하기 /////////////////////
+    //// 볼륨바 드래그 가능하게 설정!
+    $("#bar").draggable({
+        axis: "x", //x축고정
+        containment: "parent" // 작동범위부모고정
+    }); /////// draggable ///////
 
-        axis: 'x', // x축고정
-        containment: 'parent' // 작동범위 부모고정
+    /// 바를 드래그 이동시 볼륨변경하기 //////
+    $("#bar").on("drag", function () {
 
-    }) ///// draggable /////
-
-    // 바를 드래그 이동시 볼륨변경하기
-    $('#bar').on('drag', function () {
-
-
-
-        // 현제 볼륨바의 이동값
+        //현재 볼륨바의 이동값
         let barpos = $(this).position().left;
-        // position().left()는 static 아닌 부모박스기준 left
-        // console.log('바위치:'+barpos);
-
-        // 바이동 최소값: 0, 바이동 최대값: 54    
-        // 비를 계산(최대값으로 나눔)
-        let val = barpos / 54
-        console.log('볼륨비:' + val);
-
-        // 비디오에 볼륨 적용하기
-        // volume 값은 0~1사이에 값을 적용한다!!!
-        // 우리가 위에서 구한 비가 곧 볼륨값이 된다!!!
-        mv[0].volume = val
+        // position().left는 static이 아닌 부모박스기준 left
+        //console.log("바위치:"+barpos);
 
 
+        // 바이동 최소값: 0, 바이동 최대값: 54
+        // 비를 계산(최대값을 나눔)
+        let val = barpos / 54;
+        //console.log("볼륨비:"+val);
 
-    }) ///// drag /////
-    ///////////////////////////////////////////////////////////////////////
+        // 비디오에 볼륨적용하기
+        // volume의 값은 0~1 사이의 값을 적용한다!
+        // 우리가 위에서 구한 비가 곧 볼륨값이 된다!
+        mv[0].volume = val;
+
+
+    }); ////////// drag //////////////////
+    /////////////////////////////////////
 
     /// 스크린에 마우스가 들어올때 볼륨 컨트롤바 위치//////
     /// 현재 볼륨크기로 위치 이동하기 //////////////////
-    $('#screen').mouseenter(function () {
+    $("#screen").mouseenter(function () {
 
-        // 현제 볼륨 크기를 측정
+        // 현재 볼륨 크기를 측정
         let cvol = mv[0].volume;
-        console.log('현재볼륨:' + cvol);
-        
-        // 백분율로 변경하기 
-        cvol = Math.floor(cvol*100)
-        console.log('볼륨%:'+cvol);
-        
+        //console.log("현재볼륨:"+cvol);
+
+        // 백분율로 변경하기
+        cvol = Math.floor(cvol * 100);
+        //console.log("볼륨%:" + cvol);
+
         // 볼륨바의 위치 재설정하기
-        $('#bar').css({
-            
-            left: cvol + '%'
-            
-        })///// css /////
-        
-    }) ///// mouseenter /////
+        $("#bar").css({
+            left: cvol + "%"
+        }); //// css ////////
 
-    // 스크린 화면 축소/확대하기 기능구현
-    // 원리 : 미리 셋팅된 확대 클래스를 넣었다 뺏다함!!
-    // 이벤트 대상 : .expand a
-    // 변경대상 : #screen
-    $('.expand a').click(function(e){
-        
-        // 기본 이동막기
-        e.preventDefault()
-        
-        // 스크린에 클래스 "on"넣기/빼기
-        $('#screen').toggleClass('on')
-        // toggleClass() 메서드는 클래스가 없으면 넣고 있으면 뺌
-    })
-    
+    }); //////// mouseenter ////////////////////
+    ////////////////////////////////////////////
+
+    //// 스크린 축소/확대 기능 구현 ///////
+    // 원리: 미리 셋팅된 확대 클래스를 넣었다 뺐다함 ///
+    // 이벤트 대상: .expand a
+    // 변경 대상: #screen
+    $(".expand a").click(function (e) {
+
+        //기본이동막기
+        e.preventDefault();
+
+        //스크린에 클래스 "on" 넣기/빼기
+        $("#screen").toggleClass("on");
+        // toggleClass() 메서드는 
+        // 클래스가 없으면 넣고 있으면 뺌!
+
+    }); //////// click /////////////////
 
 
-    // GNB a요소 클릭시 스크롤 애니메이션 하기
-    // a요소에 href='#아이디명'하면 바로이동은 가능  그러나 스크롤 애니메이션은 되지 않  // 는다!!!!! 제이쿼리에서 이것을 해주자~~~~~
-    // 클릭 이벤트대상 : .gnb a
 
-    $('.gnb a,.bnav a').click(function (e) {
 
-        e.preventDefault() // a이동 막기!!!!!
+    ///////////////////////////////////////////
+    /// GNB a요소 클릭시 스크롤 애니메이션 하기 ////
+    // a요소에 href="#아이디명" 하면 바로이동은 가능
+    // 그러나 스크롤 애니메이션은 되지 않는다!!!
+    // 제이쿼리에서 이것을 해주자!
+    // 클릭 이벤트 대상: .gnb a 동시에 .bnav a
+    ///////////////////////////////////////////
+    $(".gnb a,.bnav a").click(function (e) {
 
-        // 클릭된 순번 알아내기(클릭된 a의 부모 li순번 알아내기)
-        // 알아낸 순번을 전역페이지 번호(pno)에 넣기!!!
+        e.preventDefault(); //a이동막기!
+
+        // 1.클릭된 순번 알아내기(클릭된 a의 부모 li순번)
+        // 알아낸 순번을 전역 페이지번호(pno)에 넣기!
         pno = $(this).parent().index();
-        //console.log('클릭순번:' + pno);
+        //console.log("클릭순번:" + pno);
 
 
-        // 기존  위치값 읽어오기 변경!!!!!
-        // 전체 윈도우 높이값(winH)에 페이지 번호를 곱한다
+        // 2.기존 위치값 읽어오기 변경!!!!
+        // 전체윈도우 높이값(winH)에 페이지번호를 곱한다!
         let pgpos = winH * pno;
 
-        // 3. 스크롤 애니메이션으로 페이지 이동하기!!
-        // scrollTop 속성은 세로 스크롤위치값
-        // 스크롤 이동대상 : html,body
-        // (범용선택용소 : 즉, 여러브라우저에서 공통사용됨!!)
-        $('html, body').animate({
-            scrollTop: pgpos + 'px',
-        }, 800, 'easeOutCirc') ///// animate /////
+        // 3. 스크롤 애니메이션으로 페이지이동하기
+        // scrollTop 속성은 세로 스크롤위치값(제이쿼리용!)
+        // 스크롤 이동대상: html,body 
+        // (범용선택요소: 즉, 여러브라우저에서 공통사용됨!)
+        $("html,body").stop().animate({
+            scrollTop: pgpos + "px"
+        }, 1200, "easeInOutQuint", pageAction);
+        ///// animate /////
+        // 맨 끝에 콜백함수로 페이지액션함수를 호출한다!
+        // stop()을 사용하여 여러개를 클릭했을때 마지막 선택
+        // 만 남아서 처리되도록 중간에 쌓인 애니메이션 지움!
 
-        // stop() 사용하여 여러개를 클릭했을때 마지막 선택만 남아서 처리하도록 중간에 쌓    인 애니메이션 지움!!!!
-        // 4. GNB메뉴에 class="on" 넣어 선택된 메뉴표시 a요소의 li에 class="on"으로    넣으면  이미 셋팅된 css의 디자인이 적용되어 라임색 윗줄의 크기가 조금 커진 디    자인이 적용된다 마우스 오버시와 동일 디자인이 유지된다!! 이것을 표시하는 이      .유는 현재 페이지가 무엇인지 표시하기 위함이다!!
-        // this 나 자신에서 위로 올라가 li를 선택함!!
-        // 두개의 네빗게이션을 동시에 변경하기!!!!
+        // 4. GNB메뉴의 a요소 클릭했을때 클릭된
+        // a요소의 li에 class를 "on"으로 넣으면
+        // 이미 셋팅된 CSS의 디자인이 적용되어
+        // 라임색 윗줄의 크기가 조금 커진 디자인이
+        // 적용되어 마우스 오버시와 동일 디자인이 유지된다
+        // 이것을 하는 이유는 현재 페이지가 무엇인지
+        // 표시하기 위함이다!
+
+        // 두개의 네비게이션을 동시에 변경하기
 
         // GNB네비게이션 클래스 넣기
-        $('.gnb li').eq(pno).addClass('on')
-            .siblings().removeClass('on')
+        $(".gnb li").eq(pno).addClass("on")
+            .siblings().removeClass("on");
 
         // 블릿네비게이션 클래스 넣기
-        $('.bnav li').eq(pno).addClass('on')
-            .siblings().removeClass('on')
+        $(".bnav li").eq(pno).addClass("on")
+            .siblings().removeClass("on");
 
-    }) ///// click /////
-
-
+    }); ///////// click ///////////////////
 
 
-}) ///// jQB ////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
+    ///// 3. 영화페이지 : 스와이퍼 적용하기 //////
+    // swiper변수를 전역변수로 만들고 페이지액션에서 사용!
+    swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1, //한 영역에 보여줄 슬라이드수
+        spaceBetween: 0, //슬라이드 사이간격
+        loop: true, //무한이동
+        pagination: { // 하단 블릿표시
+            el: '.swiper-pagination',
+            clickable: true, //블릿클릭이동
+        },
+        navigation: { // 양쪽이동버튼
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        // 자동넘김을 미리셋팅하면 본 페이지 오기전부터
+        // 이미 넘어가고 있다.... 그러므로 메서드를 사용해야함!
+        autoplay: { // 자동넘김
+            delay: 3000,//사이간격시간
+            disableOnInteraction: false,
+            //스와이프 상호작용후 다시자동넘김옵션
+            //(false가 기본값-상호작용후 사이간격시간
+            //있다가 다시 자동넘김작동함)
+        },
+    }); //////// swiper ///////////////////////////
+    
+    // 처음에 스와이퍼 자동넘김 멈추기
+    swiper.autoplay.stop();
+
+
+
+}); ///////////// jQB ////////////////////////
 
 /*///////////////////////////////////////
 	함수명: changeTime
 	기능: 초를 보내면 시분초 변환해주는 함수
 */ ///////////////////////////////////////
 function changeTime(sec) { //sec 초단위값
-    "use strict";
+    "use strict"; //엄격한 문법적용
     var pad = function (x) {
         return (x < 10) ? "0" + x : x;
     };
@@ -746,6 +821,4 @@ function changeTime(sec) { //sec 초단위값
 
     }
     return res;
-} ///////////////// changeTime함수 ////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
+} ///////////////// changeTime함수 //////////////////////////////////////////////////////////

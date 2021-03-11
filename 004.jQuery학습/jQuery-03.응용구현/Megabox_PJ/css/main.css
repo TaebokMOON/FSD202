@@ -52,29 +52,32 @@ h3 {
 
 /*공통 class*/
 
-/*드래그 선택 안되게하는 css*/
+/*드래그 선택 안되게 하는 CSS*/
 .disableselect {
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Chrome/Safari/Opera */
-  -khtml-user-select: none;
-  /* Konqueror */
-  -moz-user-select: none;
-  /* Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge*/
-  user-select: none;
-  /* Non-prefixed version, currently not supported by any browser */
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge*/
+    user-select: none;
+    /* Non-prefixed version, currently 
+    not supported by any browser */
 }
 
 .disabledrag {
-  -webkit-user-drag: none;
-  -khtml-user-drag: none;
-  -moz-user-drag: none;
-  -o-user-drag: none;
-  user-drag: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }
+
+
 
 /*페이지 공통 class*/
 .page {
@@ -256,8 +259,14 @@ h3 {
     width: 32%;
     /*background-color: #f00;*/
     
-    /*트랜지션 -속시이지*/
-    transition: all 1s ease-in-out;
+    /*트랜지션:속시이지*/
+    transition:  all 1s ease-in-out;
+}
+
+/*스크린 확대 class*/
+#screen.on{
+    width: 70%;
+    z-index: 1;
 }
 
 /*스크린비율유지박스*/
@@ -267,19 +276,13 @@ h3 {
     padding-top: 55%;
 }
 
-/*스크린 확대 class*/
-#screen.on {
-    width: 70%;
-    z-index: 1;
-}
-
-
 /*동영상*/
 #mv {
     position: absolute;
     top: 0;
     width: 100%;
-    display: none;/*처음에 안보임*/
+    display: none;
+    /*처음에 안보임*/
 }
 
 /*비율유지class-정사각형비율(1:1)*/
@@ -296,7 +299,7 @@ h3 {
     position: absolute;
     top: 45%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     /*부모자격*/
     width: 20%;
     /*비율유지하려고 height안씀!*/
@@ -309,7 +312,7 @@ h3 {
     position: absolute;
     top: 0;
     width: 100%;
-/*    height: 100%;*/
+    /*    height: 100%;*/
     border-radius: 15px;
     box-shadow: 6px 6px 5px #333;
     /*트랜지션:속시이지*/
@@ -323,7 +326,8 @@ h3 {
     left: -210%;
     transform: scale(.7);
     opacity: 0;
-    cursor: default;/*일반커서로 변경*/
+    cursor: default;
+    /*일반커서로 변경*/
 }
 
 /*(2)왼쪽옆*/
@@ -333,7 +337,7 @@ h3 {
     transform: scale(.9);
     opacity: 1;
     /*CSS필터*/
-/*    filter: grayscale(50%) blur(1px);*/
+    /*    filter: grayscale(50%) blur(1px);*/
 }
 
 /*(3)중앙*/
@@ -342,7 +346,7 @@ h3 {
     left: 0;
     transform: scale(1);
     opacity: 1;
-/*    filter: saturate(1.5);*/
+    /*    filter: saturate(1.5);*/
     /*채도(satureate)를 기본(1)보다 높임!*/
 }
 
@@ -353,7 +357,7 @@ h3 {
     transform: scale(.9);
     opacity: 1;
     /*CSS필터*/
-/*    filter: grayscale(50%) blur(1px);*/
+    /*    filter: grayscale(50%) blur(1px);*/
 }
 
 /*(5)오른쪽끝*/
@@ -362,7 +366,8 @@ h3 {
     left: 210%;
     transform: scale(.7);
     opacity: 0;
-    cursor: default;/*일반커서로 변경*/
+    cursor: default;
+    /*일반커서로 변경*/
 }
 
 /*4.이동버튼 셋팅*/
@@ -395,25 +400,26 @@ h3 {
 /******* 동영상 컨크롤 버튼 ********/
 
 /*컨트롤 버튼 공통 - 컨트롤들은 처음에 안보임*/
-.ctrl{
+.ctrl {
     display: none;
 }
 
 /*play, stop버튼*/
-.btngrp{
+.btngrp {
     position: absolute;
     /*부모? #screen*/
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     /*정중앙이동*/
     width: 20%;
 }
-.btngrp img{
+
+.btngrp img {
     width: 100%;
 }
 
-/*sound 버튼*/
+/*sound버튼*/
 .sound {
     position: absolute;
     top: 2%;
@@ -431,11 +437,13 @@ h3 {
     position: absolute;
     bottom: 3px;
     width: 100%;
-    height: 5px;
+    height: 6px;
     background-color: rgba(255, 255, 255, 0.5);
-    cursor: pointer; /*손가락모양*/
-    transform: scaleY(.5); /*스케일을  y축으로 반으로 줄임*/
-    
+    cursor: pointer;
+    /*손가락*/
+    transform: scaleY(.5);
+    /*스케일을 Y축으로 반으로 줄임*/
+    transition: transform .2s;
 }
 
 /*시간 진행바*/
@@ -443,12 +451,13 @@ h3 {
     position: absolute;
     top: 0;
     left: 0;
-    width: 0;
+    width: 0%;
+    /*처음에 0*/
     height: 100%;
     background: #f00;
 }
 
-/*진행바 꼮지*/
+/*진행바 꼭지*/
 .tBar::after {
     content: "";
     display: block;
@@ -460,6 +469,7 @@ h3 {
     border-radius: 50%;
     background-color: #f00;
     transform: scale(0);
+    /*크기를 안보이게 스케일 0으로*/
     transition: transform .2s;
 }
 
@@ -469,12 +479,12 @@ h3 {
 }
 
 /*.pBar에 마우스 오버시 원래크기로 .tBar 꼭지 scale복원하기*/
-.pBar:hover .tBar::after{
+.pBar:hover .tBar::after {
     transform: scale(1);
 }
 
 /*비디오 시간표시*/
-.cTime {
+.cTime{
     position: absolute;
     bottom: 15px;
     right: 5px;
@@ -483,7 +493,8 @@ h3 {
     text-shadow: 0 0 5px #777;
 }
 
-.volume {
+/*볼륨버튼*/
+.volume{
     position: absolute;
     bottom: 17px;
     left: 25px;
@@ -491,51 +502,84 @@ h3 {
     height: 1px;
     background-color: #fff;
 }
-
 /*볼륨바*/
-#bar {
+#bar{
     position: relative;
-    left: 20%; /*첫 볼륨 위치*/
+    left: 20%;/*첫볼륨위치(JS에서 20%볼륨)*/
     display: block;
     width: 6px;
     height: 11px;
     background-color: #fff;
     margin-top: -5px;
-    box-shadow: 0 0 3px #777 inset; /*안쪽그림자*/
+    box-shadow: 0 0 3px #777 inset;/*안쪽그림자*/
 }
 
 /*축소/확대버튼*/
-.expand {
+.expand{
     position: absolute;
     bottom: 10px;
     left: 5px;
     font: 16px Verdana;
-    color: #ccc;
+    color: #CCC;
     text-shadow: 0 0 2px #777;
 }
-
-.expand a:last-child {
+/*처음에 두번째 축소하기 버튼 숨기기*/
+.expand a:last-child{
     display: none;
 }
-
 /*#screen에 클래스 "on"이 적용된 경우*/
-/*확대하기 버튼 보이기*/
-#screen.on .expand a:first-child {
+/*확대하기 버튼 숨기기*/
+#screen.on .expand a:first-child{
     display: none;
 }
-
 /*축소하기 버튼 보이기*/
-#screen.on .expand a:last-child {
+#screen.on .expand a:last-child{
     display: inline;
 }
 
+/******** 2. 큐레이션 페이지: typed 플러그인 **********/
+.type-wrap{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 620px;
+    height: 300px;
+    font: bold 20px/50px "맑은 고딕";
+    color: #fff;
+    text-shadow: 0 0 3px #777;
+    padding: 20px;
+    /*outline: 3px dotted lime;*/
+}
+/*플러그인 문구에 태그를 사용할 수 없으므로
+css에서 가상요소 첫번째줄만 적용하는 코딩이 필요!*/
+.type-wrap::first-line{
+    color: powderblue;
+    font-size: 40px;
+    line-height: 100px;
+}
 
-
-
-
-
-
-
-
-
-
+/************* 3. 영화관 페이지 : 스와이퍼 플러그인 ***********/
+/*스와이퍼 전체박스*/
+.swiper-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 250px;
+    height: 370px;
+    box-shadow: 0 0 10px 5px #fff;
+}
+/*스와이퍼 개별리스트*/
+.swiper-slide{
+    display: flex;
+    /*원래 flex는 부모박스에 잡지만
+    swiper는 자식요소에 셋팅한다!*/
+    justify-content: center;
+    align-content: center;
+}
+/*스와이퍼 이미지*/
+.swiper-slide img{
+    width: 100%;
+    height: 100%;
+}
