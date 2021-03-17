@@ -1,6 +1,99 @@
 /// 회원가입 페이지 JS - member.js /////
 
 $(function () { /// jQB //////////////////
+    
+    // 약관동의 전체 체크박스 체크시 모든 체크박스 변경하기
+    // 체크박스 이벤트는? cganhe
+    // 대상 : 전체체크박스 -> #chk_all
+    $('#chk_all').change(function(){
+        
+        // 현재 체크여부 읽어오기
+        let chk = $(this).prop('checked')
+        console.log('체크상태:'+chk);
+        
+        // prop(속성명) 메서드
+        // - attr()과 매우 유사하지만 이것은 리턴값을 가져온다!!
+        // 체크박스일경우 체크된 상태를 ture/false로 리턴해준다!!!!
+        // attr은 리턴 기능이 없다!!!!! undefined라고 나온다
+        
+        // 기능구현 : 전체체크박스와 똑같은 상태로 아래3개의 체크박스를 변경해준다!!!
+        // 세개의 공통 체크박스 class="chk"
+        // 사용메서드 : prop(속성명,값)
+        $('.chk').prop('checked',chk)
+         
+        // prop('checked',true 또는 false값) -> 체크박스에 체크변경 
+        // ture -> 체크됨  false -> 체크해제
+        
+        // $('.chk').attr('checked',chk)
+        // attr(속성명, 속성값)은 체크값 설정에는 효과가 동일하다!!!
+        
+    })///// change /////
+    
+    // 개별 체크박스 체크시 변경하기
+    // 대상 : .chk 개별 체크박스 공통 클래스
+    $('.chk').change(function(){
+        
+        // 셋중 클릭된 요소의 체크상태 알아내기
+        let chk =$(this).prop('checked')
+        console.log('개별체크박스:'+chk);
+        
+        // 셋중 하나라도 false이면 전체 체크는 박스는 체크해제임!!!
+        if(!chk){ // false일떄 NOT(!)해서 들어간다!!!
+            
+            $('#chk_all').prop('checked',false)
+            
+        }///// if /////
+        else { // 개별체크박스 세가가 모두 체크되면 전체 체크박스 체크
+            
+            // each() 메섣로 개별체크박스 개수를 모두돌아 개수가 3이면 체크박스를 체크한다!!!
+            let num = 0;
+            $('.chk').each(function(idx,ele){
+                
+                let res = $(ele).prop('checked')
+                // 만약 체크여부가 true면 num을 증가한다!!
+                if(res) num++
+                
+            })///// each /////
+            
+            // 결과 : num이 3이면 모두 체크이므로 전체체크박스 체크처리 한다!!
+            if(num===3)
+                $('#chk_all').prop('checked',true)
+            
+        }//// else /////
+        
+    })///// change /////
+    
+    // 동의버튼 클릭시 필수체크요소 체크시 회원가입보이기
+    // 대상 : #btnY
+    $('#btnY').click(function(){
+        
+        // 조건 : 필수요소 2개만 true이면 통과
+        if($('#termsService').prop('checked')&&
+           $('#termsPrivacy').prop('checked')){
+            
+            // 1. 동의 비동의 박스 숨기기
+            $('#conf').fadeOut(300)
+            
+            
+            // 2. 회원가입박스 보이기
+            $('#meminfo').fadeIn(400)
+            
+        }///// if /////
+        
+        // 필수 체크항목이 모두 체크 되지 않았을때
+        else {
+            alert('모든 필수항목에 체크하여야 합니다!!')
+        }///// else /////
+        
+    })///// click /////
+    
+    // 비동의 버튼 클릭시 index페이지로 이동하기
+    $('#btnN').click(function(){
+        
+        location.href = "index.php"
+        
+    })///// click /////
+    
     /*
     [ 입력폼의 유효성 검사 ]
     - 검사원리 : 입력창에 클릭 또는 탭하여 입력 가능상태
