@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG 애니메이션 무비 인트로</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        body{
+            background-color: #000;
+        }
+        
+        /*라인애니박스*/
+        .stg{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /*line설정*/
+        .line1{
+            stroke: #00FDD2;/*선색*/
+            stroke-width: 3;/*선두께*/
+            stroke-dasharray: 150%;
+            /* 50%시 3조각 : 50%*3=150% */
+            stroke-dashoffset: 150%;/*공백부터*/
+            /*애니메이션:이시이지반방마*/
+            animation: lineAni 5s ease-in-out 2s forwards;
+            /*forwards 마지막상태유지*/
+        }
+        
+        /*선애니메이션 키프레임*/
+        @keyframes lineAni{
+            to{
+                stroke-dashoffset: 0%;
+            }
+        }/*키프레임*/
+        
+        /*공통class*/
+        .bld{/*ir*/
+            display: block;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+        
+        /*공각기동대 스틸컷박스*/
+        #myc{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        /*스틸컷 개별박스 공통*/
+        #myc>div{
+            position: absolute;
+            /*부모는? #myc*/
+            background-repeat: no-repeat;
+            background-position: top;
+            background-size: cover;
+            opacity: 0;/*처음에 투명*/
+        }
+        /*윗박스*/
+        #myc>div:first-child{
+            top: -15%;
+            width: 100%;
+            height: 50%;
+            background-image: url(images/sc1.jpg);
+            /*삼각형클리핑*/
+            clip-path: polygon(0% 0%,100% 0%,50% 100%);
+            /*애니메이션:이시이지반방마*/
+            animation: scm1 3s ease-in-out 7s forwards;
+        }
+        /*오른쪽박스*/
+        #myc>div:nth-child(2){
+            right: -15%;
+            width: 50%;
+            height: 100%;
+            background-image: url(images/sc4.jpg);
+            /*삼각형클리핑*/
+            clip-path: polygon(100% 0%,100% 100%,0% 50%);
+            /*애니메이션:이시이지반방마*/
+            animation: scm2 3s ease-in-out 8s forwards;
+        }
+        /*아랫박스*/
+        #myc>div:nth-child(3){
+            bottom: -15%;
+            width: 100%;
+            height: 50%;
+            background-image: url(images/sc3.jpg);
+            /*삼각형클리핑*/
+            clip-path: polygon(0% 100%,100% 100%,50% 0%);
+            /*애니메이션:이시이지반방마*/
+            animation: scm3 3s ease-in-out 9s forwards;
+        }
+        /*왼쪽박스*/
+        #myc>div:last-child{
+            left: -15%;
+            width: 50%;
+            height: 100%;
+            background-image: url(images/sc2.jpg);
+            /*삼각형클리핑*/
+            clip-path: polygon(0% 0%,100% 50%,0% 100%);
+            /*애니메이션:이시이지반방마*/
+            animation: scm4 5s cubic-bezier(0, 0.25, 0.21, 0.51) 10s forwards;
+        }
+        
+        /*스틸컷 등장 애니 키프레임*/
+        @keyframes scm1{/*윗박스*/
+            to{
+                top: 0;
+                opacity: 1;
+            }
+        }/*키프레임*/
+        @keyframes scm2{/*오른쪽박스*/
+            to{
+                right: 0;
+                opacity: 1;
+            }
+        }/*키프레임*/
+        @keyframes scm3{/*아랫박스*/
+            to{
+                bottom: 0;
+                opacity: 1;
+            }
+        }/*키프레임*/
+        @keyframes scm4{/*왼쪽박스*/
+            to{
+                left: 0;
+                opacity: 1;
+            }
+        }/*키프레임*/
+        
+        /*삼각형과 이미지박스*/
+        #mytri{
+            position: absolute;
+            width: 1000px;
+            height: 300px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            background-color: rgba(0, 0, 0, 0);
+            /*반투명배경 처음에 투명하게 alpha값 0*/
+            
+            /*애니메이션:이시이지반방마*/
+            animation: logobg 2s ease-out 20s forwards;
+        }
+        /*로고배경 키프레임*/
+        @keyframes logobg{
+            to{
+                background-color: rgba(0, 0, 0, 0.5);
+                /*alpha값 반투명 0.5로 변경*/
+            }
+        }/*키프레임*/
+        #mytri img{
+            position: absolute;
+            left: -6px;
+            width: 100%;
+            opacity: 0;/*처음에 숨김*/
+            
+            /*애니메이션:이시이지반방마*/
+            animation: showImg 2s ease-out 20s forwards;
+        }
+        /*로고이미지 키프레임*/
+        @keyframes showImg{
+            to{
+                opacity: 1;
+            }
+        }/*키프레임*/
+        
+        /*삼각형 svg박스*/
+        #mytri svg.tribox{
+            position: relative;
+            display: block;/*박스중앙먹히게*/
+            margin: 0 auto;/*가로중앙*/
+            width: 300px;
+            height: 300px;
+            /*outline: 3px solid lime;*/
+        }
+        /*삼각형*/
+        #mytri polygon{
+            fill: transparent;
+            /*배경투명(기본:검정)*/
+            stroke: #fff;/*선색*/
+            stroke-width: 5;/*선두께*/
+            stroke-dasharray: 330%;
+            /*50%시 6조각: 50%*6=300% */
+            stroke-dashoffset: 330%;/*공백부터*/
+            
+            /*선애니메이션 키프레임과 동일함! 이것을 호출!*/
+            /*애니메이션:이시이지반방마*/
+            animation: lineAni 5s linear 15s forwards;
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+  
+  <!--공각기동대 스킬컷 박스-->
+    <div id="myc">
+        <div><span class="bld">공각스틸컷</span></div>
+        <div><span class="bld">공각스틸컷</span></div>
+        <div><span class="bld">공각스틸컷</span></div>
+        <div><span class="bld">공각스틸컷</span></div>
+    </div>
+  
+   
+   <!--라인애니메이션박스-->
+  <svg class="stg">
+      <line class="line1" x1="0%" y1="0%" x2="100%" y2="100%"></line>
+      <line class="line1" x1="100%" y1="0%" x2="0%" y2="100%"></line>
+  </svg>
+   
+   <!--삼각형과 이미지박스-->
+    <div id="mytri">
+        <img src="images/GoastInTheShell_logo.png" alt="logo">
+        <svg class="tribox">
+            <polygon points="0,300 300,300 150,0"></polygon>
+            <!--polygon은 px없는 숫자값으로 셋팅한다!-->
+        </svg>
+    </div>
+   
+   
+   
+   
+   
+    
+</body>
+</html>

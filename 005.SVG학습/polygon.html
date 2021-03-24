@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SVG - Polygon Animation</title>
+    <style>
+        body {
+            background-color: #000;
+        }
+
+        /*이미지박스*/
+        .myp {
+            position: relative;
+            /*부모자격*/
+            width: 400px;
+            height: 300px;
+            margin: 50px auto;
+        }
+        .myp2{
+            width: 200px;
+            height: 150px;
+        }
+        .myp2 img{
+            width: 100%;
+        }
+        
+        .myp3{
+            width: 40%;
+            height: auto;
+        }
+        .myp3 img{
+            width: 100%;
+        }
+
+        /*SVG박스*/
+        .myp>svg {
+            /*이미지위로 겹쳐지게*/
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*polygon요소*/
+        .myp>svg>polygon {
+            fill: transparent;
+            /*투명*/
+            /*기본채우기 색은 검정*/
+            stroke: lime;
+            /*선색*/
+            stroke-width: 15;
+            /*선두께-숫자만쓰면 px*/
+
+            /*여기서부터가 svg애니메이션 핵심!*/
+            stroke-dasharray: 400%;
+            /*
+                선공백 속성으로 50% 잡아서 몇조각인지 센다
+                선공백이 8조각 나오므로 
+                50% * 8 = 400% 으로 설정하면 선만 꽉찬다!
+            */
+            stroke-dashoffset: 400%;
+            /*시작점을 밀어주는 속성을 선공백속성 크기만큼 밀어서
+            공백부터 시작하게 해준다*/
+
+            /*트랜지션:속시이지*/
+            transition: stroke-dashoffset .4s linear;
+            /*linear 등속도(선속도)*/
+        }
+
+        /*마우스 오버시 svg애니*/
+        .myp:hover>svg>polygon {
+            stroke-dashoffset: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="myp">
+        <img src="images/img1.jpg" alt="사진">
+        <svg>
+            <polygon points="0,0 400,0 400,300 0,300"></polygon>
+        </svg>
+    </div>
+    <div class="myp myp2">
+        <img src="images/img2.jpg" alt="사진">
+        <svg viewBox="0 0 400 300">
+            <polygon points="0,0 400,0 400,300 0,300"></polygon>
+        </svg>
+    </div>
+    
+    <div class="myp myp3">
+        <img src="images/img2.jpg" alt="사진">
+        <svg viewBox="0 0 400 300">
+            <polygon points="0,0 400,0 400,300 0,300"></polygon>
+        </svg>
+    </div>
+    
+    <!--
+    [ svg 축소확대용 속성 ]
+    viewBox 속성:
+    - 형식: viewBox="x축위치 y축위치 width크기 heigh크기"
+    - 위의 형식의 값은 4가지이고 각 값은 띄어쓰기로 구분한다.
+    - 각 속성값의 특성
+        1) x축위치, y축위치는 +숫자값은 스테이지 바깥쪽방향
+                            -숫자값은 스테이지 안쪽방향
+        -> 스테이지 보다 큰 svg 이미지가 있다면 위치를 이동하여
+        특정 이미지만 보이게 하는데 사용된다!
+        
+        2) width크기, heigh크기는 svg원본 크기를 지정하는 부분이다.
+        -> 이 값의 width크기를 실제크기와 다르게 조정할 경우
+        값이 원본보다 커지면 보이는 벡터 이미지는 작게 표현된다
+        (값이 작아지면 반대)
+        -> height크기는 벡터 그래픽의 세로 영역을 확장하는데 사용됨
+        
+    [ viewBox의 가장 일반적인 셋팅은? ]
+    viewBox="0 0 원래가로크기 원래세로크기"
+    
+    -> 이 셋팅을 하면 스테이지가 크기 변경을 할때 svg의 크기를
+    비율을 유지하여 축소확대를 하게 된다!!!
+    -->
+    
+    
+    <!--
+   [ svg 다각형 표현하기 : polygon ]
+    - x,y축 점을 찍은만큼 그 점을 직선으로 연결하여
+    다각형을 그려준다.
+    - 표현법: points 속성값으로 설정
+        x,y축 점을 콤마로 연결하고 다른점은 스페이스바로 구분
+    <polygon points="x1,y1 x2,y2 x3,y3 ..."></polygon>
+   -->
+
+
+</body></html>
