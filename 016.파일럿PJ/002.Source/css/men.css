@@ -1,8 +1,13 @@
 @charset "utf-8";
-/* 메인 css - main.css */
+/* 남자페이지 css - men.css */
 
 @import url(base.css);
 @import url(reset.css);
+
+body{
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
 
 /*공통 class*/
 .page {
@@ -23,6 +28,33 @@
 .bld {
     display: none;
 }
+
+/*드래그 선택 안되게 하는 CSS*/
+.disableselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Chrome/Safari/Opera */
+    -khtml-user-select: none;
+    /* Konqueror */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge*/
+    user-select: none;
+    /* Non-prefixed version, currently 
+    not supported by any browser */
+}
+
+.disabledrag {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+
 
 /*******************/
 /*1.상단영역*/
@@ -121,9 +153,6 @@
     left: 0%;
 }
 
-#ham:hover span {
-    background-color: aqua;
-}
 
 /*햄버거 막대 변경상태(클래스 on적용)*/
 #ham.on {
@@ -137,7 +166,8 @@
 }
 
 #ham.on span:nth-child(2) {
-    left: 50% !important;/*모바일 : hover 설정변경때문에 !important를 줌!!*/
+    left: 50% !important;
+    /*모바일 :hover 설정변경때문에 !important를 줌*/
     width: 0;
 }
 
@@ -218,6 +248,7 @@
     background: url(../images/mobile/ban04.jpg) no-repeat center/cover;
     /*모바일에서 동영상 제거시 배경이미지가 보이도록 미리셋팅함!*/
     display: none;
+    /*처음에 안보임*/
 }
 
 /*동영상 반투명 가림막*/
@@ -300,8 +331,8 @@
     position: absolute;
     left: -100%;
     /*끝슬라이드 왼쪽에 나가있음!*/
-    width: 600vw;
-    /*보이는 화면의 6배(슬라이드 6장)*/
+    width: 300vw;
+    /*보이는 화면의 3배(슬라이드 3장)*/
     height: 100vh;
     display: flex;
 }
@@ -318,159 +349,19 @@
 /*개별 슬라이드 
 - 고유한 클래스로 배경이미지 셋팅*/
 .slide > li.ban1 {
-    background: url(../images/ban01New.jpg) no-repeat center/cover;
+    background: url(../images/banmen01.png) no-repeat center/cover;
 }
 
 .slide > li.ban2 {
-    background: url(../images/ban02New.jpg) no-repeat center/cover;
+    background: url(../images/banmen02.png) no-repeat center/cover;
 }
 
 .slide > li.ban3 {
-    background: url(../images/ban03New.jpg) no-repeat center/cover;
-}
-
-.slide > li.ban4 {
-    background: url(../images/ban04New.jpg) no-repeat center/cover;
-}
-
-.slide > li.ban5 {
-    background: url(../images/ban05New.jpg) no-repeat center/cover;
-}
-
-.slide > li.ban6 {
-    background: url(../images/ban06New.jpg) no-repeat center/cover;
-}
-
-/*배너이동시 보호막*/
-.prot {
-    position: absolute;
-    /*부모? .ban*/
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    /*background-color: #f00;*/
-    /*opacity: .5;*/
-    display: none;
-    /*처음에 숨김*/
-}
-
-/*블릿박스*/
-.indic {
-    position: absolute;
-    left: 50%;
-    bottom: 4%;
-    transform: translateX(-50%);
-    width: 168px;
-    height: 10px;
-    z-index: 1;
-}
-
-.indic > li {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin: 0 9px;
-    background-color: #ccc;
-    opacity: .5;
-}
-
-.indic a {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-/*선택블릿on*/
-.indic li.on {
-    background-color: #fff;
-    opacity: 1;
-}
-
-/*양쪾 이동버튼 mousefollower플러그인*/
-
-/*팔로워*/
-.badge {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    transform: translate(-50%, -50%);
-}
-
-.inside {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: scale(0);
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-    transition: all .1s;
-    cursor: pointer;
-}
-
-/*글자박스*/
-.bbtit {
-    position: absolute;
-    width: 200px;
-    height: 80px;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%) scale(0);
-    /*            outline: 1px solid red;*/
-    font: 22px/80px Verdana;
-    color: #555;
-    text-align: center;
-    transition: all .1s;
-    cursor: pointer;/*손가락 모양*/
-}
-
-.btna {
-    position: absolute;
-    width: 20%;
-    height: 100%;
-}
-
-.ar1 {
-    left: 0;
-    /*background-color: #ffafaf;*/
-}
-
-.ar2 {
-    right: 0;
-    /*background-color: #769bff;*/
+    background: url(../images/banmen03.png) no-repeat center/cover;
 }
 
 
-/*드래그 선택 안되게 하는 CSS*/
-.disableselect {
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Chrome/Safari/Opera */
-    -khtml-user-select: none;
-    /* Konqueror */
-    -moz-user-select: none;
-    /* Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge*/
-    user-select: none;
-    /* Non-prefixed version, currently 
-    not supported by any browser */
-}
-
-.disabledrag {
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    user-drag: none;
-}
-
-
-
-/******* 남자,여자 스타일 패션영역 공통 class *****/
+/******* 남자 해변패션,스타일 영역 공통 class *****/
 /*컨텐츠페이지박스*/
 ul.pgc {
     position: relative;
@@ -527,32 +418,40 @@ ul.pgc > li.txtc h3 a {
 }
 
 
-/*********3.남자패션영역*********/
-.men {
-    /*background: #8682ff;*/
+/*********3.신상품영역*********/
+.newarr {
+    background: #8682ff;
+}
+/*타이틀*/
+.tit{    
+    font-size: 4rem;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 100px;
+    
 }
 
-/********4.여자패션영역********/
-.women {
+/********4.해변패션영역********/
+.beach {
     /*background: #9ffff0;*/
 }
 
 /*여자 이미지박스*/
-.women ul.pgc > li.imgc {
+.beach ul.pgc > li.imgc {
     width: 70%;
 }
 
 /*여자 이미지*/
-.women ul.pgc > li.imgc img {
+.beach ul.pgc > li.imgc img {
     margin-left: -200px;
 }
 
 /*여자 글자박스*/
-.women ul.pgc > li.txtc {
+.beach ul.pgc > li.txtc {
     width: 30%;
 }
 
-/********5.스타일영역********/
+/********5.남자스타일영역********/
 .style {
     /*background: #f963ff;*/
 }
