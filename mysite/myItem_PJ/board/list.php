@@ -1,13 +1,107 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>게시판 리스트 페이지</title>
     <link rel="stylesheet" href="board.css">
 </head>
+
 <body>
-   
-   <!--게시판 리스트-->
+    <?php
+    
+    # 읽기모드 여부(값이 "read"이면 읽기모드임)
+    $mode = "";
+    
+    # 글번호(DB레코드 고유번호)
+    $read_uno = "";
+    
+    # 만약 url에 전달값 키가 있다면 읽어서 위의 변수에 담는다!
+    if(isset($_GET["mode"])){
+        $mode = $_GET["mode"];
+    } /////// if ////////////////
+    
+    if(isset($_GET["read_uno"])){
+        $read_uno = $_GET["read_uno"];
+    } /////// if ////////////////
+    
+    // 1. DB연결 문자열 불러오기(맨위에서 한번만 해준다!!!)
+    include "DBconn.inc";
+    
+    
+    ##################################################
+    #### 만약 $mode가 "read"이면 아래쪽 읽기테이블 출력 ###
+    ##################################################
+    if(!strcmp($mode,"read")){
+        
+        # 1. uno해당 레코드 읽어오기 위한 쿼리문 만들기
+        $sql = "SELECT * FROM `board_free` 
+                WHERE `uno`= $read_uno";
+        
+        # 2. 쿼리날리기(실행!)
+        $res = $conn->query($sql);
+        
+        # 3. 결과가져오기
+        $row = $res->fetch_assoc();
+        
+        # 4. DB 컬럼 값 변수처리
+        // (1) 글쓴이
+        $name = $row["name"];
+        // (2) 홈페이지
+        $homepage = $row["homepage"];
+        // (4) 글 제목
+        $subject = $row["subject"];
+        // (5) 글 내용
+        $content = $row["content"];
+        
+        
+    ?>
+
+    <table class="dtblview">
+        <tr>
+            <td>글쓴이</td>
+            <td><?=$name?></td>
+        </tr>
+        <tr>
+            <td>홈페이지</td>
+            <td><?=$homepage?></td>
+        </tr>
+        <tr>
+            <td>글 제목</td>
+            <td><?=$subject?></td>
+        </tr>
+        <tr>
+            <td>글 내용</td>
+            <td><?=$content?></td>
+        </tr>
+    </table>
+    <br>
+    <table class="dtbl btngrp">
+        <tr>
+            <td width="375">
+                <button><a href="list.php">글 목록</a></button>
+                <button class="wbtn"><a href="write.php?mode=form">글 쓰기</a></button>
+            </td>
+            <td width="375" align="right">
+                <button class="wbtn"><a href="modify.php?mode=form&modify_uno=9">글 수정</a></button>
+                <button class="wbtn"><a href="delete.php?mode=form&delete_uno=9">글 삭제</a></button>
+            </td>
+        </tr>
+    </table>
+    <br>
+    
+    <?php
+        
+        
+    } /////// if : $mode가 "read"인 경우 ///////////////
+    ///////////////////////////////////////////////////
+    
+    
+    
+    ?>
+
+
+    <!--게시판 리스트-->
     <table class="dtbl">
         <caption>방명록 게시판</caption>
         <!--상단 컬럼명 표시영역-->
@@ -20,8 +114,8 @@
                 <th>조회수</th>
             </tr>
         </thead>
-        
-        
+
+
 
         <?php 
         
@@ -42,7 +136,7 @@
         
         
         // 1. DB연결 문자열 불러오기
-        include "DBconn.inc";
+        // -> 상단에서 한번 DB연결함!(읽기모드때문에)
         
         /// 2. 전체 테이블 데이터 불러오는 쿼리문 만들기
         $sql = "SELECT * FROM `board_free` ORDER BY `uno` DESC ".
@@ -90,9 +184,9 @@
         
         ?>
 
-        
-        
-        
+
+
+
         <!--중앙 레코드 표시부분-->
         <tbody>
             <?php
@@ -121,21 +215,38 @@
                 // 1+ 레코드 시작번호(0,5,10,15,...)
                 
                 while($row=$res->fetch_assoc()){
+                    
+                    # DB 컬럼 값 변수처리
+                    // 1.일련번호
+                    $uno = $row["uno"];
+                    // 2.제목
+                    $subject = $row["subject"];
+                    // 3.이름
+                    $name = $row["name"];
+                    // 4.입력일
+                    $register_date = $row["register_date"];
+                    // 5.조회수
+                    $hit = $row["hit"];
+                    
+                    
+                    # 날짜형식변환: DB에 날짜가 숫자형식으로 되어있음
+                    // date(형식,숫자형날짜데이터)
+                    // 형식: 년(Y), 월(m), 일(d)
+                    $register_date = 
+                        date("Y-m-d",$register_date);
+                    
                                         
                     echo 
                     "<tr>".
                         // 리스트의 순번을 새로 붙여준다!
-                        "<td>".$lno."</td>".
+                        "<td>$lno</td>".
                         //// 글보기는 리스트페이지다
-                        "<td><a href='list.php?no=".
-                        $row["uno"].//보내는 유일키
-                        "'>".
-                        $row["subject"].
-                        "</a></td>".
-                        /////////////////////////////
-                        "<td>".$row["name"]."</td>".
-                        "<td>".$row["register_date"]."</td>".
-                        "<td>".$row["hit"]."</td>".
+                        "<td>
+                            <a href='list.php?no=$no&mode=read&read_uno=$uno'>$subject</a>
+                        </td>".
+                        "<td>$name</td>".
+                        "<td>$register_date</td>".
+                        "<td>$hit</td>".
                     "</tr>";
                     
                     # 리스트번호 증가
@@ -160,8 +271,8 @@
         ?>
 
         </tbody>
-        
-        
+
+
         <?php
         ########## 페이징 링크 만들기 ###################
         
@@ -228,22 +339,37 @@
         
         ###############################################
         ?>
-        
-        
+
+
         <!--하단 페이징 표시부분-->
         <tfoot>
             <tr>
                 <td colspan="5">
                     <!--PHP에서 페이징을 구성하여 표시한다!-->
-                  <?=$pg?>
+                    <?=$pg?>
 
                 </td>
             </tr>
         </tfoot>
     </table>
-   
-   
-   
-    
+
+    <br>
+    <table class="dtbl btngrp">
+        <tr>
+            <td>
+                <button>
+                    <a href="list.php">글 목록</a>
+                </button>
+                <button class="wbtn">
+                    <a href="write.php">글 쓰기</a>
+                </button>
+            </td>
+        </tr>
+    </table>
+
+
+
+
 </body>
+
 </html>
