@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SVG - Car Animation</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        /*자동차박스*/
+        #mypath {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1359px;
+            height: 791px;
+            /*outline: 1px solid red;*/
+            
+            
+        }
+        
+        /*자동차박스 애니메이션*/
+        body.on #mypath {
+            /*애니메이션 - 이시이지반방마*/
+            animation: gocar 4s ease-in-out 17s forwards;
+        }
+
+        /*자동차 이미지*/
+        #car {
+            position: absolute;
+            top: 0;
+            opacity: 0;
+        }
+        
+        /*자동차박스 애니메이션*/
+        body.on #car {
+            /*애니메이션 - 이시이지반방마*/
+            animation: showcar 2s ease-in-out 12s forwards,
+                brrcar .03s linear 14s infinite alternate;
+        }
+
+
+        /*svg선*/
+        .svg_path {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /*path요소*/
+        .svg_path>path {
+            fill: transparent;
+            /*채우기(기본: 검정) 투명처리*/
+            stroke: #000;
+            stroke-width: 5px;/*선 두깨*/
+            stroke-linecap: round;
+            
+            /*라인 애니에서 중요한 부분!!!*/
+            stroke-dasharray: 239%;
+            /*
+                선공백 셋팅에서 50%를 주고 몇조각인가?
+                5조각 이므로 50%*5=250%부터 조정함!
+            */
+            
+            stroke-dashoffset: 239%;/*시작점밀기 : 공백부터 시작*/
+            
+            /*애니메이션 - 이시이지반방마*/
+            
+        }
+        
+        /*path요소 애니메이션*/
+        body.on .svg_path>path {
+            /*애니메이션 - 이시이지반방마*/
+            animation: drawing 10s linear 3s forwards,
+                hideline .2s ease-in-out 12s forwards;
+        }
+        
+        /*바퀴공통*/
+        .ba 1
+            position: absolute;
+            width: 133px;
+            height: 133px;
+            border-radius: 50%;
+            background: url(images/car.jpg) no-repeat;
+            background-position: -249px -424px;
+          /*  outline: 2px solid blue;*/
+            
+            
+        }
+        
+        /*앞바퀴*/
+        .fw {
+            bottom: 235px;
+            left: 250px;
+            opacity: 0;
+            
+            
+        }
+        
+        /*path요소 애니메이션*/
+        body.on .fw {
+            /*애니메이션 - 이시이지반방마*/
+            animation: showcar 2s ease-in-out 12s forwards,
+                brrFW .03s linear 14s infinite alternate,
+                rot 1s linear 17.2s infinite;
+        }
+        
+        /*뒤바퀴*/
+        .bw {
+            bottom: 240px;
+            right: 272px;
+            opacity: 0;
+        }
+        
+        /*path요소 애니메이션*/
+        body.on .bw {
+            /*애니메이션 - 이시이지반방마*/
+            animation: showcar 2s ease-in-out 12s forwards,
+                brrBW .03s linear 14s infinite alternate,
+                rot 1s linear 17.2s infinite;
+        }
+        
+        
+        
+        /*로고*/
+        #logo {
+            position: absolute;
+            top: 50%;
+            left: 150%; /*오른쪽 밖으로 보냄*/
+            transform: translate(-50%, -50%);
+            width: 25%;
+            
+            
+        }
+        
+        /*로고 애니메이션*/
+        body.on #logo {
+            /*애니메이션 - 이시이지반방마*/
+            animation: comelogo 2s ease-in-out 20s forwards;
+        }
+        
+        /*start버튼*/
+        .sbtn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 28vw;
+            height: 10vw;
+            font: bold 4vw Verdana;
+            border-style: double;
+            border-radius: 50%;
+            outline: none;
+            color: violet;
+            cursor: pointer;
+        }
+        
+        
+        
+        /*애니메이션 키프레임*/
+        
+        /*1. 차동차 선그리기*/
+        @keyframes drawing {
+            to{
+               stroke-dashoffset: 0; 
+            }
+        }/*키프레임*/
+        
+        /*2. 자동차 나타나기*/
+        @keyframes showcar {
+            to {
+                opacity: 1;
+            }
+        }/*키프레임*/
+        
+        /*3. 자동차 나타나기*/
+        @keyframes hideline {
+            to {
+                opacity: 0;
+            }
+        }/*키프레임*/
+        
+         /*4. 자동차 시동걸기*/
+        @keyframes brrcar {
+            to {
+                top: -0.5%;
+            }
+        }/*키프레임*/
+        
+         /*5. 자동차 앞바퀴떨기*/
+        @keyframes brrFW {
+            to {
+                opacity: 1;
+                bottom: 239px;
+            }
+        }/*키프레임*/
+        
+         /*6. 자동차 뒤바퀴떨기*/
+        @keyframes brrBW {
+            to {
+                opacity: 1;
+                bottom: 244px;
+            }
+        }/*키프레임*/
+        
+        /*7. 자동차 뒤바퀴떨기*/
+        @keyframes gocar {
+            to {
+                left: -50%;
+            }
+        }/*키프레임*/
+        
+        /*8. 자동차 바퀴 회전*/
+        @keyframes rot {
+            to {
+               transform: rotate(-720deg);
+            }
+        }/*키프레임*/
+        
+        /*9. 로고 들어오기*/
+        @keyframes comelogo {
+            to {
+               left:50%;
+            }
+        }/*키프레임*/
+        
+        
+        
+    </style>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script>
+    
+        $(function() {
+        
+            // 시작버튼 클릭시 애니메이션 시작 + 오디오 시작
+            $('.sbtn').click(function(){
+                
+                // 1. 버튼 자신 사라지기
+                $(this).fadeOut(400)
+                
+                // 2. body에 class="on"넣기
+                $('body').addClass('on')
+                
+                // 3. 1초후 오디오 플레이하기
+                // 오디오 씽크맞추려고 1초후임!
+                setTimeout(function(){
+                    
+                    $('.aud').get(0).play()
+                
+                },1000)
+                    
+            })///// click /////
+            
+            
+        }) //// jQB //////////////////////////////////
+        //////////////////////////////////////////////
+    
+    
+    </script>
+    
+    
+</head>
+
+<body class="">
+    <!--자동차 박스-->
+    <div id="mypath">
+        <!--자동차 밑그림-->
+        <img src="images/car.jpg" alt="폭스바겐" id="car">
+        <!--path 애니메이션 svg-->
+        <svg class="svg_path">
+            <path d="M111.5,467.5c0,0-11-30,28-45c0,0,20-71,116-84c0,0,95-24,172-29c0,0,103-79,151-96c0,0,95-39,328-9l14-6l5,1
+	l-5,11c0,0,73,14,189,87l10,2c0,0,57,47,76,89c0,0,25,12,30,23s0,4,0,4s3-11,2,52c0,0,5,4-19,38c0,0,3,12-99,13c0,0-19,56-92,57
+	c0,0-59,4-90-57l-481,9l-28,2h-10c0,0-29,52-98,46c0,0-44,12-83-50l-86,5l-31-16l6-6L111.5,467.5z"></path>
+        </svg>
+        
+        <!--자동차 앞바퀴-->
+        <div class="ba fw"></div>
+        <!--자동차 뒤바퀴-->
+        <div class="ba bw"></div>
+
+
+    </div>
+    
+    <!--로고이미지-->
+    <img src="images/volkswagen.jpg" alt="logo" id="logo">
+    
+    <!--효과음 오디오-->
+    <audio src="images/carsound.mp3" class="aud"></audio>
+    
+    <!--시작버튼-->
+    <button class="sbtn">AD START</button>
+    
+    
+    <!--
+
+    [ SVG : path ]
+    - 특정 명령어를 사용하여 직선과 곡선을 자유롭게 표현하는 핵터 SVG표현법
+    - 아래 명령어들은 path정보를 구현하는데 사용된다.
+    - d속성에 값을 넣어 화면에 출력한다
+
+    M = 이동 - 기준점 이동(시작점)
+    L = 선으로 이동
+    H = 수평선
+    V = 수직선
+    C = 곡선
+    S = 부드러운 곡선
+    Q = 2 차 베 지어 곡선
+    T = 부드러운 2 차 베 지어 곡선
+    A = 타원형 호
+    Z = 가까운 경로 - 패스닫기
+    참고 : 위의 모든 명령은 소문자로도 표현할 수 있습니다. 대문자는 절대 위치를 의미하고 소문자는 상대적 위치를 의미합니다.
+
+    [ 원하는 곡선의 path 코드를 얻는방법 ]
+    1. 일러스트레이터로 백터 선을 그린다!.
+    2. 다른이름으로 저장하여 형식을 "SVG"를 선택후 확인한다.
+    3. SVG대화창이 뜨면 하단의 "code"버튼을 클릭한다.
+    4. 브라우져를 구동하여 코드를 보여준다.
+    5. 여기서 코드의 SVG태크의 내부의 d 속성값을 복사한다
+    6. 복사한값을 내가사용하려고하는 SVG에 넣고 모든 코드를 한줄로 붙여쓴다.
+
+-->
+
+</body></html>
