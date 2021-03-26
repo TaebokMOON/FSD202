@@ -4,15 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discovery Expedition - MEN Page</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
     <link rel="stylesheet" href="css/men.css">
     <link rel="stylesheet" href="css/media_men.css">
+    <script src="js/smoothScroll20.js"></script>
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.mousefollower.js"></script>
-    <script src="js/jquery-touch-punch.min.js"></script>
-    <!--터치펀치로 모바일 드래그 작동가능-->
+    <script src="js/jquery.scroll-reveal.js"></script>
+    <script src="js/swiper.min.js"></script>
     <script src="js/men.js"></script>
+    <style>
+        /*스크롤리빌 플러그인 class*/
+        .js-reveal,
+        .js-reveal2,
+        .js-reveal3 {
+            opacity: 1;
+            transition: opacity 2s ease-in,
+                transform 2s ease-out;
+        }
 
+        .js-reveal--hidden {
+            opacity: 0;
+            transform: translateY(500px)
+        }
+
+        .js-reveal2--hidden {
+            opacity: 0;
+            transform: translateX(-500px);
+        }
+
+        .js-reveal3--hidden {
+            opacity: 0;
+            transform: translateX(500px);
+        }
+    </style>
 </head>
 
 <body>
@@ -75,25 +100,30 @@
 
     </header>
     <!--2.배너영역-->
-    <section class="ban page">
+    <section class="ban page swiper-container">
         <!--배너슬라이드-->
-        <ul class="slide">
-            <li class="ban1">
+        <ul class="slide swiper-wrapper">
+            <li class="ban1 swiper-slide">
                 <span class="ir">배너1</span>
             </li>
-            <li class="ban2">
+            <li class="ban2 swiper-slide">
                 <span class="ir">배너2</span>
             </li>
-            <li class="ban3">
+            <li class="ban3 swiper-slide">
                 <span class="ir">배너3</span>
             </li>
         </ul>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
 
     </section>
     <!--3.신상품영역-->
     <section class="newarr page">
         <h2 class="tit">NEW ARRIVAL</h2>
-        
+
     </section>
     <!--4.해변패션영역-->
     <section class="beach page">
@@ -101,13 +131,13 @@
         <ul class="pgc">
             <li class="txtc">
                 <h3>
-                    <a href="#">
+                    <a href="#" class="js-reveal">
                         MEN'S<br>BEACH STYLE
                     </a>
                 </h3>
             </li>
             <li class="imgc">
-                <img src="images/men01.png" alt="남자해변패션">
+                <img src="images/men01.png" alt="남자해변패션" class="js-reveal2">
             </li>
         </ul>
     </section>
@@ -116,22 +146,22 @@
         <h2 class="bld">남자스타일패션영역</h2>
         <ul class="pgc">
             <li class="imgc">
-                <img src="images/style02.jpg" alt="남자스타일">
+                <img src="images/style02.jpg" alt="남자스타일" class="js-reveal3">
             </li>
             <li class="txtc">
                 <h3 class="tm">
-                    <a href="#">
+                    <a href="#" class="js-reveal3">
                         MEN'S<br>SPORT STYLE
                     </a>
                 </h3>
                 <h3 class="tw">
-                    <a href="#">
+                    <a href="#" class="js-reveal2">
                         MEN'S<br>LIFE STYLE
                     </a>
                 </h3>
             </li>
             <li class="imgc">
-                <img src="images/style03.jpg" alt="남자스타일">
+                <img src="images/style03.jpg" alt="남자스타일" class="js-reveal2">
             </li>
         </ul>
     </section>
@@ -163,8 +193,6 @@
         <li><a href="#pg3"><span>WOMEN</span></a></li>
         <li><a href="#pg4"><span>STYLE</span></a></li>
     </ol>
-
-
 
 
 

@@ -329,21 +329,35 @@ body{
 /*배너슬라이드*/
 .slide {
     position: absolute;
-    left: -100%;
     /*끝슬라이드 왼쪽에 나가있음!*/
-    width: 300vw;
+    width: 100%;
     /*보이는 화면의 3배(슬라이드 3장)*/
-    height: 100vh;
-    display: flex;
+    height: 100%;
 }
 
 .slide > li {
     position: relative;
     /*부모자격 - 슬라이드 타이틀*/
-    flex: 1;
-    /*등분할*/
+    display: flex; /*swiper 필수*/
     float: none;
     /*공통float해제*/
+}
+
+.swiper-button-next {
+    right: 113px;
+    transition: all .5s;
+}
+.swiper-button-prev {
+    left: 100px;
+    transition: all .5s;
+}
+.swiper-button-next:hover {
+    transform: scale(1.2);
+    color: #e85757;
+}
+.swiper-button-prev:hover {
+    transform: scale(1.2);
+    color: #e85757;
 }
 
 /*개별 슬라이드 
