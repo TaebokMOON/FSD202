@@ -1,0 +1,38 @@
+[ 게시판 테이블 컬럼 ]
+1. 테이블 이름 : board_free
+2. 컬럼설명:
+	1) uno숫자형 : 자동증가값(기본키): 유일키,
+	2) gno숫자형 : 그룹번호
+	3) reply_depth 문자형 : 답변하위뎁스,
+	4) name 문자형 : 작성자명,
+	5) passwd 문자형 : 작성암호,
+	6) email 문자형 : 이메일,
+	7) homepage 문자형 : 홈페이지 주소,
+	8) subject 문자형 : 글제목,
+	9) content 문자형 : 글 내용,
+	10) html_tag 문자형 : HTML처리여부,
+	11) hit 숫자형 : 조회수,
+	12) register_date 날짜(숫자형): 입력일,
+	13) client_ip 문자형 : 글쓴이 아이피주소
+
+
+
+CREATE TABLE IF NOT EXISTS board_free (
+  uno int(10) unsigned not null auto_increment,
+  gno int(10) unsigned not null ,
+  reply_depth varchar(255),
+  name varchar(20),
+  passwd varchar(20),
+  email varchar(50),
+  homepage varchar(50),
+  subject varchar(60),
+  content text,
+  html_tag varchar(10),
+  hit int(5) unsigned not null,
+  register_date int(10) unsigned,
+  client_ip varchar(20),
+  primary key (uno)
+);
+
+
+
