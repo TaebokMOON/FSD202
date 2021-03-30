@@ -12,30 +12,30 @@
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/jquery.scroll-reveal.js"></script>
     <script src="js/swiper.min.js"></script>
+    <script src="js/jquery.parallax-1.1.3.js"></script>
     <script src="js/men.js"></script>
     <style>
         /*스크롤리빌 플러그인 class*/
         .js-reveal,
-        .js-reveal2,
-        .js-reveal3 {
+        .js-reveal2 {
             opacity: 1;
-            transition: opacity 2s ease-in,
-                transform 2s ease-out;
+            transition: opacity 1.7s ease-in,
+                transform 1.7s ease-out;
         }
 
+        /*등장액션 숨기기(Y축)*/
         .js-reveal--hidden {
             opacity: 0;
-            transform: translateY(500px)
+            transform: translateY(100px);
+            /*마진보다는 현재 위치에서 다른 요소에 영향을 안주는
+            transform으로 위치이동하는 것이 일반적이다!*/
+            /*margin-top: 3em;*/
         }
 
+        /*다른 등장액션 숨기기(X축)*/
         .js-reveal2--hidden {
             opacity: 0;
-            transform: translateX(-500px);
-        }
-
-        .js-reveal3--hidden {
-            opacity: 0;
-            transform: translateX(500px);
+            transform: translateX(100px);
         }
     </style>
 </head>
@@ -116,14 +116,24 @@
         <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
         <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-
+        <div class="swiper-button-next swbtn"></div>
+        <div class="swiper-button-prev swbtn"></div>
     </section>
     <!--3.신상품영역-->
     <section class="newarr page">
         <h2 class="tit">NEW ARRIVAL</h2>
 
+        <ol class="flowImg">
+            <li class="m1"><a href="#"><img src="images/m1.png" alt="신상품"></a></li>
+            <li class="m2"><a href="#"><img src="images/m2.png" alt="신상품"></a></li>
+            <li class="m3"><a href="#"><img src="images/m3.png" alt="신상품"></a></li>
+            <li class="m4"><a href="#"><img src="images/m4.png" alt="신상품"></a></li>
+            <li class="m5"><a href="#"><img src="images/m5.png" alt="신상품"></a></li>
+            <li class="m6"><a href="#"><img src="images/m6.png" alt="신상품"></a></li>
+            <li class="m7"><a href="#"><img src="images/m7.png" alt="신상품"></a></li>
+            <li class="m8"><a href="#"><img src="images/m8.png" alt="신상품"></a></li>
+            <li class="m9"><a href="#"><img src="images/m9.png" alt="신상품"></a></li>
+        </ol>
     </section>
     <!--4.해변패션영역-->
     <section class="beach page">
@@ -138,6 +148,8 @@
             </li>
             <li class="imgc">
                 <img src="images/men01.png" alt="남자해변패션" class="js-reveal2">
+                <!-- 페럴랙스 적용박스 -->
+                <div class="plx"></div>
             </li>
         </ul>
     </section>
@@ -146,16 +158,16 @@
         <h2 class="bld">남자스타일패션영역</h2>
         <ul class="pgc">
             <li class="imgc">
-                <img src="images/style02.jpg" alt="남자스타일" class="js-reveal3">
+                <img src="images/style02.jpg" alt="남자스타일" class="js-reveal2">
             </li>
             <li class="txtc">
                 <h3 class="tm">
-                    <a href="#" class="js-reveal3">
+                    <a href="#" class="js-reveal">
                         MEN'S<br>SPORT STYLE
                     </a>
                 </h3>
                 <h3 class="tw">
-                    <a href="#" class="js-reveal2">
+                    <a href="#" class="js-reveal">
                         MEN'S<br>LIFE STYLE
                     </a>
                 </h3>

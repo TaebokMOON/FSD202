@@ -4,7 +4,7 @@
 @import url(base.css);
 @import url(reset.css);
 
-body{
+body {
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -326,54 +326,53 @@ body{
     /*부모자격*/
 }
 
+
 /*배너슬라이드*/
 .slide {
     position: absolute;
-    /*끝슬라이드 왼쪽에 나가있음!*/
     width: 100%;
-    /*보이는 화면의 3배(슬라이드 3장)*/
     height: 100%;
 }
 
-.slide > li {
+.slide>li {
     position: relative;
     /*부모자격 - 슬라이드 타이틀*/
-    display: flex; /*swiper 필수*/
+    display: flex;
+    /*swiper 필수!*/
+
     float: none;
     /*공통float해제*/
 }
 
-.swiper-button-next {
-    right: 113px;
-    transition: all .5s;
-}
-.swiper-button-prev {
-    left: 100px;
-    transition: all .5s;
-}
-.swiper-button-next:hover {
-    transform: scale(1.2);
-    color: #e85757;
-}
-.swiper-button-prev:hover {
-    transform: scale(1.2);
-    color: #e85757;
-}
-
 /*개별 슬라이드 
 - 고유한 클래스로 배경이미지 셋팅*/
-.slide > li.ban1 {
+.slide>li.ban1 {
     background: url(../images/banmen01.png) no-repeat center/cover;
 }
 
-.slide > li.ban2 {
+.slide>li.ban2 {
     background: url(../images/banmen02.png) no-repeat center/cover;
 }
 
-.slide > li.ban3 {
+.slide>li.ban3 {
     background: url(../images/banmen03.png) no-repeat center/cover;
 }
 
+/*스와이퍼 슬라이드 버튼 위치변경*/
+.swiper-button-prev {
+    left: 100px;
+    color: #a2a2a2;
+}
+
+.swiper-button-next {
+    right: 100px;
+    color: #a2a2a2;
+}
+
+/*스와이퍼 버튼 공통 오버시*/
+.swbtn:hover {
+    color: #f00;
+}
 
 /******* 남자 해변패션,스타일 영역 공통 class *****/
 /*컨텐츠페이지박스*/
@@ -385,14 +384,14 @@ ul.pgc {
 }
 
 /*이미지박스*/
-ul.pgc > li.imgc {
+ul.pgc>li.imgc {
     width: 50%;
     height: 100%;
     overflow: hidden;
 }
 
 /*이미지:등장액션대상!*/
-ul.pgc > li.imgc img {
+ul.pgc>li.imgc img {
     position: relative;
     /*등장액션 top값 쓰기위해*/
     /*인라인요소지만 이미지엔 transform적용됨!*/
@@ -400,7 +399,7 @@ ul.pgc > li.imgc img {
 }
 
 /*글자박스*/
-ul.pgc > li.txtc {
+ul.pgc>li.txtc {
     position: relative;
     /*부모자격*/
     width: 50%;
@@ -409,7 +408,7 @@ ul.pgc > li.txtc {
 }
 
 /*글자*/
-ul.pgc > li.txtc h3 {
+ul.pgc>li.txtc h3 {
     position: absolute;
     /*나의부모? li.txtc*/
     top: 50%;
@@ -423,7 +422,7 @@ ul.pgc > li.txtc h3 {
 }
 
 /*a링크:등장액션대상!*/
-ul.pgc > li.txtc h3 a {
+ul.pgc>li.txtc h3 a {
     position: relative;
     /*등장액션 top값을 쓰기위해*/
     display: block;
@@ -434,15 +433,80 @@ ul.pgc > li.txtc h3 a {
 
 /*********3.신상품영역*********/
 .newarr {
-    background: #8682ff;
+    /* background: #8682ff; */
 }
+
 /*타이틀*/
-.tit{    
+.tit {
     font-size: 4rem;
     width: 80%;
     margin: 0 auto;
     margin-top: 100px;
-    
+
+}
+
+/* 신상품 박스 */
+.flowImg {
+    position: relative;
+    left: 0;
+    /* 이동기준값 */
+    display: flex;
+    margin-top: 150px;
+}
+
+.flowImg li {
+    position: relative;
+    /* 부모자격 */
+    width: 295px;
+    height: 295px;
+}
+
+/* 신상정보박스 */
+.ibox {
+    position: absolute;
+    top: 60%;
+    width: 100%;
+    text-align: center;
+    font: 14px/24px 'Ubuntu';
+    background-color: #101629;
+    color: #fff;
+    padding: 20px 0;
+    opacity: 0;
+    /* 처음에 투명 */
+}
+
+/* 가상요소로 안쪽 테두리 */
+.ibox::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #fff;
+    transform: scaleX(.94) scaleY(.85);
+    box-sizing: border-box;
+    /* 보더때문에 늘어나지 않게 처리! */
+}
+
+/* 가상요소로 화살표만들기 */
+.ibox::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    /* 삼각형설정 */
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid #101629;
+    /* 삼각형 */
+    /* border-top: 20px solid #101629;역삼각형 */
+
 }
 
 /********4.해변패션영역********/
@@ -451,17 +515,17 @@ ul.pgc > li.txtc h3 a {
 }
 
 /*여자 이미지박스*/
-.beach ul.pgc > li.imgc {
+.beach ul.pgc>li.imgc {
     width: 70%;
 }
 
 /*여자 이미지*/
-.beach ul.pgc > li.imgc img {
+.beach ul.pgc>li.imgc img {
     margin-left: -200px;
 }
 
 /*여자 글자박스*/
-.beach ul.pgc > li.txtc {
+.beach ul.pgc>li.txtc {
     width: 30%;
 }
 
@@ -471,26 +535,26 @@ ul.pgc > li.txtc h3 a {
 }
 
 /*스타일 이미지박스*/
-.style ul.pgc > li.imgc {
+.style ul.pgc>li.imgc {
     position: relative;
     /*부모자격*/
     width: 40%;
 }
 
 /*스타일 이미지*/
-.style ul.pgc > li.imgc img {
+.style ul.pgc>li.imgc img {
     position: absolute;
     /*부모? li.imgc*/
     right: 0;
 }
 
 /*스타일 글자박스*/
-.style ul.pgc > li.txtc {
+.style ul.pgc>li.txtc {
     width: 20%;
 }
 
 /*스타일 글자공통*/
-.style ul.pgc > li.txtc h3 {
+.style ul.pgc>li.txtc h3 {
     transform: none;
     /*해제*/
     font-size: 3.7rem;
@@ -498,7 +562,7 @@ ul.pgc > li.txtc h3 a {
 }
 
 /*스타일 남자글자*/
-.style ul.pgc > li.txtc h3.tm {
+.style ul.pgc>li.txtc h3.tm {
     top: 30%;
     left: auto;
     /*기존값해제*/
@@ -506,7 +570,7 @@ ul.pgc > li.txtc h3 a {
 }
 
 /*스타일 여자글자*/
-.style ul.pgc > li.txtc h3.tw {
+.style ul.pgc>li.txtc h3.tw {
     top: 70%;
     left: 10%;
 }
@@ -535,4 +599,16 @@ ul.pgc > li.txtc h3 a {
     padding: 14px;
     border: 4px double #fffefe;
     /*double은 이중선*/
+}
+
+/* 페럴랙스 박스 */
+.plx{
+    position: absolute;
+    /* 부모는? .pgc */
+    top: 50%;
+    right: 20%;
+    width: 50%;
+    height: 40%;
+    border: 3px double skyblue;
+    background: url(../images/gong.jpg) no-repeat fixed center top/cover;
 }
